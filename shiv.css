@@ -1,0 +1,61 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+/* header */
+
+#header{
+    padding: 0px;
+    margin: 0px;
+    height: 68px;
+    display: flex;
+    /* border: 2px solid red; */
+    align-items: center;
+    justify-content: space-between;
+    background-color: aliceblue;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0)
+}
+
+/* Navigation bar */
+
+#navbar{ 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    
+
+}
+
+#navbar li{
+    list-style: none;
+    padding: 0 20px;
+    
+}
+
+#navbar li a{
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: "League Spartan", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+
+/* cart and login  */
+
+#right{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+#right li{
+    list-style: none;
+    padding: 0 20px;
+}
+
