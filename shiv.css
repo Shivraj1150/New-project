@@ -13,8 +13,14 @@
     /* border: 2px solid red; */
     align-items: center;
     justify-content: space-between;
-    background-color: aliceblue;
+    background-color: rgb(253, 229, 252);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0)
+}
+/* Heading */
+
+h1{
+    padding: 20px;
+    font-size: 30px;
 }
 
 /* Navigation bar */
@@ -31,19 +37,35 @@
 #navbar li{
     list-style: none;
     padding: 0 20px;
+    position: relative;
     
 }
 
 #navbar li a{
     text-decoration: none;
-    color: black;
+    color: rgb(0, 0, 0);
     font-size: 16px;
     font-weight: 600;
     font-family: "League Spartan", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
+    transition: 0.3s ease;
+}
+#navbar li a:hover, 
+#navbar li a.affect{
+    color: #bb6620 
 }
 
+#navbar li a.affect::after, 
+#navbar li a:hover::after {
+    content: "";
+    height: 2px;
+    width: 35%;
+    background: #bb6620;
+    position: absolute;
+    bottom: -4px;
+    left: 20px;
+}
 
 /* cart and login  */
 
