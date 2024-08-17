@@ -3,9 +3,7 @@
     margin: 0px;
 }
 body{
-    background-image: url(Shoes.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
+  
 }
 
 /* header */
@@ -13,15 +11,19 @@ body{
 #header{
     padding: 0px;
     margin: 0px;
-    height: 68px;
+    height: 52px;
     display: flex;
     /* border: 2px solid red; */
     align-items: center;
     justify-content: space-between;
-    background-color: rgb(253, 229, 252);
-    box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -30px;
+    background-color: rgb(255, 219, 254);
+    box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -40px;
+    position: static; 
+    z-index: 1000;
+    /* right: 2em; */
     
 }
+
 /* Heading */
 
 h1{
@@ -39,7 +41,7 @@ h1{
     justify-content: center;
     padding: 0 20px;
     z-index: 999; 
-    position: sticky;
+    position: relative;
 
 
 }
@@ -58,6 +60,7 @@ h1{
     font-weight: 600;
     font-family: "League Spartan", sans-serif;
     font-optical-sizing: auto;
+    padding-bottom: 25px;
     font-style: normal;
     transition: 0.3s ease;
 }
@@ -103,24 +106,26 @@ h1{
     position: absolute;
     width: 89%;
     height: 13em;
-    top: 26px;
-    left: -600px;
+    top: 1em;
+    left: -36em;
     background-color: rgb(224, 240, 255);
     font-family: "League Spartan", sans-serif;
     box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -30px;
-    z-index: 999;
+    z-index: -1;
     display: flex;
     margin: 17px;
     padding-right: 83em;
     padding-left: 20em;
     visibility: hidden;
-    opacity: 0;  
+    opacity: 0; 
+    white-space: nowrap; /* Prevents text wrapping */ 
 
 }
 .wrapper{
     margin: 60px;
     padding: 20px;
     display: flex;
+    z-index: 1;
 }
 
 
@@ -130,6 +135,8 @@ h1{
     visibility: visible;
     transition: all 0.2s ease;
     opacity: 1;
+    /* z-index: 998; */
+    
 
 }
 
@@ -145,6 +152,8 @@ h4{
     padding-left: 0.9em;
     margin: 0.3em;
     padding-bottom:  1em;
+    align-items: center;
+    
 }
 
 .dropDown:hover .fa-caret-down{
@@ -168,18 +177,19 @@ h4{
     position: absolute;
     width: 89%;
     height: 13em;
-    top: 26px;
-    left: -600px;
+    top: 1em;
+    left: -48em;
     background-color: rgb(224, 240, 255);
     font-family: "League Spartan", sans-serif;
     box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -30px;
-    z-index: 999;
+    z-index: -1;
     display: flex;
     margin: 17px;
     padding-right: 83em;
     padding-left: 20em;
     visibility: hidden;
     opacity: 0;  
+    white-space: nowrap; /* Prevents text wrapping */
 
 }
 .wrapper1{
@@ -209,6 +219,7 @@ h4{
     display: flex;
     padding-left: 0.9em;
     margin: 0.3em;
+    
     padding-bottom:  1em;
 }
 
@@ -233,19 +244,19 @@ h4{
     position: absolute;
     width: 89%;
     height: 13em;
-    top: 26px;
-    left: -600px;
+    top: 1em;
+    left: -56em;
     background-color: rgb(224, 240, 255);
     font-family: "League Spartan", sans-serif;
     box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -30px;
-    z-index: 999;
+    z-index: -1;
     display: flex;
     margin: 17px;
     padding-right: 83em;
-    padding-left: 20em;
+    padding-left: 26em;
+    white-space: nowrap; /* Prevents text wrapping */
     visibility: hidden;
     opacity: 0;  
-
 }
 .wrapper2{
     margin: 60px;
@@ -283,11 +294,44 @@ h4{
 
 }
 
-/* .list_items{
-    margin: 0.3em;
-    padding-bottom:  1em;
-} */
+
 .flexcol2{
     padding: 0;
     margin: 2.2em;
+}
+
+/* Mega items style */
+
+.list_items_men{
+    
+    margin-bottom: 6px;
+    margin-left: 26px;
+}
+.list_items_women{
+
+    margin-bottom: 6px;
+    margin-left: 26px;
+}
+.list_items_elec{
+
+    margin-bottom: 6px;
+    margin-left: 26px;
+}
+
+.dropdown_women{
+    padding-left: 5px;
+}
+.dropdown_men{
+    padding-left: 5x;
+}
+.dropdown_elec{
+    padding-left: 5px;
+}
+
+.mega_icons{
+    max-width: 20px;
+    height: 20px;
+    
+    padding-right: 6px;
+    padding-bottom: 7px;
 }
