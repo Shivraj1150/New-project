@@ -1,27 +1,41 @@
 *{
     padding: 0px;
     margin: 0px;
+    box-sizing: border-box;
 }
 
 
 /* header */
 
 #header{
-    padding: 0px;
-    margin: 0px;
-    height: 52px;
-    display: flex;
+    /* padding: 0px; */
+    /* margin: auto; */
+    width: 100%;
+    top: 0;
+    left: 0;
+    /* height: 52px; */
+    /* display: flex; */
     /* border: 2px solid red; */
-    align-items: center;
-    justify-content: space-between;
-    background-color: rgb(255, 238, 254);
+    
+    background-color: rgb(255, 255, 255);
     box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -40px;
-    position: sticky; 
+    position: fixed; 
     z-index: 1000;
     /* right: 2em; */
     
 }
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(255, 236, 251);
+    box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -40px;
+    /* max-width: 1200px; */
+    height: 4em;
+    padding: 0 0rem;
+    margin: 0 auto;
 
+}
 /* Heading */
 
 h1{
@@ -102,7 +116,7 @@ h1{
 
 .mega{
     position: absolute;
-    width: 89%;
+    width: auto;
     height: 13em;
     top: 1em;
     left: -36em;
@@ -173,7 +187,7 @@ h4{
 /* This is for mega1 */
 .mega1{
     position: absolute;
-    width: 89%;
+    width: auto;
     height: 13em;
     top: 1em;
     left: -48em;
@@ -240,7 +254,7 @@ h4{
 /* This is for mega2 */
 .mega2{
     position: absolute;
-    width: 89%;
+    width: auto;
     height: 13em;
     top: 1em;
     left: -56em;
@@ -337,6 +351,23 @@ h4{
 
 /* Mega menu for mobile */
 
-@media screen {
+@media screen and (max-width: 1027px) {
+    .wrapper{
+        justify-content: start;
+        flex-wrap: wrap;
+    }
+
     
+}
+
+@media screen and (max-width: 900px) {
+    .wrapper{
+        flex-direction: column;
+        position: static;
+
+    }
+
+    .mega{
+        left: 20px;
+    }
 }
