@@ -1,29 +1,41 @@
 *{
     padding: 0px;
     margin: 0px;
+    box-sizing: border-box;
 }
-body{
-  
-}
+
 
 /* header */
 
 #header{
-    padding: 0px;
-    margin: 0px;
-    height: 52px;
-    display: flex;
+    /* padding: 0px; */
+    /* margin: auto; */
+    width: 100%;
+    top: 0;
+    left: 0;
+    /* height: 52px; */
+    /* display: flex; */
     /* border: 2px solid red; */
-    align-items: center;
-    justify-content: space-between;
-    background-color: rgb(255, 219, 254);
+    
+    background-color: rgb(255, 255, 255);
     box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -40px;
-    position: static; 
+    position: fixed; 
     z-index: 1000;
     /* right: 2em; */
     
 }
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(255, 236, 251);
+    box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -40px;
+    /* max-width: 1200px; */
+    height: 4em;
+    padding: 0 0rem;
+    margin: 0 auto;
 
+}
 /* Heading */
 
 h1{
@@ -104,11 +116,11 @@ h1{
 
 .mega{
     position: absolute;
-    width: 89%;
+    width: auto;
     height: 13em;
     top: 1em;
     left: -36em;
-    background-color: rgb(224, 240, 255);
+    background-color: rgb(239, 246, 252);
     font-family: "League Spartan", sans-serif;
     box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -30px;
     z-index: -1;
@@ -179,13 +191,13 @@ h4{
     height: 13em;
     top: 1em;
     left: -48em;
-    background-color: rgb(224, 240, 255);
+    background-color: rgb(239, 246, 252);
     font-family: "League Spartan", sans-serif;
     box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -30px;
     z-index: -1;
     display: flex;
     margin: 17px;
-    padding-right: 83em;
+    padding-right: 90em;
     padding-left: 20em;
     visibility: hidden;
     opacity: 0;  
@@ -242,11 +254,11 @@ h4{
 /* This is for mega2 */
 .mega2{
     position: absolute;
-    width: 89%;
+    width: auto;
     height: 13em;
     top: 1em;
     left: -56em;
-    background-color: rgb(224, 240, 255);
+    background-color: rgb(239, 246, 252);
     font-family: "League Spartan", sans-serif;
     box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -30px;
     z-index: -1;
@@ -334,4 +346,28 @@ h4{
     
     padding-right: 6px;
     padding-bottom: 7px;
+}
+
+
+/* Mega menu for mobile */
+
+@media screen and (max-width: 1027px) {
+    .wrapper{
+        justify-content: start;
+        flex-wrap: wrap;
+    }
+
+    
+}
+
+@media screen and (max-width: 900px) {
+    .wrapper{
+        flex-direction: column;
+        position: static;
+
+    }
+
+    .mega{
+        left: 20px;
+    }
 }
