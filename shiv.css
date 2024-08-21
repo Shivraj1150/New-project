@@ -175,7 +175,7 @@ h4{
 /* This is for mega1 */
 .mega1{
     position: absolute;
-    width: 89%;
+    width: auto;
     height: 13em;
     top: 1em;
     left: -48em;
