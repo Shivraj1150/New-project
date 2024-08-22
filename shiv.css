@@ -128,8 +128,8 @@ h1{
     margin: 17px;
     padding-right: 83em;
     padding-left: 20em;
-    visibility: hidden;
-    opacity: 0; 
+    /* visibility: hidden;
+    opacity: 0;  */
     white-space: nowrap; /* Prevents text wrapping */ 
 
 }
@@ -350,24 +350,66 @@ h4{
 
 
 /* Mega menu for mobile */
+/* Hamburger menu styles */
+/* /* ... Existing styles ... */
 
-@media screen and (max-width: 1027px) {
-    .wrapper{
-        justify-content: start;
-        flex-wrap: wrap;
-    }
-
-    
+/* Mega menu for mobile */
+/* Hamburger menu styles */
+.openMenu, .closeMenu {
+    display: none;
+    cursor: pointer;
 }
-
-@media screen and (max-width: 900px) {
-    .wrapper{
+/* Media query for screens 768px and below */
+@media screen and (max-width: 768px) {
+    /* Stack nav items in a column */
+    #navbar {
         flex-direction: column;
-        position: static;
-
+        align-items: flex-start;
+        padding: 10px 0;
+        top: 20em;
+        left: -15EM;
+        overflow-x: hidden;
     }
 
-    .mega{
-        left: 20px;
+    #navbar li {
+        padding: 10px 0;
+        width: 100%; /* Make sure the items take up the full width */
+    }
+
+    /* Mega menus open below the nav items */
+    .mega, .mega1, .mega2 {
+        position: static; /* Remove absolute positioning */
+        width: 100%;
+        margin-top: 10px; /* Add spacing between the nav item and the mega menu */
+        padding: 10px;
+        overflow: hidden;
+        display: none; 
+        flex-direction: column; /* Stack content in a column */
+    }
+
+    /* Display mega menus when the respective nav item is hovered */
+    .navitems:hover .mega, 
+    .navitems:hover .mega1, 
+    .navitems:hover .mega2 {
+        display: flex; /* Show the mega menu */
+    }
+
+    /* Adjust the mega menu items */
+    .mega .wrapper, 
+    .mega1 .wrapper1, 
+    .mega2 .wrapper2 {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .mega .flexcol, 
+    .mega1 .flexcol1, 
+    .mega2 .flexcol2 {
+        margin: 0;
+        padding: 10px 0;
+    }
+    li .navitems .dropDown{
+        height: 20em;
+        padding: 0;
     }
 }
