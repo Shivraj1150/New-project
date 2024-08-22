@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="shiv.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"  />
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
-    
+   
     
 </head>
 <body>
@@ -22,8 +22,8 @@
         
             <!-- Nav bar area -->
         <div class="navbarclass">
-            <ul id="navbar">
-                <div class="closeMenu">
+            <ul id="navbar" id="nav_bar">
+                <div class="closeMenu" id="close_menu">
                     <i class="fa-solid fa-xmark" style="color: #000000;"></i>
                 </div>
                 
@@ -180,7 +180,7 @@
                         </div>
                     </div>
                 </li>
-                <li class="navitems2 dropDownElectronic"><a class="navLinks"               href="#elec.html">ELECTRONIC<i class="fa-solid fa-caret-down dropdown_elec dropdownicon-electronic" style="color: #000000;"></i></a>
+                <li class="navitems dropDownElectronic"><a class="navLinks"               href="#elec.html">ELECTRONIC<i class="fa-solid fa-caret-down dropdown_elec dropdownicon-electronic" style="color: #000000;"></i></a>
                     <div class="mega2">
                         <div class="container2">
                             <div class="wrapper2">
@@ -265,11 +265,31 @@
                 <li> <a href="#"> <i class="fa-solid fa-right-to-bracket" style="color: #000000;"></i> </a> </li>
             </ul>
         </div>
-        <div class="openMenu">
+        <div class="openMenu" id="open_menu">
             <i class="fa-solid fa-bars" style="color: #000000;"></i>
         </div>
     </nav>
+    
 </header>
-    </section>
+  
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const openMenu = document.querySelector('.openMenu');
+    const closeMenu = document.querySelector('.closeMenu');
+    const navbar = document.querySelector('#navbar');
+
+    openMenu.addEventListener('click', function() {
+        navbar.classList.add('show');
+    });
+
+    closeMenu.addEventListener('click', function() {
+        navbar.classList.remove('show');
+    });
+    
+
+});
+
+</script>
+    
 </body>
 </html>
