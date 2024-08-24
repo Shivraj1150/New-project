@@ -1,295 +1,435 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>iTrends</title>
     <link rel="stylesheet" href="shiv.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"  />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
-   
-    
+    <link rel="stylesheet" href="shiv.js">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
 </head>
+
 <body>
-    <section> 
-        
+    <section>
+
         <header id="header">
-        <!-- Logo area -->
-         <nav>
-        <div class="heading">
-           <h1>iTrends</h1> 
-        </div>
-        
-            <!-- Nav bar area -->
-        <div class="navbarclass">
-            <ul id="navbar" id="nav_bar">
-                <div class="closeMenu" id="close_menu">
-                    <i class="fa-solid fa-xmark" style="color: #000000;"></i>
+            <!-- Logo area -->
+            <nav>
+                <div class="heading">
+                    <h1>iTrends</h1>
+                    <H1 class="h1_store"> Store</h1>
                 </div>
-                
-                <li class="navitems"><a class="navLinks affect"        href="home.html">HOME</a></li>
-                <li class="navitems dropDown"><a class="navLinks"               href="men.html">MEN <i class="fa-solid fa-caret-down dropdown_men dropdown" style="color: #000000;"></i></a>
-                
-            
-                <div class="mega">
-                    <div class="container">
-                        <div class="wrapper">
-                            <div class="flexcol">
-                                <div class="row">
-                                    <h4><img class="shoes mega_icons" src="sneaker.png" alt="">Shoes</h4>
-                                    <ul>
-                                        <li class="list_items_men"><a href="Casual.html">Casual</a></li>
-                                        <li class="list_items_men"><a href="Sneaker.html">Sneaker</a></li>
-                                        <li class="list_items_men"><a href="Sports.html">Sports</a></li>
-                                        <!-- <li><a href=""></a></li>
+
+                <!-- Nav bar area -->
+                <div class="navbarclass">
+                    <ul id="navbar" id="nav_bar">
+                        <div class="closeMenu" id="close_menu">
+                            <i class="fa-solid fa-xmark" style="color: #000000;"></i>
+                        </div>
+
+                        <li class="navitems"><a class="navLinks affect" href="home.html">HOME</a></li>
+                        <li class="navitems dropDown"><a class="navLinks" href="men.html">MEN <i
+                                    class="fa-solid fa-caret-down dropdown_men dropdown"
+                                    style="color: #000000;"></i></a>
+
+
+                            <div class="mega">
+                                <div class="container">
+                                    <div class="wrapper">
+                                        <div class="flexcol">
+                                            <div class="row">
+                                                <h4><img class="shoes mega_icons" src="sneaker.png" alt="">Shoes</h4>
+                                                <ul>
+                                                    <li class="list_items_men"><a href="Casual.html">Casual</a></li>
+                                                    <li class="list_items_men"><a href="Sneaker.html">Sneaker</a></li>
+                                                    <li class="list_items_men"><a href="Sports.html">Sports</a></li>
+                                                    <!-- <li><a href=""></a></li>
                                         <li><a href=""></a></li> -->
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="flexcol">
-                                <div class="row">
-                                    <h4><img class="watch mega_icons" src="wristwatch.png" alt="">Watches</h4>
-                                    <ul>
-                                        <li class="list_items_men"><a href="watch1.html">Smart Watches</a></li>
-                                        <li class="list_items_men"><a href="watch2.html">Analog</a></li>
-                                        <!-- <li><a href=""></a>hhh</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="flexcol">
+                                            <div class="row">
+                                                <h4><img class="watch mega_icons" src="wristwatch.png" alt="">Watches
+                                                </h4>
+                                                <ul>
+                                                    <li class="list_items_men"><a href="watch1.html">Smart Watches</a>
+                                                    </li>
+                                                    <li class="list_items_men"><a href="watch2.html">Analog</a></li>
+                                                    <!-- <li><a href=""></a>hhh</li>
                                         <li><a href=""></a></li>
                                         <li><a href=""></a></li> -->
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="flexcol">
-                                <div class="row">
-                                    <h4><img class="perfume mega_icons" src="perfume.png" alt="">Perfumes</h4>
-                                    <ul>
-                                        <li class="list_items_men"><a href="Perfumes.html">Browse Here</a></li>
-                                        <!-- <li><a href=""></a>hhh</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="flexcol">
+                                            <div class="row">
+                                                <h4><img class="perfume mega_icons" src="perfume.png" alt="">Perfumes
+                                                </h4>
+                                                <ul>
+                                                    <li class="list_items_men"><a href="Perfumes.html">Browse Here</a>
+                                                    </li>
+                                                    <!-- <li><a href=""></a>hhh</li>
                                         <li><a href=""></a>hhhh</li>
                                         <li><a href=""></a></li>
                                         <li><a href=""></a></li> -->
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="flexcol">
-                                <div class="row">
-                                    <h4><img class="sunglasses mega_icons" src="sunglasses.png" alt="">Glasses</h4>
-                                    <ul>
-                                        <li class="list_items_men"><a href="glasses.html">Browse Here</a></li>
-                                        <!-- <li><a href=""></a>hhh</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="flexcol">
+                                            <div class="row">
+                                                <h4><img class="sunglasses mega_icons" src="sunglasses.png"
+                                                        alt="">Glasses</h4>
+                                                <ul>
+                                                    <li class="list_items_men"><a href="glasses.html">Browse Here</a>
+                                                    </li>
+                                                    <!-- <li><a href=""></a>hhh</li>
                                         <li><a href=""></a>hhhh</li>
                                         <li><a href=""></a></li>
                                         <li><a href=""></a></li> -->
-                                    </ul>
-                                </div>
-                            </div>
-                            
-                            <div class="flexcol">
-                                <div class="row">
-                                    <h4><img class="clothes-hanger mega_icons" src="clothes-hanger.png" alt="">Cloths</h4>
-                                    <ul>
-                                        <li class="list_items_men"><a href="tshirt.html">Tshirt</a></li>
-                                        <li class="list_items_men"><a href="shirt.html">Shirt</a></li>
-                                        <li class="list_items_men"><a href="joggers.html">Joggers</a></li>
-                                        <!-- <li><a href=""></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="flexcol">
+                                            <div class="row">
+                                                <h4><img class="clothes-hanger mega_icons" src="clothes-hanger.png"
+                                                        alt="">Cloths</h4>
+                                                <ul>
+                                                    <li class="list_items_men"><a href="tshirt.html">Tshirt</a></li>
+                                                    <li class="list_items_men"><a href="shirt.html">Shirt</a></li>
+                                                    <li class="list_items_men"><a href="joggers.html">Joggers</a></li>
+                                                    <!-- <li><a href=""></a></li>
                                         <li><a href=""></a></li> -->
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-                <li class="navitems DropdownWomen"><a class="navLinks"               href="women.html">WOMEN<i class="fa-solid fa-caret-down dropdown_women dropdowniconWomen" style="color: #000000;"></i></a>
-                    <div class="mega1">
-                        <div class="container1">
-                            <div class="wrapper1">
-                                <div class="flexcol1">
-                                    <div class="row1">
-                                        <h4><img class="mega_icons" src="handbag.png" alt="">Bags</h4>
-                                        <ul>
-                                            <li class="list_items_women"><a href="Casual.html">Hand Bags</a></li>
-                                            <li class="list_items_women"><a href="Sneaker.html">Sneaker</a></li>
-                                            <li class="list_items_women"><a href="Sports.html">Sports</a></li>
-                                            <!-- <li><a href=""></a></li>
-                                            <li><a href=""></a></li> -->
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="flexcol1">
-                                    <div class="row1">
-                                        <h4><img class="mega_icons" src="sneaker.png" alt="">Shoes</h4>
-                                        <ul>
-                                            <li class="list_items_women"><a href="Casual.html">Casual</a></li>
-                                            <li class="list_items_women"><a href="Sneaker.html">Sneaker</a></li>
-                                            <li class="list_items_women"><a href="Sports.html">Sports</a></li>
-                                            <!-- <li><a href=""></a></li>
-                                            <li><a href=""></a></li> -->
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="flexcol1">
-                                    <div class="row1">
-                                        <h4><img class="mega_icons" src="wristwatch.png" alt="">Watches</h4>
-                                        <ul>
-                                            <li class="list_items_women"><a href="Analog.Html">Analog</a></li>
-                                            <li class="list_items_women"><a href="Smart.html">Smart Watches</a></li>
-                                            <!-- <li><a href=""></a>hhhh</li>
-                                            <li><a href=""></a></li>
-                                            <li><a href=""></a></li> -->
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="flexcol1">
-                                    <div class="row1">
-                                        <h4><img class="mega_icons" src="sunglasses.png" alt=""> Glasses</h4>
-                                        <ul>
-                                            <li class="list_items_women"><a href="glasses.html">Browse Here</a></li>
-                                            <!-- <li><a href=""></a>hhh</li>
-                                            <li><a href=""></a>hhhh</li>
-                                            <li><a href=""></a></li>
-                                            <li><a href=""></a></li> -->
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="flexcol1">
-                                    <div class="row1">
-                                        <h4><img class="mega_icons" src="perfume.png" alt="">Perfumes</h4>
-                                        <ul>
-                                            <li class="list_items_women "><a href="Perfumes.html">Browse Here</a></li>
-                                            <!-- <li><a href=""></a>hhh</li>
-                                            <li><a href=""></a>hhhh</li>
-                                            <li><a href=""></a></li>
-                                            <li><a href=""></a></li> -->
-                                        </ul>
-                                    </div>
-                                </div>
-                                
-                                <div class="flexcol1">
-                                    <div class="row1">
-                                        <h4><img class="clothes-hanger mega_icons" src="clothes-hanger.png" alt="">Cloths</h4>
-                                        <ul>
-                                            <li class="list_items_women"><a href="tshirt.html">Tshirt</a></li>
-                                            <li class="list_items_women"><a href="shirt.html">Shirt</a></li>
-                                            <li class="list_items_women"><a href="joggers.html">Joggers</a></li>
-                                            <!-- <li><a href=""></a></li>
-                                            <li><a href=""></a></li> -->
-                                        </ul>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="navitems dropDownElectronic"><a class="navLinks"               href="#elec.html">ELECTRONIC<i class="fa-solid fa-caret-down dropdown_elec dropdownicon-electronic" style="color: #000000;"></i></a>
-                    <div class="mega2">
-                        <div class="container2">
-                            <div class="wrapper2">
-                                <div class="flexcol2">
-                                    <div class="row2">
-                                        <h4><img class="mega_icons" src="earphone.png" alt="">Air pods</h4>
-                                        <ul>
-                                            <li class="list_items_elec"><a href="airpods.html">Browse Here</a></li>
-                                            <!-- <li class="list_items"><a href="Sneaker.html">Sneaker</a></li>
+                        </li>
+                        <li class="navitems DropdownWomen"><a class="navLinks" href="women.html">WOMEN<i
+                                    class="fa-solid fa-caret-down dropdown_women dropdowniconWomen"
+                                    style="color: #000000;"></i></a>
+                            <div class="mega1">
+                                <div class="container1">
+                                    <div class="wrapper1">
+                                        <div class="flexcol1">
+                                            <div class="row1">
+                                                <h4><img class="mega_icons" src="handbag.png" alt="">Bags</h4>
+                                                <ul>
+                                                    <li class="list_items_women"><a href="Casual.html">Hand Bags</a>
+                                                    </li>
+                                                    <li class="list_items_women"><a href="Sneaker.html">Sneaker</a></li>
+                                                    <li class="list_items_women"><a href="Sports.html">Sports</a></li>
+                                                    <!-- <li><a href=""></a></li>
+                                            <li><a href=""></a></li> -->
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="flexcol1">
+                                            <div class="row1">
+                                                <h4><img class="mega_icons" src="sneaker.png" alt="">Shoes</h4>
+                                                <ul>
+                                                    <li class="list_items_women"><a href="Casual.html">Casual</a></li>
+                                                    <li class="list_items_women"><a href="Sneaker.html">Sneaker</a></li>
+                                                    <li class="list_items_women"><a href="Sports.html">Sports</a></li>
+                                                    <!-- <li><a href=""></a></li>
+                                            <li><a href=""></a></li> -->
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="flexcol1">
+                                            <div class="row1">
+                                                <h4><img class="mega_icons" src="wristwatch.png" alt="">Watches</h4>
+                                                <ul>
+                                                    <li class="list_items_women"><a href="Analog.Html">Analog</a></li>
+                                                    <li class="list_items_women"><a href="Smart.html">Smart Watches</a>
+                                                    </li>
+                                                    <!-- <li><a href=""></a>hhhh</li>
+                                            <li><a href=""></a></li>
+                                            <li><a href=""></a></li> -->
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="flexcol1">
+                                            <div class="row1">
+                                                <h4><img class="mega_icons" src="sunglasses.png" alt=""> Glasses</h4>
+                                                <ul>
+                                                    <li class="list_items_women"><a href="glasses.html">Browse Here</a>
+                                                    </li>
+                                                    <!-- <li><a href=""></a>hhh</li>
+                                            <li><a href=""></a>hhhh</li>
+                                            <li><a href=""></a></li>
+                                            <li><a href=""></a></li> -->
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="flexcol1">
+                                            <div class="row1">
+                                                <h4><img class="mega_icons" src="perfume.png" alt="">Perfumes</h4>
+                                                <ul>
+                                                    <li class="list_items_women "><a href="Perfumes.html">Browse
+                                                            Here</a></li>
+                                                    <!-- <li><a href=""></a>hhh</li>
+                                            <li><a href=""></a>hhhh</li>
+                                            <li><a href=""></a></li>
+                                            <li><a href=""></a></li> -->
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="flexcol1">
+                                            <div class="row1">
+                                                <h4><img class="clothes-hanger mega_icons" src="clothes-hanger.png"
+                                                        alt="">Cloths</h4>
+                                                <ul>
+                                                    <li class="list_items_women"><a href="tshirt.html">Tshirt</a></li>
+                                                    <li class="list_items_women"><a href="shirt.html">Shirt</a></li>
+                                                    <li class="list_items_women"><a href="joggers.html">Joggers</a></li>
+                                                    <!-- <li><a href=""></a></li>
+                                            <li><a href=""></a></li> -->
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="navitems dropDownElectronic"><a class="navLinks" href="#elec.html">ELECTRONIC<i
+                                    class="fa-solid fa-caret-down dropdown_elec dropdownicon-electronic"
+                                    style="color: #000000;"></i></a>
+                            <div class="mega2">
+                                <div class="container2">
+                                    <div class="wrapper2">
+                                        <div class="flexcol2">
+                                            <div class="row2">
+                                                <h4><img class="mega_icons" src="earphone.png" alt="">Air pods</h4>
+                                                <ul>
+                                                    <li class="list_items_elec"><a href="airpods.html">Browse Here</a>
+                                                    </li>
+                                                    <!-- <li class="list_items"><a href="Sneaker.html">Sneaker</a></li>
                                             <li class="list_items"><a href="Sports.html">Sports</a></li> -->
-                                            <!-- <li><a href=""></a></li>
+                                                    <!-- <li><a href=""></a></li>
                                             <li><a href=""></a></li> -->
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="flexcol2">
-                                    <div class="row2">
-                                        <h4><img class="mega_icons" src="headset.png" alt=""> Headset</h4>
-                                        <ul>
-                                            <li class="list_items_elec"><a href="headset.html">Browse Here</a></li>
-                                            <!-- <li><a href="watch2.html">Analog</a></li> -->
-                                            <!-- <li><a href=""></a>hhh</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="flexcol2">
+                                            <div class="row2">
+                                                <h4><img class="mega_icons" src="headset.png" alt=""> Headset</h4>
+                                                <ul>
+                                                    <li class="list_items_elec"><a href="headset.html">Browse Here</a>
+                                                    </li>
+                                                    <!-- <li><a href="watch2.html">Analog</a></li> -->
+                                                    <!-- <li><a href=""></a>hhh</li>
                                             <li><a href=""></a></li>
                                             <li><a href=""></a></li> -->
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="flexcol2">
-                                    <div  class="row2">
-                                        <h4><img class="mega_icons" src="powerbank.png" alt="">Power bank</h4>
-                                        <ul>
-                                            <li class="list_items_elec"><a href="PBank.html">Browse Here</a></li>
-                                            <!-- <li><a href=""></a>hhh</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="flexcol2">
+                                            <div class="row2">
+                                                <h4><img class="mega_icons" src="powerbank.png" alt="">Power bank</h4>
+                                                <ul>
+                                                    <li class="list_items_elec"><a href="PBank.html">Browse Here</a>
+                                                    </li>
+                                                    <!-- <li><a href=""></a>hhh</li>
                                             <li><a href=""></a>hhhh</li>
                                             <li><a href=""></a></li>
                                             <li><a href=""></a></li> -->
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="flexcol2">
-                                    <div class="row2">
-                                        <h4><img class="mega_icons" src="desk-lamp.png" alt="">Home Decore lamps</h4>
-                                        <ul>
-                                            <li class="list_items_elec"><a href="HomeDeco.html">Browse Here</a></li>
-                                            <!-- <li><a href=""></a>hhh</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="flexcol2">
+                                            <div class="row2">
+                                                <h4><img class="mega_icons" src="desk-lamp.png" alt="">Home Decore lamps
+                                                </h4>
+                                                <ul>
+                                                    <li class="list_items_elec"><a href="HomeDeco.html">Browse Here</a>
+                                                    </li>
+                                                    <!-- <li><a href=""></a>hhh</li>
                                             <li><a href=""></a>hhhh</li>
                                             <li><a href=""></a></li>
                                             <li><a href=""></a></li> -->
-                                        </ul>
-                                    </div>
-                                </div>
-                                
-                                <div class="flexcol2">
-                                    <div class="row2">
-                                        <h4><img class="mega_icons" src="speaker.png" alt="">Speakers</h4>
-                                        <ul>
-                                            <li class="list_items_elec"><a href="Speaker.html">Browse Here</a></li>
-                                            <!-- <li><a href="shirt.html">Shirt</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="flexcol2">
+                                            <div class="row2">
+                                                <h4><img class="mega_icons" src="speaker.png" alt="">Speakers</h4>
+                                                <ul>
+                                                    <li class="list_items_elec"><a href="Speaker.html">Browse Here</a>
+                                                    </li>
+                                                    <!-- <li><a href="shirt.html">Shirt</a></li>
                                             <li><a href="joggers.html">Joggers</a></li> -->
-                                            <!-- <li><a href=""></a></li>
+                                                    <!-- <li><a href=""></a></li>
                                             <li><a href=""></a></li> -->
-                                        </ul>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </li>
+                        <li class="navitems"><a class="navLinks" href="#trend.html">TRENDING</a></li>
+                        <li class="navitems"><a class="navLinks" href="contact.html">CONTACT US</a></li>
+
+                    </ul>
+                </div>
+                <!-- shop and login area -->
+                <div class="rightNav">
+                    <ul class="right_nav" id="right">
+
+                        <li class="heart"> <a href="#"> <i class="fa-solid fa-heart" style="color: #000000;"></i> </a>
+                        </li>
+
+                        <li> <a href="#"> <i class="fa-solid fa-bag-shopping" style="color: #000000;"></i> </a> </li>
+
+                        <li class="login"> <a href="#">Login </a> </li>
+                        <li class="sign_up"> <a href="#">Sign UP</a></li>
+                    </ul>
+                </div>
+                <div class="openMenu" id="open_menu">
+                    <i class="fa-solid fa-bars" style="color: #000000;"></i>
+                </div>
+            </nav>
+
+        </header>
+        <section>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="Shoes.jpg" alt="" />
+                        <!-- <div class="slide-content">
+                            <h2>Welcome to my website one</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis,
+                                esse impedit est doloribus voluptates possimus odit in delectus
+                                quis reiciendis. Dolorem, ipsam officiis quo incidunt voluptas
+                                iure porro ducimus molestiae!
+                            </p>
+                        </div> -->
                     </div>
-                </li>
-                <li class="navitems"><a class="navLinks"               href="#trend.html">TRENDING</a></li>
-                <li class="navitems"><a class="navLinks"               href="contact.html">CONTACT US</a></li>
-            
-            </ul>
-        </div>
-        <!-- shop and login area -->
-        <div>
-            <ul id="right">
-                
-                <li> <a href="#"> <i class="fa-solid fa-heart fa-beat" style="color: #000000;"></i> </a> </li>
+                    <div class="swiper-slide">
+                        <img src="shoes1.webp" alt="" />
+                        <!-- <div class="slide-content">
+              <h2>Welcome to my website two</h2>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis,
+                esse impedit est doloribus voluptates possimus odit in delectus
+                quis reiciendis. Dolorem, ipsam officiis quo incidunt voluptas
+                iure porro ducimus molestiae!
+              </p>
+            </div> -->
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="shoes3.png" alt="" />
+                        <!-- <div class="slide-content">
+              <h2>Welcome to my website three</h2>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis,
+                esse impedit est doloribus voluptates possimus odit in delectus
+                quis reiciendis. Dolorem, ipsam officiis quo incidunt voluptas
+                iure porro ducimus molestiae!
+              </p>
+            </div> -->
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="shoes4.jpeg" alt="" />
+                        <!-- <div class="slide-content">
+              <h2>Welcome to my website four</h2>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis,
+                esse impedit est doloribus voluptates possimus odit in delectus
+                quis reiciendis. Dolorem, ipsam officiis quo incidunt voluptas
+                iure porro ducimus molestiae!
+              </p>
+            </div> -->
+                        <!-- <img src="assets/img/4.jpg" alt="" /> -->
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="airpods.jpg" alt="" />
+                        <!-- <div class="slide-content">
+              <h2>Welcome to my website five</h2>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis,
+                esse impedit est doloribus voluptates possimus odit in delectus
+                quis reiciendis. Dolorem, ipsam officiis quo incidunt voluptas
+                iure porro ducimus molestiae!
+              </p>
+            </div> -->
+                        <!-- <img src="assets/img/5.jpg" alt="" /> -->
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="new6.jpg" alt="" />
+                        <!-- <div class="slide-content">
+              <h2>Welcome to my website six</h2>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis,
+                esse impedit est doloribus voluptates possimus odit in delectus
+                quis reiciendis. Dolorem, ipsam officiis quo incidunt voluptas
+                iure porro ducimus molestiae!
+              </p>
+            </div> -->
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="watch9.png" alt="" />
+                        <!-- <div class="slide-content">
+              <h2>Welcome to my website seven</h2>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis,
+                esse impedit est doloribus voluptates possimus odit in delectus
+                quis reiciendis. Dolorem, ipsam officiis quo incidunt voluptas
+                iure porro ducimus molestiae!
+              </p>
+            </div> -->
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="jordans7.jpg" alt="" />
+                        <!-- <div class="slide-content">
+              <h2>Welcome to my website eight</h2>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis,
+                esse impedit est doloribus voluptates possimus odit in delectus
+                quis reiciendis. Dolorem, ipsam officiis quo incidunt voluptas
+                iure porro ducimus molestiae!
+              </p>
+            </div> -->
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="watch8.jpg" alt="" />
+                        <!-- <div class="slide-content">
+              <h2>Welcome to my website nine</h2>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis,
+                esse impedit est doloribus voluptates possimus odit in delectus
+                quis reiciendis. Dolorem, ipsam officiis quo incidunt voluptas
+                iure porro ducimus molestiae!
+              </p>
+            </div> -->
+                    </div>
+                </div>
+                <div class="swiper-button-next nextbutton buttons"></div>
+                <div class="swiper-button-prev backbutton buttons"></div>
+                <div class="swiper-pagination"></div>
+                <div class="autoplay-progress">
+                    <svg viewBox="0 0 48 48">
+                        <circle cx="24" cy="24" r="20"></circle>
+                    </svg>
+                    <span></span>
+                </div>
+            </div>
+        </section>
 
-                <li> <a href="#"> <i class="fa-solid fa-bag-shopping" style="color: #000000;"></i> </a> </li>
-               
-                <li> <a href="#"> <i class="fa-solid fa-right-to-bracket" style="color: #000000;"></i> </a> </li>
-            </ul>
-        </div>
-        <div class="openMenu" id="open_menu">
-            <i class="fa-solid fa-bars" style="color: #000000;"></i>
-        </div>
-    </nav>
-    
-</header>
-  
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-    const openMenu = document.querySelector('.openMenu');
-    const closeMenu = document.querySelector('.closeMenu');
-    const navbar = document.querySelector('#navbar');
 
-    openMenu.addEventListener('click', function() {
-        navbar.classList.add('show');
-    });
-
-    closeMenu.addEventListener('click', function() {
-        navbar.classList.remove('show');
-    });
-    
-
-});
-
-</script>
-    
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        <script src="shiv.js"> </script>
 </body>
+
 </html>
