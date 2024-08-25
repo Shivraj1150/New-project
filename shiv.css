@@ -674,3 +674,144 @@ background: rgb(4, 209, 255);
     background: url(https://images-static.nykaa.com/uploads/3df01759-af0c-4d81-b2f7-f61577ac3807.svg) no-repeat;
     padding: 28px;
 }
+
+
+/* Feature section code */
+
+.features_icons{
+    display: flex;
+    
+}
+.Feature_icons{
+    display: flex;
+    max-width: 16em;
+    height: 12em;
+
+}
+.Feature_icons2{
+    display: flex;
+    margin-top: 11px;
+    max-width: 16em;
+    height: 12em;
+}
+
+
+.con_fea{
+    top: 30em;
+    position: absolute;
+
+}
+
+
+.features_title{
+    display: flex;
+    align-items: center;
+    font-family: "League Spartan", sans-serif;
+    justify-content: center;
+    font-size: -webkit-xxx-large;}
+
+.feature_wrapper{
+    display: flex;
+   
+}
+
+.flexcol_feature{
+    padding: 0;
+    border: 1px solid #e7ebe7;
+    box-shadow: 20px 20px 34px rgba(0, 0, 0, 0.07);
+    
+}
+.feature_text{
+    top: 253px;
+    background-color: darkorange;
+    padding: 5px;
+    border-radius: 4px;
+    color: white;
+    padding-right: 12px;
+    padding-left: 12px;    left: 105px;
+    position: absolute;
+    font-weight: 500;
+    font-family: "League Spartan", sans-serif;
+}
+.feature_text2{
+    top: 254px;
+    background-color: darkorange;
+    padding: 5px;
+    border-radius: 4px;
+    color: white;
+    padding-right: 12px;
+    padding-left: 12px;    position: absolute;
+    padding-left: 20px;
+    margin-left: 43px;
+    font-weight: 500;
+    font-family: "League Spartan", sans-serif;
+}
+.feature_text3{
+    top: 253px;
+    background-color:darkorange;
+    padding: 5px;
+    border-radius: 4px;
+    color: white;
+    padding-right: 12px;
+    padding-left: 12px;    margin-left: 65px;
+    position: absolute;
+    font-weight: 500;
+    font-family: "League Spartan", sans-serif;
+}
+.feature_text4{
+    top: 253px;
+    background-color: darkorange;
+    padding: 5px;
+    border-radius: 4px;
+    color: white;
+    padding-right: 12px;
+    padding-left: 12px;    margin-left: 19px;
+    position: absolute;
+    font-weight: 500;
+    font-family: "League Spartan", sans-serif;
+}
+.feature_text5{
+    top: 253px;
+    background-color: darkorange;
+    padding: 5px;
+    border-radius: 4px;
+    color: white;
+    padding-right: 12px;
+    padding-left: 12px;
+    margin-left: 69px;
+    position: absolute;
+    font-weight: 500;
+    font-family: "League Spartan", sans-serif;
+}
+.feature_text6{
+    top: 253px;
+    background-color: darkorange;
+    padding: 5px;
+    color: white;
+    border-radius: 4px;
+    padding-right: 12px;
+    padding-left: 12px;
+    margin-left: 66px;
+    position: absolute;
+    font-weight: 500;
+    font-family: "League Spartan", sans-serif;
+}
+
+.con_fea :where(.features_box) img {
+    transition: tranform 0.3;
+}
+
+.con_fea :where(.features_box):hover img {
+    transform: scale(1.1);
+}
+
+.Featured_product_con{
+    display: flex;
+    position: absolute;
+    top: 50em;
+}
+.product{
+    max-width: 16em;
+    height: 12em;
+    display: flex;
+}
