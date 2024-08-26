@@ -693,15 +693,16 @@ background: rgb(4, 209, 255);
     margin-top: 11px;
     max-width: 16em;
     height: 12em;
+    flex-wrap: wrap;
 }
 
 
 .con_fea{
-    top: 30em;
-    position: absolute;
+    top: 8em;
+   
+    position: relative;
 
 }
-
 
 .features_title{
     display: flex;
@@ -712,11 +713,19 @@ background: rgb(4, 209, 255);
 
 .feature_wrapper{
     display: flex;
-   
+   flex-wrap: wrap;
+   align-items: center;
+   justify-content: center;
+   height: 100%;
+   width: 100%;
+    
+
 }
 
 .flexcol_feature{
     padding: 0;
+    margin-left: 20px;
+    margin-right: 20px;
     border: 1px solid #e7ebe7;
     box-shadow: 20px 20px 34px rgba(0, 0, 0, 0.07);
     
@@ -798,7 +807,7 @@ background: rgb(4, 209, 255);
 }
 
 .con_fea :where(.features_box) img {
-    transition: tranform 0.3;
+    transition: transform 0.3;
 }
 
 .con_fea :where(.features_box):hover img {
