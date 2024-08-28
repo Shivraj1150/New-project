@@ -996,9 +996,9 @@ background: rgb(4, 209, 255);
 
 /* Email newletter area code */
 
-.Email_banner_section{
+.Email_banner_section, .Email_banner_area, .Email_banner_container, .Email_banner_wrapper, .Email_banner_image {
     position: relative;
-    top: 19em;
+    top: 3em;
 }
 
 .Email_banner_image{
@@ -1011,6 +1011,48 @@ background: rgb(4, 209, 255);
 .Email_banner{
     height: 34em;
 }
-.Email_banner_wrapper{
+/* .Email_banner_wrapper{
     background-color: #eb9090;
+} */
+
+.footer_section{
+    position: relative;
+    top: 19em;
+    background-color: black;
+}
+.Footer_logo{
+    color: #e7ebe7;
+    font-family: "League Spartan", sans-serif;
+
+}
+.payment_logos{
+    height: 1.5em;
+}
+.footer_flexbox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.about_us, .My_account, .Install_app,.Install_app {
+    color: white;
+    font-family: "League Spartan", sans-serif;
+
+}
+
+.about_us_ul li a{
+    text-decoration: none;
+    color: white;
+    font-family: "League Spartan", sans-serif;
+    font-optical-sizing: auto;
+}
+
+.My_account li a{
+    text-decoration: none;
+    color: white;
+    font-family: "League Spartan", sans-serif;
+    font-optical-sizing: auto;
+}
+.about_us_ul, .my_account_ul{
+    list-style-type: none
+    
 }
