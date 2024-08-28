@@ -1003,13 +1003,21 @@ background: rgb(4, 209, 255);
 
 .Email_banner_image{
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
+    
+   
+    
 
     
 }
 .Email_banner{
     height: 34em;
+    z-index: 999999;
+    position: relative;
+    top: 8em;
+    
+    box-shadow: 20px 20px 34px rgba(0, 0, 0, 0.1);
 }
 /* .Email_banner_wrapper{
     background-color: #eb9090;
@@ -1019,6 +1027,8 @@ background: rgb(4, 209, 255);
     position: relative;
     top: 19em;
     background-color: black;
+    height: 30em;
+    display: block;
 }
 .Footer_logo{
     color: #e7ebe7;
@@ -1044,6 +1054,7 @@ background: rgb(4, 209, 255);
     color: white;
     font-family: "League Spartan", sans-serif;
     font-optical-sizing: auto;
+    padding: 0 0 20px 0;
 }
 
 .My_account li a{
@@ -1055,4 +1066,38 @@ background: rgb(4, 209, 255);
 .about_us_ul, .my_account_ul{
     list-style-type: none
     
+}
+.footer_heading{
+    margin: 3em 0 1em 2em;
+    
+}
+.Sage_footer{
+    color: darkorange;
+}
+
+.contact_details, .follow_us{
+    margin: 1em 0 1em 2em;
+}
+
+.Address, .Phone, .working_hours, .fa-facebook{
+    margin: 0 0 10px 70px;
+}
+
+.fa-brands{
+    padding: 0 4px 0;
+}
+
+.footer_aboutus{
+    margin: 3em 0 1em 0; 
+}
+.list_about_us_footer{
+    padding: 0 0 16px 0;
+}
+
+.My_account_footer{
+    margin: 3em 0 1em 0; 
+}
+
+.payment_info_footer{
+    margin: 3em 0 1em 0; 
 }
