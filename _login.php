@@ -34,7 +34,7 @@ if (isset($_POST['signUp'])) {
     $verificationToken = bin2hex(random_bytes(16)); // Generate a random token
 
     // Check if email already exists
-    $stmt = $conn->prepare("SELECT id FROM Users WHERE email = ?");
+    $stmt = $conn->prepare("SELECT id FROM merapyareusers WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $stmt->store_result();
@@ -43,7 +43,7 @@ if (isset($_POST['signUp'])) {
         echo "Email Address Already Exists!";
     } else {
         // Insert user into database with email_verified set to FALSE
-        $stmt = $conn->prepare("INSERT INTO Users (FirstName, email, password, email_verification_token) VALUES (?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO merapyareusers (FirstName, email, password, email_verification_token) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("ssss", $firstName, $email, $password, $verificationToken);
 
         if ($stmt->execute()) {
@@ -87,7 +87,7 @@ if (isset($_POST['signIn'])) {
     $password = $_POST['password'];
 
     // Validate user credentials
-    $stmt = $conn->prepare("SELECT id, password, email_verified FROM Users WHERE email = ?");
+    $stmt = $conn->prepare("SELECT id, password, email_verified FROM merapyareusers WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $stmt->bind_result($userId, $hashedPassword, $emailVerified);
@@ -117,7 +117,7 @@ if (isset($_GET['logged_out'])) {
     $logoutMessage = "You have been logged out successfully.";
 }
 
-// Add your existing login handling code here...
+
 ?>
 
 <!DOCTYPE html>
@@ -153,8 +153,9 @@ if (isset($_GET['logged_out'])) {
                 <input type="text" name="FirstName" id="FirstName" placeholder="Name">
                 <input type="email" name="email" id="email" placeholder="Email">
                 <input type="password" name="password" id="password" placeholder="Password">
+                
                 <button name="signUp">Sign Up</button>
-               
+       
 
             </form>
         </div>
@@ -170,8 +171,10 @@ if (isset($_GET['logged_out'])) {
                 <span>or use your email password</span>
                 <input type="email" name="email" id="email" placeholder="Email">
                 <input type="password" name="password" id="Password" placeholder="Password">
-                <a href="#">Forget Your Password?</a>
+                
+                <a href="forgot_password.php">Forget Your Password?</a>
                 <button name="signIn">Login In</button>
+  
 
             </form>
         </div>

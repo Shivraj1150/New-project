@@ -205,7 +205,3 @@ body{
     right: 0;
     transform: translateX(0);
 }
-
-.container.active .toggle-right{
-    transform: translateX(200%);
-}

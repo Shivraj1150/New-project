@@ -74,19 +74,10 @@ include 'partials/_dbconnect.php';
     <img src="WMNS+AIR+JORDAN+1+LOW.jpeg" alt="">
     <div style="text-align:center; padding:15%;">
       <p  style="font-size:50px; font-weight:bold;">
-       Hello  <?php 
-       if(isset($_SESSION['email'])){
-        $email=$_SESSION['email'];
-        $query=mysqli_query($conn, "SELECT merapyareusers.* FROM `merapyareusers` WHERE merapyareusers.email='$email'");
-        while($row=mysqli_fetch_array($query)){
-            echo $row['FirstName'].' '.$row['email'];
-
-        }
-       }
-       ?>
+      
        <div class="container">
         <div class="welcome-header">
-            <h1>Welcome, <?php echo htmlspecialchars($userName); ?>!</h1>
+            <h1>Welcome, <?php echo htmlspecialchars($FirstName); ?>!</h1>
         </div>
         <div class="welcome-message">
             <p>We're glad to have you back. Here are some things you might want to check out:</p>
@@ -108,9 +99,9 @@ include 'partials/_dbconnect.php';
         </div>
         <a href="logout.php" class="logout-button">Logout</a>
     </div>
-       :)
+     
       </p>
-      <a href="logout.php">Logout</a>
+  
     </div>
 </body>
 </html>

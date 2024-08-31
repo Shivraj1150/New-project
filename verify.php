@@ -6,14 +6,14 @@ if (isset($_GET['email']) && isset($_GET['token'])) {
     $token = $_GET['token'];
 
     // Verify the token and email
-    $stmt = $conn->prepare("SELECT id FROM Users WHERE email = ? AND email_verification_token = ?");
+    $stmt = $conn->prepare("SELECT id FROM merapyareusers WHERE email = ? AND email_verification_token = ?");
     $stmt->bind_param("ss", $email, $token);
     $stmt->execute();
     $stmt->store_result();
     
     if ($stmt->num_rows > 0) {
         // Update user to set email_verified to TRUE and clear the token
-        $stmt = $conn->prepare("UPDATE Users SET email_verified = TRUE, email_verification_token = NULL WHERE email = ?");
+        $stmt = $conn->prepare("UPDATE merapyareusers SET email_verified = TRUE, email_verification_token = NULL WHERE email = ?");
         $stmt->bind_param("s", $email);
         if ($stmt->execute()) {
             echo "Your email has been verified successfully. You can now log in.";
