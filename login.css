@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 *{
@@ -9,8 +8,8 @@
 }
 
 body{
-    background-color: #c9d6ff;
-    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    background-color: #ffe4b3;
+    background: linear-gradient(to right, #ffcc80, #ffe4b3);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,7 +47,7 @@ body{
 }
 
 .container button{
-    background-color: #512da8;
+    background-color: #ff8c00;
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;
@@ -77,7 +76,7 @@ body{
 }
 
 .container input{
-    background-color: #eee;
+    background-color: #f8f8f8;
     border: none;
     margin: 8px 0;
     padding: 10px 15px;
@@ -162,9 +161,9 @@ body{
 }
 
 .toggle{
-    background-color: #512da8;
+    background-color: #ff8c00;
     height: 100%;
-    background: linear-gradient(to right, #5c6bc0, #512da8);
+    background: linear-gradient(to right, #ffb74d, #ff8c00);
     color: #fff;
     position: relative;
     left: -100%;
