@@ -59,90 +59,93 @@ if (isset($_POST['signUp'])) {
                 // Content
                 $verificationLink = "http://localhost/New-project/verify.php?email=" . urlencode($email) . "&token=" . urlencode($verificationToken);
                 $mail->isHTML(true);
-                $mail->Subject = 'Please Verify Your Email for ShopSAGE';
-$mail->Body    = "
-<!DOCTYPE html>
-<html lang='en'>
-<head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <style>
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 100%;
-            max-width: 600px;
-            margin: 40px auto;
-            padding: 20px;
-            background-color: #ffffff;
-            border-radius: 12px;
-            border: 1px solid #ddd;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .header img {
-            max-width: 120px;
-        }
-        h1 {
-            color: #ff6600;
-            font-size: 24px;
-            margin: 0;
-            padding: 0;
-        }
-        p {
-            line-height: 1.6;
-            margin: 0 0 20px;
-        }
-        .button {
-            display: inline-block;
-            padding: 12px 24px;
-            font-size: 16px;
-            color: #ffffff;
-            background-color: #ff6600;
-            text-decoration: none;
-            border-radius: 6px;
-            text-align: center;
-            font-weight: bold;
-            margin: 20px 0;
-        }
-        .footer {
-            text-align: center;
-            font-size: 14px;
-            color: #777;
-            margin-top: 30px;
-        }
-        .footer a {
-            color: #ff6600;
-            text-decoration: none;
-        }
-    </style>
-</head>
-<body>
-    <div class='container'>
-        <div class='header'>
-            <img src='https://via.placeholder.com/120x50?text=ShopSAGE' alt='ShopSAGE Logo'>
-        </div>
-        <h1>Hello, $firstName!</h1>
-        <p>Welcome to ShopSAGE! To complete your registration, we need to verify your email address.</p>
-        <p>Please click the button below to verify your email:</p>
-        <a href='$verificationLink' class='button'>Verify Your Email</a>
-        <p>If you didn’t request this, please ignore this email.</p>
-        <div class='footer'>
-            <p>&copy; " . date('Y') . " ShopSAGE. All rights reserved.</p>
-            <p><a href='#'>Unsubscribe</a> | <a href='#'>Contact Us</a></p>
-        </div>
-    </div>
-</body>
-</html>
-";
+                $mail->Subject = 'Email Verification for ShopSAGE';
+                $mail->Body = '
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            background-color: #f5f5f5;
+                            margin: 0;
+                            padding: 0;
+                            color: #333;
+                        }
+                        .container {
+                            width: 100%;
+                            max-width: 600px;
+                            margin: 0 auto;
+                            background-color: #ffffff;
+                            border-radius: 10px;
+                            overflow: hidden;
+                            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                        }
+                        .header {
+                            background-color: #ff8c00;
+                            padding: 20px;
+                            text-align: center;
+                        }
+                        .header h1 {
+                            color: #ffffff;
+                            margin: 0;
+                            font-size: 24px;
+                        }
+                        .content {
+                            padding: 30px;
+                        }
+                        .content h2 {
+                            color: #ff8c00;
+                            font-size: 22px;
+                            margin-bottom: 20px;
+                        }
+                        .content p {
+                            font-size: 16px;
+                            line-height: 1.6;
+                        }
+                        .content a {
+                            display: inline-block;
+                            margin-top: 20px;
+                            padding: 10px 20px;
+                            background-color: #ff8c00;
+                            color: #ffffff;
+                            text-decoration: none;
+                            border-radius: 5px;
+                            font-weight: bold;
+                        }
+                        .footer {
+                            background-color: #333333;
+                            color: #ffffff;
+                            padding: 10px;
+                            text-align: center;
+                            font-size: 14px;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <div class="header">
+                            <h1>Welcome to ShopSAGE!</h1>
+                        </div>
+                        <div class="content">
+                            <h2>Email Verification</h2>
+                            <p>Hi ' . $firstName . ',</p>
+                            <p>Thanks for signing up at ShopSAGE! To complete your registration, just click the button below to verify your email address.</p>
+                            <a href="' . $verificationLink . '">Verify Email</a>
+                            <p>If you did not create an account, please disregard this Email.</p>
+                        </div>
+                        <div class="footer">
+                            <p>&copy; ' . date("Y") . ' ShopSAGE. All rights reserved.</p>
+                            <p>Need help? <a href="mailto:support@shopsage.com">Contact Support</a></p>
+
+                        </div>
+                    </div>
+                </body>
+                </html>
+                ';
+                
                 
                 
                 $mail->send();
@@ -173,7 +176,7 @@ if (isset($_POST['signIn'])) {
             // Email is verified
             $_SESSION['user_id'] = $userId;
             $_SESSION['authenticated'] = true;
-            header("Location: welcome.php");
+            header("Location: dasboard.php");
             exit();
         } else {
             $message = "Please verify your email before logging in.";

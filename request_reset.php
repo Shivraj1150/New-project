@@ -50,8 +50,118 @@ if (isset($_POST['email'])) {
             // Content
             $mail->isHTML(true);
             $mail->Subject = 'Password Reset Request';
-            $mail->Body = "Please click on the following link to reset your password: 
-            <a href='http://localhost/New-project/reset_password_form.php?token=$token'>Reset Password</a>";
+            $mail->Body = '
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333333;
+        }
+        .email-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 20px;
+        }
+        .email-header {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            padding: 25px;
+            text-align: center;
+            color: #ffffff;
+                                        border-radius: 10px;
+
+        }
+        .email-header h1 {
+            margin: 0;
+            font-size: 24px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .email-body {
+            padding: 30px;
+            text-align: center;
+        }
+        .email-body h2 {
+            color: #ff6f00;
+            font-size: 22px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .email-body p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #666666;
+            margin-bottom: 30px;
+        }
+        .email-body a {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #ff6f00;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        .email-body a:hover {
+            background-color: #e65100;
+        }
+        .email-footer {
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #ffffff;
+            background-color: #333333;
+            border-radius: 10px;
+
+            border-top: 1px solid #dddddd;
+        }
+        .email-footer p {
+            margin: 0;
+        }
+            
+        .email-footer p a {
+            color: #ff6f00;
+            text-decoration: none;
+        }
+        .email-footer p a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <h1>Password Reset Request</h1>
+        </div>
+        <div class="email-body">
+            <h2>Hello Buddy,</h2>
+            <p>It has come to our attention that a password reset has been requested. Please click the button below to proceed with resetting your password. If this request was not initiated by you, we kindly ask that you disregard this email..</p>
+            <a href="http://localhost/New-project/reset_password_form.php?token=' . $token . '">Reset Password</a>
+
+        </div>
+        <div class="email-footer">
+            <p>&copy; ' . date("Y") . ' ShopSAGE. All rights reserved.</p>
+            <p>Need help? <a href="mailto:support@shopsage.com">Contact Support</a></p>
+
+        </div>
+    </div>
+</body>
+</html>
+';
+
 
             $mail->send();
             echo '<div class="alert alert-success" role="alert">
