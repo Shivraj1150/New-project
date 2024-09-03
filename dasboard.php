@@ -1,7 +1,8 @@
 <?php
 session_start();
 include 'partials/_dbconnect.php';
-
+ $firstName = $_POST["FirstName"];
+    $email = $_POST["email"];
 
 ?>
 
@@ -16,7 +17,7 @@ include 'partials/_dbconnect.php';
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
   <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="dboard.css">
+  <link rel="stylesheet" href="dasboard.css">
 </head>
 
 <body>
@@ -43,7 +44,7 @@ include 'partials/_dbconnect.php';
               <i class='bx bx-tachometer'></i>
               <i class='bx bxs-tachometer'></i>
             </div>
-            <span class="link hide">Dashboard</span>
+            <span class="link hide">Cart</span>
           </a>
         </li>
         <li class="tooltip-element" data-tooltip="1">
@@ -61,7 +62,7 @@ include 'partials/_dbconnect.php';
               <i class='bx bx-message-square-detail'></i>
               <i class='bx bxs-message-square-detail'></i>
             </div>
-            <span class="link hide">Favrates</span>
+            <span class="link hide">favourite</span>
           </a>
         </li>
         <li class="tooltip-element" data-tooltip="3">
@@ -127,7 +128,7 @@ include 'partials/_dbconnect.php';
         <div class="admin-profile hide">
           <img src="./img/face-1.png" alt="">
           <div class="admin-info">
-            <h3>John Doe</h3>
+            <h3>Dhanraj</h3>
             <h5>Admin</h5>
           </div>
         </div>
@@ -137,7 +138,7 @@ include 'partials/_dbconnect.php';
         </a>
       </div>
       <div class="tooltip">
-        <span class="show">John Doe</span>
+        <span class="show">Dhanraj</span>
         <a href="logout.php" class="logout-button">Logout</a>
 
       </div>
@@ -154,7 +155,7 @@ include 'partials/_dbconnect.php';
       doloremque tempore excepturi aut id ducimus unde?
     </p>
     <p class="copyright">
-      &copy; 2021 - <span>Aqumex</span> All Rights Reserved.
+      &copy; 2024 - <span>ShopSAGE</span> All Rights Reserved.
     </p>
   </main>
 

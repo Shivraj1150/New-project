@@ -9,16 +9,16 @@
 }
 
 :root {
-  --main-color: #3d5af1;
-  --main-color-dark: #3651d4;
-  --main-color-light: #5872f5;
-  --text-color: #cfcde7;
+  --main-color: #f39c12; /* Changed to orange */
+  --main-color-dark: #e67e22; /* Darker shade of orange */
+  --main-color-light: #f7b63e; /* Lighter shade of orange */
+  --text-color: #fef5e7; /* Adjusted text color for better contrast */
 }
 
 body {
   font-family: "Poppins", sans-serif;
   overflow-x: hidden;
-  background-color: #e4e2f5;
+  background-color: #fdf3e2; /* Light orange background */
   min-height: 100vh;
   display: flex;
   position: relative;
