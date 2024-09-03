@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.cart-item-image {
+    width: 100px;
+    margin-right: 15px;
+}
+
+.cart-item-details h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.cart-item-details p {
+    margin: 5px 0;
+}
+
+.remove-from-cart {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Your existing content -->
+
+    <!-- Cart Section -->
+    <div class="cart-section">
+        <!-- Cart items will be dynamically injected here -->
+    </div>
+
+    <!-- Existing scripts -->
+    <script src="shiv.js"></script>
+    
+    <!-- Render cart items on page load -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCart();
+        });
+    </script>
+</body>
+
+</html>
