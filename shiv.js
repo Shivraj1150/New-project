@@ -48,5 +48,5 @@ var swiper = new Swiper(".mySwiper", {
 
 
 
-// add to cart
+
 

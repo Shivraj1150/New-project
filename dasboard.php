@@ -1,8 +1,8 @@
 <?php
-session_start();
-include 'partials/_dbconnect.php';
- $firstName = $_POST["FirstName"];
-    $email = $_POST["email"];
+// session_start();
+// include 'partials/_dbconnect.php';
+//  $firstName = $_POST["FirstName"];
+//     $email = $_POST["email"];
 
 ?>
 

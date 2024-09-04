@@ -475,10 +475,17 @@
                         <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
                         <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
                         <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                        <label for="size-select">Size:</label>
+    <select id="size-select" class="size-select">
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+    </select>
                     
                     </div>
                     <div class="fea_pro_add_to_cart">
-                        <a  href="#" class="add-to-cart" data-id="product1" data-name="High Quality - Air Jordans 1 Low" data-price="1600" data-image="Featured products/jordanshoes.jpeg">Add to Cart</a>
+                        <a  href="#" class="add-to-cart" data-id="product1" data-name="High Quality - Air Jordans 1 Low" data-price="1600" data-image="Featured products/jordanshoes.jpeg"><i class="fa-solid fa-cart-plus " style="color: #000000;"></i></a>
                     </div>
                     <div>
                         <h4 class="product_pricing">1600rs</h4>
@@ -487,9 +494,9 @@
                     </div>
                 </div>
             </div>
-            <div class="Feature_flexcol" data-id="product2">
+            <div class="Feature_flexcol product" data-id="product2">
 
-                <div class="product"><img src="Featured products\WMNS+AIR+JORDAN+1+LOW.jpeg" alt="" class="product_image"></div>
+                <div class="product"><img src="Featured products/jordanshoes.jpeg" alt="" class="product_image"></div>
                 
 
                 <div class="description">
@@ -501,9 +508,16 @@
                         <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
                         <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
                         <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                        <div class="fea_pro_add_to_cart"><a href=""><i class="fa-solid fa-cart-plus " style="color: #000000;"></i></a></div>
-
-
+                        <label for="size-select">Size:</label>
+                        <select id="size-select" class="size-select">
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                        </select>
+                    </div>
+                    <div class="fea_pro_add_to_cart">
+                        <a  href="#" class="add-to-cart" data-id="product2" data-name="T-shirt" data-price="900" data-image="Featured products/jordanshoes.jpeg"><i class="fa-solid fa-cart-plus " style="color: #000000;"></i></a>
                     </div>
                     <div>
                      
@@ -820,65 +834,81 @@
 
 <script>
   document.querySelectorAll('.add-to-cart').forEach(button => {
-  button.addEventListener('click', (e) => {
-      e.preventDefault();
-      
-      let product = {
-          product_id: button.getAttribute('data-id'),
-          product_name: button.getAttribute('data-name'),
-          product_price: button.getAttribute('data-price'),
-          product_image: button.getAttribute('data-image')
-      };
-      
-      addToCart(product);
-  });
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        let productElement = button.closest('.product'); // Find the parent element
+        let sizeSelect = productElement.querySelector('.size-select'); // Get the selected size
+
+        let product = {
+            product_id: button.getAttribute('data-id'),
+            product_name: button.getAttribute('data-name'),
+            product_price: button.getAttribute('data-price'),
+            product_image: button.getAttribute('data-image'),
+            quantity: 1,
+            size: sizeSelect ? sizeSelect.value : '' // Get the selected size value
+        };
+        
+        addToCart(product);
+    });
 });
 
 function addToCart(product) {
-  fetch('cart.php', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: `product_id=${product.product_id}&product_name=${product.product_name}&product_price=${product.product_price}&product_image=${product.product_image}`
-  })
-  .then(response => response.json())
-  .then(data => {
-      if (data.status === 'success') {
-          renderCart();
-      } else {
-          alert(data.message);
-      }
-  });
+    fetch('cart.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `product_id=${product.product_id}&product_name=${product.product_name}&product_price=${product.product_price}&product_image=${product.product_image}&quantity=${product.quantity}&size=${product.size}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            renderCart();
+        } else {
+            alert(data.message);
+        }
+    });
 }
-
-
-// render cart
 
 function renderCart() {
-  fetch('cart.php')
-      .then(response => response.json())
-      .then(cartItems => {
-          const cartSection = document.querySelector('.cart-section');
-          cartSection.innerHTML = '';
+    fetch('cart.php')
+        .then(response => response.json())
+        .then(cartItems => {
+            const cartSection = document.querySelector('.cart-section');
+            cartSection.innerHTML = '';
 
-          cartItems.forEach((item, index) => {
-              const cartItem = document.createElement('div');
-              cartItem.classList.add('cart-item');
-              cartItem.innerHTML = `
-                  <img src="${item.product_image}" alt="${item.product_name}" class="cart-item-image">
-                  <div class="cart-item-details">
-                      <h3>${item.product_name}</h3>
-                      <p>${item.product_price}rs</p>
-                      <button class="remove-from-cart" data-id="${item.product_id}">Remove</button>
-                  </div>
-              `;
-              cartSection.appendChild(cartItem);
-          });
+            let totalPrice = 0;
 
-          addRemoveFunctionality();
-      });
+            cartItems.forEach((item) => {
+                const cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.innerHTML = `
+                    <img src="${item.product_image}" alt="${item.product_name}" class="cart-item-image">
+                    <div class="cart-item-details">
+                        <h3>${item.product_name}</h3>
+                        <p>Size: ${item.size}</p> <!-- Display selected size -->
+                        <p class="cart-item-price">₹${item.product_price}</p>
+                        <div class="quantity-controls">
+                            <button class="decrease-quantity" data-id="${item.product_id}">-</button>
+                            <input type="number" value="${item.quantity}" min="1" class="quantity-input" data-id="${item.product_id}">
+                            <button class="increase-quantity" data-id="${item.product_id}">+</button>
+                        </div>
+                        <button class="remove-from-cart" data-id="${item.product_id}">Remove</button>
+                    </div>
+                `;
+                cartSection.appendChild(cartItem);
+
+                totalPrice += parseFloat(item.product_price) * item.quantity;
+            });
+
+            document.getElementById('total-price').textContent = `₹${totalPrice.toFixed(2)}`;
+
+            addRemoveFunctionality();
+            addQuantityFunctionality();
+        });
 }
+
 
 function addRemoveFunctionality() {
   document.querySelectorAll('.remove-from-cart').forEach(button => {
