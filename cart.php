@@ -58,15 +58,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     echo json_encode($cart_items);
 }
+
 if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     parse_str(file_get_contents("php://input"), $_PUT);
     $product_id = $_PUT['product_id'];
     $quantity = $_PUT['quantity'];
+    $size = $_PUT['size'];  // Retrieve size from request
 
     // Update the quantity in the cart
-    $query = "UPDATE cart SET quantity = ? WHERE user_id = ? AND product_id = ?";
+    $query = "UPDATE cart SET quantity = ? WHERE user_id = ? AND product_id = ? AND size = ?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("iis", $quantity, $user_id, $product_id);
+    $stmt->bind_param("iiss", $quantity, $user_id, $product_id, $size);
 
     if ($stmt->execute()) {
         echo json_encode(['status' => 'success']);
@@ -74,14 +76,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
         echo json_encode(['status' => 'error', 'message' => 'Failed to update quantity']);
     }
 }
+
 // Remove item from cart
 if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
     parse_str(file_get_contents("php://input"), $_DELETE);
     $product_id = $_DELETE['product_id'];
+    $size = $_DELETE['size'];  // Retrieve size from request
 
-    $query = "DELETE FROM cart WHERE user_id = ? AND product_id = ?";
+    $query = "DELETE FROM cart WHERE user_id = ? AND product_id = ? AND size = ?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("is", $user_id, $product_id);
+    $stmt->bind_param("iss", $user_id, $product_id, $size);
 
     if ($stmt->execute()) {
         echo json_encode(['status' => 'success', 'message' => 'Product removed from cart']);
