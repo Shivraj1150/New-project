@@ -5,89 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Cart</title>
     <style>
+        /* General Styles */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
             margin: 0;
             padding: 0;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            animation: fadeInBg 1s ease-in-out;
         }
 
-        .cart-container {
-            margin: 20px auto;
-            max-width: 900px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        @keyframes fadeIn {
+        @keyframes fadeInBg {
             from { opacity: 0; }
             to { opacity: 1; }
         }
 
+        .cart-container {
+            width: 100%;
+            max-width: 1200px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transform: translateY(50px);
+            animation: slideUp 0.8s ease-in-out forwards;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
         h1 {
-            color: #ff6600;
-            font-size: 2rem;
-            margin-bottom: 20px;
+            color: #ff6f61;
+            font-size: 2.5rem;
             text-align: center;
-            font-weight: 700;
+            padding: 30px 0;
+            background-color: #fff;
+            margin: 0;
+            border-bottom: 1px solid #f0f0f0;
         }
 
-        .cart-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px 20px;
-            border-bottom: 1px solid #ddd;
-            transition: background-color 0.3s, box-shadow 0.3s;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 0;
         }
 
-        .cart-item:hover {
-            background-color: #fff7e6;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        th, td {
+            padding: 20px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        th {
+            background-color: #ffecd2;
+            color: #555;
         }
 
         .cart-item-image {
-            width: 120px;
+            width: 100px;
             height: auto;
-            border-radius: 8px;
-            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
 
-        .cart-item-details {
-            flex: 1;
-            margin-left: 20px;
-        }
-
-        .cart-item-details h3 {
-            margin: 0;
-            font-size: 1.2rem;
-            color: #333;
-            font-weight: 600;
-        }
-
-        .cart-item-details p {
-            margin: 5px 0;
-            color: #555;
+        .cart-item-image:hover {
+            transform: scale(1.1);
         }
 
         .quantity-controls {
             display: flex;
+            justify-content: center;
             align-items: center;
-            margin-top: 10px;
+            gap: 10px;
         }
 
         .quantity-controls button {
-            background-color: #ff6600;
+            background-color: #ff6f61;
             border: none;
             color: #fff;
-            padding: 5px 10px;
+            padding: 10px 15px;
             cursor: pointer;
             font-size: 16px;
-            border-radius: 5px;
-            margin: 0 5px;
+            border-radius: 10px;
             transition: background-color 0.3s;
         }
 
@@ -96,55 +102,128 @@
         }
 
         .quantity-controls input {
-            width: 50px;
+            width: 60px;
             text-align: center;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 5px;
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: #f7f7f7;
             font-size: 16px;
-            margin: 0 5px;
+            transition: background-color 0.3s;
+        }
+
+        .quantity-controls input:focus {
+            background-color: #fff;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
         }
 
         .remove-from-cart {
-            background-color: #ff4d4d;
+            background-color: #ff6f61;
             color: #fff;
             border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
+            padding: 10px 15px;
+            border-radius: 10px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s ease;
         }
 
         .remove-from-cart:hover {
-            background-color: #e60000;
+            background-color: #ff3b3b;
+            transform: scale(1.05);
         }
 
         .cart-summary {
-            margin-top: 30px;
             text-align: right;
             font-size: 1.2rem;
-            color: #333;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
+            color: #555;
+            padding: 30px;
+            background-color: #fff;
+            border-top: 1px solid #f0f0f0;
         }
 
-        .cart-summary p {
-            margin-bottom: 10px;
+        .apply-discount {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #ffecd2;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .apply-discount input[type="text"] {
+            width: 70%;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .apply-discount button {
+            width: 25%;
+            padding: 12px 20px;
+            font-size: 16px;
+            background-color: #ff6f61;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s ease;
+        }
+
+        .apply-discount button:hover {
+            background-color: #e65c00;
+            transform: scale(1.05);
+        }
+
+        .total-container {
+            margin-top: 20px;
         }
 
         .checkout-button {
-            background-color: #ff6600;
+            background-color: #ff6f61;
             color: #fff;
             border: none;
-            padding: 15px 25px;
-            font-size: 18px;
+            padding: 15px 30px;
+            font-size: 20px;
             cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            border-radius: 15px;
+            transition: background-color 0.3s, transform 0.3s ease;
+            width: 100%;
+            max-width: 400px;
         }
 
         .checkout-button:hover {
             background-color: #e65c00;
+            transform: scale(1.05);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .cart-container {
+                margin: 20px;
+                transform: translateY(20px);
+            }
+
+            th, td {
+                padding: 15px;
+                font-size: 0.9rem;
+            }
+
+            .cart-item-image {
+                width: 80px;
+            }
+
+            .checkout-button {
+                padding: 12px 20px;
+                font-size: 18px;
+            }
         }
     </style>
 </head>
@@ -152,13 +231,33 @@
 
     <div class="cart-container">
         <h1>My Cart</h1>
-        <div class="cart-section">
-            <!-- Cart items will be dynamically injected here -->
-        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Description</th>
+                    <th>Size</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody class="cart-section">
+                <!-- Cart items will be dynamically injected here -->
+            </tbody>
+        </table>
 
         <div class="cart-summary">
-            <p>Total Items: <span id="total-items">0</span></p>
-            <p>Total Price: <span id="total-price">₹0.00</span></p>
+            <div class="apply-discount">
+                <input type="text" id="discount-code" placeholder="Enter Discount Code">
+                <button onclick="applyDiscount()">Apply</button>
+            </div>
+
+            <div class="total-container">
+                <p>Total Items: <span id="total-items">0</span></p>
+                <p>Total Price: <span id="total-price">₹0.00</span></p>
+            </div>
+            
             <button class="checkout-button">Proceed to Checkout</button>
         </div>
     </div>
@@ -175,23 +274,22 @@
                     let totalItems = 0;
 
                     cartItems.forEach(item => {
-                        const cartItem = document.createElement('div');
-                        cartItem.classList.add('cart-item');
-                        cartItem.innerHTML = `
-                            <img src="${item.product_image}" alt="${item.product_name}" class="cart-item-image">
-                            <div class="cart-item-details">
-                                <h3>${item.product_name}</h3>
-                                <p>Size: ${item.size}</p>
-                                <p class="cart-item-price">₹${item.product_price}</p>
+                        const cartRow = document.createElement('tr');
+                        cartRow.classList.add('cart-item');
+                        cartRow.innerHTML = 
+                            `<td><img src="${item.product_image}" alt="${item.product_name}" class="cart-item-image"></td>
+                            <td>${item.product_name}</td>
+                            <td>${item.size}</td>
+                            <td>
                                 <div class="quantity-controls">
                                     <button class="decrease-quantity" data-id="${item.product_id}" data-size="${item.size}">-</button>
                                     <input type="number" value="${item.quantity}" min="1" class="quantity-input" data-id="${item.product_id}" data-size="${item.size}">
                                     <button class="increase-quantity" data-id="${item.product_id}" data-size="${item.size}">+</button>
                                 </div>
-                                <button class="remove-from-cart" data-id="${item.product_id}" data-size="${item.size}">Remove</button>
-                            </div>
-                        `;
-                        cartSection.appendChild(cartItem);
+                            </td>
+                            <td>₹${item.product_price}</td>
+                            <td><button class="remove-from-cart" data-id="${item.product_id}" data-size="${item.size}">Remove</button></td>`;
+                        cartSection.appendChild(cartRow);
 
                         totalPrice += parseFloat(item.product_price) * item.quantity;
                         totalItems += item.quantity;
@@ -283,11 +381,37 @@
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
-                    renderCart
-                    (); } else { alert(data.message); } }); }
-                    document.addEventListener('DOMContentLoaded', () => {
-        renderCart();
-    });
-</script>
+                    renderCart();
+                } else {
+                    alert(data.message);
+                }
+            });
+        }
+
+        function applyDiscount() {
+            const discountCode = document.getElementById('discount-code').value;
+            fetch('discount.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `discount_code=${discountCode}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('Discount applied successfully!');
+                    renderCart();
+                } else {
+                    alert(data.message);
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCart();
+        });
+
+    </script>
 </body>
- </html> 
+</html>
