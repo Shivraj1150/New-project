@@ -17,8 +17,12 @@
     /* display: flex; */
     /* border: 2px solid red; */
 
-    background-color: #ffffff;
-    box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -40px;
+    background-color: rgba(255, 255, 255, 0.2); /* White background with 20% opacity */
+    backdrop-filter: blur(10px); /* Apply blur */
+    -webkit-backdrop-filter: blur(10px); /* For Safari support */
+    border-radius: 10px; /* Optional: rounding the corners */
+    
+        box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -40px;
     position: fixed;
     z-index: 1000;
     /* right: 2em; */
@@ -39,7 +43,7 @@ nav {
 }
 
 /* Heading */
-
+/* 
 h1{
     
     font-size: 35px;
@@ -53,15 +57,23 @@ h1{
     font-family: "League Spartan", sans-serif;
     color: darkorange;
 
-}
-
+} */
+/* 
 .heading{
     margin-left: 1em;
     display: flex;
     font-size: large;
-}
+} */
 
 /* Navigation bar */
+.website_logo{
+    display: block;
+    position: relative;
+    left: 2em;
+    top: 9px;
+    height: 5em;
+
+}
 
 #navbar {
     display: flex;
@@ -261,7 +273,7 @@ h4 {
     opacity: 0;
     white-space: nowrap;
     /* Prevents text wrapping */
-
+    
 }
 
 .wrapper1 {
@@ -1036,6 +1048,7 @@ background: rgb(4, 209, 255);
     display: block;
     /* background-color: black; */
     width: 100%;
+    height: 456px;
 }
 
    
@@ -1080,7 +1093,8 @@ background: rgb(4, 209, 255);
     
 }
 .footer_heading{
-    margin: 3em 0 1em 2em;
+    margin: 1em 0 0em 1em;
+    font-size: xxx-large;
     
 }
 .Sage_footer{
@@ -1118,7 +1132,31 @@ background: rgb(4, 209, 255);
     padding-bottom: 16px;
 }
 
+.footer_rights {
+    text-align: center;
+    padding: 25px;
+    background: linear-gradient(135deg, #ff7b00, #ff4c00);
+    color: #fff;
+    margin-top: 50px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    box-shadow: 0px -4px 12px rgba(0, 0, 0, 0.2);
+    animation: fadeInUp 1s ease-in-out;
+    position: relative;
+    top: 15em;
+    /* overflow: hidden; */
+}
+.footer_rights p {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    animation: textFadeIn 2s ease-in-out;}
 
+    .social_icons{
+        padding-bottom: 2em;
+    }
 
 /* Reset and Global Styles */
 * {

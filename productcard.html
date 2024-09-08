@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f4f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.product-card {
+  width: 320px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.card-image {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .card-image img {
+  transform: scale(1.1);
+}
+
+.discount-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #ff4757;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.card-content {
+  padding: 20px;
+  text-align: center;
+}
+
+.product-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+  margin: 10px 0;
+}
+
+.product-description {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.price-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: #bbb;
+  margin-right: 10px;
+}
+
+.new-price {
+  font-size: 20px;
+  font-weight: 700;
+  color: #27ae60;
+}
+
+.buy-now-btn {
+  background-color: #3498db;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.buy-now-btn:hover {
+  background-color: #2980b9;
+}
+
+    </style>
+</head>
+<body>
+    <div class="product-card">
+        <div class="card-image">
+          <img src="https://via.placeholder.com/300" alt="Product Image" />
+          <span class="discount-badge">20% OFF</span>
+        </div>
+        <div class="card-content">
+          <h2 class="product-name">Stylish Sneakers</h2>
+          <p class="product-description">
+            A perfect blend of comfort and style. Made with high-quality materials.
+          </p>
+          <div class="price-section">
+            <span class="old-price">$120.00</span>
+            <span class="new-price">$96.00</span>
+          </div>
+          <button class="buy-now-btn">Buy Now</button>
+        </div>
+      </div>
+      
+</body>
+</html>

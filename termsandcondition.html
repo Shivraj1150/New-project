@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+body {
+    font-family: 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fef3e6;
+    color: #333;
+}
+
+.header {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(255, 105, 0, 0.85);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    animation: slideDown 0.8s ease-in-out;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.sidebar {
+    position: fixed;
+    top: 120px;
+    left: 20px;
+    width: 220px;
+    z-index: 1000;
+    background-color: #ff6900;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    animation: slideInLeft 0.8s ease-in-out;
+    transition: all 0.3s ease;
+}
+
+.sidebar:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    animation: pulseGlare 5s infinite;
+}
+
+@keyframes pulseGlare {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar nav ul li {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.sidebar nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar nav ul li a:hover {
+    color: #ffe0cc;
+    transform: translateX(10px);
+}
+
+.sidebar nav ul li a::before {
+    content: '→';
+    color: #ffe0cc;
+    margin-right: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateX(-10px);
+}
+
+.sidebar nav ul li a:hover::before {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.content {
+    margin-left: 280px;
+    padding: 60px;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.content-card {
+    background-color: #fff;
+    padding: 30px;
+    margin-bottom: 25px;
+    border-radius: 15px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-in-out;
+}
+
+.content-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.content-card h2 {
+    color: #ff6900;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+.footer {
+    text-align: center;
+    padding: 25px;
+    background: linear-gradient(135deg, #ff7b00, #ff4c00);
+    color: #fff;
+    margin-top: 50px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    box-shadow: 0px -4px 12px rgba(0, 0, 0, 0.2);
+    animation: fadeInUp 1s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.footer p {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    animation: textFadeIn 2s ease-in-out;
+}
+
+@keyframes textFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    width: 200px;
+    height: 200px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: rotateGlare 10s linear infinite;
+}
+
+@keyframes rotateGlare {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+</style>
+<body>
+
+    <header class="header">
+        <h1>Terms and Conditions</h1>
+    </header>
+
+    <aside class="sidebar">
+        <nav>
+            <ul>
+                <li><a href="#section1">Introduction</a></li>
+                <li><a href="#section2">Ownership of Right</a></li>
+                <li><a href="#section3">User & Accuracy of Content</a></li>
+                <li><a href="#section4">Orders & Shipping</a></li>
+                <li><a href="#section5">Website Usage Restrictions</a></li>
+                <li><a href="#section6">Pricing and Orders</a></li>
+                <li><a href="#section7">Indemnity </a></li>
+                <li><a href="#section8">Third Party Links</a></li>
+                <li><a href="#section9">Liability</a></li>
+                <li><a href="#section10">Disclaimer of consequential damages</a></li>
+                <li><a href="#section11">Termination</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="content">
+        <section id="section1" class="content-card">
+            <h2>Introduction</h2>
+            <p>This website is owned and operated by Dot & Key Wellness Private Limited, a private limited company duly  incorporated under and governed by the Companies Act, 2013 and having its registered office at Unit 4B, 2/7 Sarat Bose Road, Kolkata – 700 020, India.
+
+                The terms "We" / "Us" / "Our"/”Business” individually and collectively refer to Dot & Key Wellness Private Limited/Dot & Key and the terms "Visitor” ”User” refer to the users. 
+                This page states the Terms and Conditions under which you (Visitor) may visit this website (“www.dotandkey.com”). By mere accessing or using the website, you are acknowledging, without limitation or qualification, to be bound by these Terms of Use and the Polices, whether you have read the same or not. If you do not accept the Terms and Conditions stated here, we would request you to exit this site. The business, any of its business divisions and / or its subsidiaries, associate companies or subsidiaries to subsidiaries or such other investment companies (in India or abroad) reserve their respective rights to revise these Terms and Conditions at any time by updating this posting. We reserve the right to change these terms and conditions from time to time without any obligation to inform you and it is your responsibility to look through them as often as possible.</p>
+        </section>
+        
+        <section id="section2" class="content-card">
+            <h2>OWNERSHIP OF RIGHTS</h2>
+            <p>The "Dot & Key" name and logo and all related product and service names, design marks and slogans are the trademarks, logos or service marks of Dot & Key Wellness Private Limited. Dot & Key Wellness Private Limited expressly reserves all intellectual property rights in all text, images, programs, products, processes, technology, content and other materials which appear on this Website.
+
+                Access to this Website does not confer and shall not be considered as conferring upon anyone any license under any of Dot & Key Wellness Private Limited’s intellectual property rights. All rights, including copyright, in this website are owned by or licensed to Dot & Key Wellness Private Limited.</p>
+        </section>
+
+        <section id="section3" class="content-card">
+            <h2>USE & ACCURACY OF CONTENT            </h2>
+            <p>All precautions have been taken by us to provide accurate data and information in the preparation of the content of this Website, in particular to ensure that prices quoted are correct at time of publishing and all products have been fairly described.
+
+                The weights, dimensions and capacities given are approximate only. We have made every effort to correctly display the colours of the products that appear on the website.
+                
+                All logos, brands, marks headings, labels, names, signatures, numerals, shapes, processes, technology, content, illustrations, designs or any combinations thereof, appearing in this site, except as otherwise noted, are properties either owned, or used under license, by the business and / or its associate entities who feature on this Website. The use of these properties or any other content on this site, except as provided in these terms and conditions or in the site content, is strictly prohibited.
+                
+                Any use of this website or its contents, including copying or storing it or them in whole or part, other than for your own personal, non-commercial use is prohibited without the written permission of the business and its licensors. You may not modify, distribute or re-post anything on this website for any purpose.</p>
+        </section>
+
+        <section id="section4" class="content-card">
+            <h2>ORDERS & SHIPPING</h2>
+            <p>All products/services and information displayed on the Website constitute an invitation to offer. Your order for purchase constitutes your offer. Once your order has been placed, we will notify you by email as soon as possible to confirm receipt of your order and email you again to confirm dispatch and therefore acceptance of the order.            </p>
+        </section>
+
+        <section id="section5" class="content-card">
+            <h2>WEBSITE USAGE RESTRICTIONS </h2>
+            <ol>
+                <p>Visitors are prohibited from violating or attempting to violate the security of the Web site, including, without limitation,</p>
+
+                <li>Accessing data not intended for such user or logging into a server or account which the user is not authorised to access, </li>
+                
+                <li> Attempting to probe, scan or test the vulnerability of a system or network or to breach security or authentication measures without proper authorization,</li>
+                
+                    <li>Attempting to interfere with service to any user, host or network, including, without limitation, via means of submitting a virus or "Trojan horse" to the Website, overloading, "flooding", "mail bombing" or "crashing", or</li>
+                
+                        <li>   Sending unsolicited electronic mail, including promotions and/or advertising of products or services. Violations of system or network security may result in civil or criminal liability. </li>
+                
+                            <li>  Using any device, software or routine to interfere or attempt to interfere with the proper working of this Website; or</li>
+                
+                                <li>    Using or attempt to use any engine, software, tool, agent or other device or mechanism
+                
+                                    <li>    Dot & Key Wellness Private Limited and / or its associate entities will have the right to investigate occurrences that they suspect as involving such violations and will have the right to involve, and cooperate with, law enforcement authorities in prosecuting users who are involved in such violations. </li>
+                
+                 
+                
+             <P> Visitors may not use the Web Site in order to transmit, distribute, store or destroy material:</P>  
+                
+             <li>  That could constitute or encourage conduct that would be considered a criminal offence or violate any applicable law or regulation,</li>
+                
+                <li> In a manner that will infringe the copyright, trademark, trade secret or other intellectual property rights of others or violate the privacy or publicity of other personal rights of others, or</li>
+                
+                <li> That is libellous, defamatory, pornographic, profane, obscene, threatening, abusive or hateful. </li>
+                
+            </ol>
+        </section>
+        <section id="section6" class="content-card">
+            <h2>PRICING AND ORDERS</h2>
+            <p> All prices listed on www.dotandkey.com are listed at the Maximum Retail Price (MRP), inclusive of Goods and Services Tax (GST) at the applicable rates and/or all other taxes that may be levied by the Government from time to time.
+
+                In the event that a product is listed at an incorrect price or with incorrect information due to an error in pricing or product information, Dot & Key shall have the right, at its sole discretion, to refuse or cancel any orders placed for that product, unless the product has already been dispatched.
+                
+                Dot & Key reserves the right, at its sole discretion, to limit the quantity of items purchased per person, per household or per order on the website. </p>
+        </section>
+        <section id="section7" class="content-card">
+            <h2>INDEMNITY</h2>
+            <p> The User unilaterally agree to indemnify and hold harmless, without objection, Dot & Key/Dot & Key Wellness Private Limited, its officers, directors, employees and agents from and against any claims, actions and/or demands and/or liabilities and/or losses and/or damages whatsoever arising from or resulting from their use of www.dotandkey.com or their breach of the terms . </p>
+
+        </section>
+        <section id="section8" class="content-card">
+            <h2>THIRD PARTY LINKS</h2>
+            <p>We are not responsible for the content of any off-website pages or any other websites linked to or from the Dot & Key website. Links appearing on this website are for convenience only and are not an endorsement by us, our affiliates or our partners of the referenced content, product, service, or supplier.  </p>
+
+        </section>
+        <section id="section9" class="content-card">
+            <h2>LIABILITY    </h2>
+            <p> User agrees that neither Dot & Key Wellness Private Limited /Dot & Key  nor its affiliates/associates, partners, officers or employee shall be liable for any direct and/or indirect and/or incidental and/or special and/or consequential and/or exemplary damages, resulting from the use and/or the inability to use the service and/or for cost of procurement of substitute goods and/or services or resulting from any goods and/or data and/or information and/or services purchased and/or obtained and/or messages received and/or transactions entered into through and/or from the service and/or resulting from unauthorized access to and/or alteration of user's transmissions and/or data and/or arising from any other matter relating to the service, including but not limited to, damages for loss of profits and/or use and/or data or other intangible, even if Company has been advised of the possibility of such damages.
+
+                User further agrees that Company shall not be liable for any damages arising from interruption, suspension or termination of service, including but not limited to direct and/or indirect and/or incidental and/or special consequential and/or exemplary damages, whether such interruption and/or suspension and/or termination was justified or not, negligent or intentional, inadvertent or advertent.
+                
+                User agrees that Company shall not be responsible or liable to user, or anyone, for the statements or conduct of any third party of the service. In sum, in no event shall Company's total liability to the User for all damages and/or losses and/or causes of action exceed the amount paid by the User to Company, if any, that is related to the cause of action. </p>
+
+        </section>
+        <section id="section10" class="content-card">
+            <h2>DISCLAIMER OF CONSEQUENTIAL DAMAGES</h2>
+            <p> In no event shall Company or any parties, organizations or entities associated with the corporate brand name us or otherwise, mentioned at this Website be liable for any damages whatsoever (including, without limitations, incidental and consequential damages, lost profits, or damage to computer hardware or loss of data information or business interruption) resulting from the use or inability to use the Website and the Website material, whether based on warranty, contract, tort, or any other legal theory, and whether or not, such organization or entities were advised of the possibility of such damages.
+
+            </p>
+
+        </section>
+        <section id="section11" class="content-card">
+            <h2>TERMINATION
+
+            </h2>
+            <p> These Terms & Conditions are effective unless and until terminated by either you or Dot & Key. You may terminate the Terms & Conditions at any time, provided that you discontinue any further use of this Site. Dot & Key may terminate the Terms & Conditions at any time and may do so without notice, and accordingly deny you access to the website, such termination will be without any liability to the website. </p>
+
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 StoreSAGE. All rights reserved.</p>
+    </footer>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const cards = document.querySelectorAll('.content-card');
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    cards.forEach(card => {
+        observer.observe(card);
+    });
+
+    // Smooth scroll for sidebar navigation
+    document.querySelectorAll('.sidebar a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+
+            window.scrollTo({
+                top: targetElement.offsetTop - 80, // Adjust for header height
+                behavior: 'smooth'
+            });
+        });
+    });
+});
+
+</script>
+</body>
+</html>

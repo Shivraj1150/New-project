@@ -10,7 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="shiv.js">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+  
 </head>
 
 <body>
@@ -20,8 +21,7 @@
             <!-- Logo area -->
             <nav>
                 <div class="heading">
-                    <h1>Store</h1>
-                    <H1 class="h1_store">SAGE</h1>
+                    <img class="website_logo" src="Websitelogo2.0 (1).png" alt="">
                 </div>
 
                 <!-- Nav bar area -->
@@ -31,7 +31,7 @@
                             <i class="fa-solid fa-xmark" style="color: #000000;"></i>
                         </div>
 
-                        <li class="navitems"><a class="navLinks affect" href="home.html">HOME</a></li>
+                        <li class="navitems"><a class="navLinks affect" href="shiv.html">HOME</a></li>
                         <li class="navitems dropDown"><a class="navLinks" href="men.html">MEN <i
                                     class="fa-solid fa-caret-down dropdown_men dropdown"
                                     style="color: #000000;"></i></a>
@@ -290,7 +290,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="navitems"><a class="navLinks" href="#trend.html">TRENDING</a></li>
+                        <li class="navitems"><a class="navLinks" href="about.html">ABOUT US</a></li>
                         <li class="navitems"><a class="navLinks" href="contactus.html">CONTACT US</a></li>
 
                     </ul>
@@ -299,7 +299,7 @@
                 <div class="rightNav">
                     <ul class="right_nav" id="right">
 
-                        <li class="heart"> <a href="liked_product.html"> Liked </a>
+                        <li class="heart"> <a href="liked_product.html"> <box-icon type='solid' name='heart'></box-icon> </a>
                         </li>
 
                         <li> <a href="added_cart.html"> <i class="fa-solid fa-bag-shopping" style="color: #000000;"></i> </a> </li>
@@ -785,22 +785,23 @@
                         <p class="Phone">Phone: +91 8421597609</p>
                         <p class="working_hours">Hours: 10.00am - 12am. Mon-Sun.</p> 
                         <h1 class="follow_us">Follow Us</h1>
-                        <i class="fa-brands fa-facebook fa-xl" style="color: #ffffff;"></i>
-                        <i class="fa-brands fa-x-twitter fa-xl" style="color: #ffffff;"></i>
-                        <i class="fa-brands fa-instagram fa-xl" style="color: #ffffff;"></i>
-                        <i class="fa-brands fa-youtube fa-xl" style="color: #ffffff;"></i>
-                        <i class="fa-brands fa-whatsapp fa-xl" style="color: #ffffff;"></i>
+                        <i class="fa-brands fa-facebook fa-xl social_icons" style="color: #ffffff;"></i>
+                        <i class="fa-brands fa-x-twitter fa-xl social_icons" style="color: #ffffff;"></i>
+                        <i class="fa-brands fa-instagram fa-xl social_icons" style="color: #ffffff;"></i>
+                        <i class="fa-brands fa-youtube fa-xl social_icons" style="color: #ffffff;"></i>
+                        <i class="fa-brands fa-whatsapp fa-xl social_icons" style="color: #ffffff;"></i>
+
                 </div>
                 <div class="about_us">
                     <h1 class="footer_aboutus"> About Us</h1>
                      <ul class="about_us_ul">
                         
                              
-                                <li class="list_about_us_footer"> <a href="">About Us</a></li>
-                                    <li class="list_about_us_footer"> <a href="">Delivery Information</a></li>
-                                        <li class="list_about_us_footer"><a href="">Privacy Policy</a></li>
-                                            <li class="list_about_us_footer"> <a href="">Terms & Conditions</a></li>
-                                                <li class="list_about_us_footer"> <a href="">Contact Us</a></li>
+                                <li class="list_about_us_footer"> <a href="about.html">About Us</a></li>
+                                    <!-- <li class="list_about_us_footer"> <a href="">Delivery Information</a></li> -->
+                                        <li class="list_about_us_footer"><a href="policy.html">Our Policies</a></li>
+                                            <li class="list_about_us_footer"> <a href="termsandcondition.html">Terms & Conditions</a></li>
+                                                <li class="list_about_us_footer"> <a href="contactus.html">Contact Us</a></li>
                         
                     </ul>
                 </div>
@@ -809,11 +810,11 @@
                      <ul class="my_account_ul">
                         
                              
-                                <li class="list_about_us_footer"> <a href="">Sign In</a></li>
-                                    <li class="list_about_us_footer"> <a href="">View Cart</a></li>
-                                        <li class="list_about_us_footer"><a href="">My WishList</a></li>
-                                            <li class="list_about_us_footer"> <a href="">Trace My Order</a></li>
-                                                <li class="list_about_us_footer"> <a href="">Help</a></li>
+                                <li class="list_about_us_footer"> <a href="_login.php">Sign In</a></li>
+                                    <li class="list_about_us_footer"> <a href="added_cart.html">View Cart</a></li>
+                                        <li class="list_about_us_footer"><a href="liked_product.html">My WishList</a></li>
+                                            <!-- <li class="list_about_us_footer"> <a href="traceproduct.html">Trace My Order</a></li> -->
+                                                <li class="list_about_us_footer"> <a href="help.html">Help</a></li>
                         
                     </ul>
                 </div>
@@ -828,9 +829,14 @@
 </div>
 
  </footer>
+ <footer class="footer_rights">
+    <p>&copy; 2024 StoreSAGE. All rights reserved.</p>
+</footer>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="shiv.js"> </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
 
 <script>
   document.querySelectorAll('.add-to-cart').forEach(button => {
@@ -887,6 +893,7 @@ function renderCart() {
                     <img src="${item.product_image}" alt="${item.product_name}" class="cart-item-image">
                     <div class="cart-item-details">
                         <h3>${item.product_name}</h3>
+
                         <p>Size: ${item.size}</p> <!-- Display selected size -->
                         <p class="cart-item-price">₹${item.product_price}</p>
                         <div class="quantity-controls">

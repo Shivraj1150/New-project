@@ -1,0 +1,732 @@
+#header {
+    /* padding: 0px; */
+    /* margin: auto; */
+    width: 100%;
+    top: 0;
+    left: 0;
+    /* height: 52px; */
+    /* display: flex; */
+    /* border: 2px solid red; */
+
+    background-color: rgba(255, 255, 255, 0.2); /* White background with 20% opacity */
+    backdrop-filter: blur(10px); /* Apply blur */
+    -webkit-backdrop-filter: blur(10px); /* For Safari support */
+    border-radius: 10px; /* Optional: rounding the corners */
+    
+        box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -40px;
+    position: fixed;
+    z-index: 1000;
+    /* right: 2em; */
+
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* background-color: #E3E6F3; */
+    box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -40px;
+    /* max-width: 1200px; */
+    height: 4em;
+    padding: 0 0rem;
+    margin: 0 auto;
+
+}
+
+/* Heading */
+
+h1{
+    
+    font-size: 35px;
+
+    font-family: "League Spartan", sans-serif;
+
+}
+.h1_store{
+    font-size: 35px;
+
+    font-family: "League Spartan", sans-serif;
+    color: darkorange;
+
+}
+
+.heading{
+    margin-left: 1em;
+    display: flex;
+    font-size: large;
+}
+
+/* Navigation bar */
+
+#navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding: 0 20px; */
+    z-index: 999;
+    position: relative;
+
+
+}
+
+#navbar li {
+    list-style: none;
+    padding: 0 20px;
+    position: relative;
+
+}
+
+#navbar li a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    font-weight: 600;
+    font-family: "League Spartan", sans-serif;
+    font-optical-sizing: auto;
+    padding-bottom: 25px;
+    font-style: normal;
+    transition: 0.3s ease;
+}
+
+#navbar li a:hover,
+#navbar li a.affect {
+    color: #bb6620
+}
+
+#navbar li a.affect::after,
+#navbar li a:hover::after {
+    content: "";
+    height: 2px;
+    width: 35%;
+    background: #bb6620;
+    position: absolute;
+    bottom: -4px;
+    left: 20px;
+    transition: all .3s ease;
+
+}
+
+/* cart and login  */
+
+#right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1em;
+}
+
+#right li {
+    list-style: none;
+    
+    padding: 0 20px;
+}
+#right .heart{
+    padding-left: 0;
+}
+
+#right .login a{
+    text-decoration: none;
+    font-family: "League Spartan", sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    font-optical-sizing: auto;
+    padding-bottom: 25px;
+    font-style: normal;
+    background-color: #f5f5f7;
+    padding: 12px;
+    border-radius: 6px;
+
+
+}
+#right .sign_up a{
+    text-decoration: none;
+    font-family: "League Spartan", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    background-color: darkorange;
+    font-optical-sizing: auto;
+    padding: 12px;
+    padding-top: 14px;
+    color: white;
+    border-radius: 6px;
+    font-style: normal;
+}
+
+#right .sign_up{
+    padding: 0;
+}
+
+
+
+/* open close menu */
+
+.openMenu,
+.closeMenu {
+    display: none;
+}
+
+.mega {
+    position: absolute;
+    width: auto;
+    height: 13em;
+    top: 1em;
+    left: -46em;
+    background-color: white;
+    font-family: "League Spartan", sans-serif;
+    box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -30px;
+    z-index: -1;
+    display: flex;
+    margin: 17px;
+    padding-right: 83em;
+    padding-left: 20em;
+    visibility: hidden;
+    opacity: 0;
+    white-space: nowrap;
+    /* Prevents text wrapping */
+
+}
+
+.wrapper {
+    margin: 60px;
+    padding: 20px;
+    display: flex;
+    z-index: 1;
+}
+
+
+
+.dropDown:hover .mega {
+    color: rgb(0, 0, 0);
+    visibility: visible;
+    transition: all 0.5s ease;
+    opacity: 1;
+    /* z-index: 998; */
+
+
+}
+
+
+
+.wrapper {
+    padding: 0;
+    margin: 0;
+}
+
+h4 {
+    display: flex;
+    padding-left: 0.9em;
+    margin: 0.3em;
+    padding-bottom: 1em;
+    align-items: center;
+
+}
+
+.dropDown:hover .fa-caret-down {
+    rotate: 180deg;
+    transition: all 0.2s ease;
+
+}
+
+/* .list_items{
+    margin: 0.3em;
+    padding-bottom:  1em;
+} */
+.flexcol {
+    padding: 0;
+    margin: 2.2em;
+}
+
+
+/* This is for mega1 */
+.mega1 {
+    position: absolute;
+    width: auto;
+    height: 13em;
+    top: 1em;
+    left: -48em;
+    background-color: white;
+    font-family: "League Spartan", sans-serif;
+    box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -30px;
+    z-index: -1;
+    display: flex;
+    margin: 17px;
+    padding-right: 90em;
+    padding-left: 20em;
+    visibility: hidden;
+    opacity: 0;
+    white-space: nowrap;
+    /* Prevents text wrapping */
+
+}
+
+.wrapper1 {
+    margin: 60px;
+    padding: 20px;
+    display: flex;
+}
+
+
+
+.DropdownWomen:hover .mega1 {
+    color: rgb(0, 0, 0);
+    visibility: visible;
+    transition: all 0.5s ease;
+    opacity: 1;
+
+}
+
+
+
+.wrapper1 {
+    padding: 0;
+    margin: 0;
+}
+
+h4 {
+    display: flex;
+    padding-left: 0.9em;
+    margin: 0.3em;
+
+    padding-bottom: 1em;
+}
+
+.DropdownWomen:hover .dropdowniconWomen {
+    rotate: 180deg;
+    transition: all 0.2s ease;
+
+}
+
+/* .list_items{
+    margin: 0.3em;
+    padding-bottom:  1em;
+} */
+.flexcol1 {
+    padding: 0;
+    margin: 2.2em;
+}
+
+
+/* This is for mega2 */
+.mega2 {
+    position: absolute;
+    width: auto;
+    height: 13em;
+    top: 1em;
+    left: -56em;
+    background-color: white;
+    font-family: "League Spartan", sans-serif;
+    box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -30px;
+    z-index: -1;
+    display: flex;
+    margin: 17px;
+    padding-right: 83em;
+    padding-left: 26em;
+    white-space: nowrap;
+    /* Prevents text wrapping */
+    visibility: hidden;
+    opacity: 0;
+}
+
+.wrapper2 {
+    margin: 60px;
+    padding: 20px;
+    display: flex;
+}
+
+
+
+.dropDownElectronic:hover .mega2 {
+    color: rgb(0, 0, 0);
+    visibility: visible;
+    transition: all 0.5s ease;
+    opacity: 1;
+
+}
+
+
+
+.wrapper2 {
+    padding: 0;
+    margin: 0;
+}
+
+h4 {
+    display: flex;
+    padding-left: 0.9em;
+    margin: 0.3em;
+    padding-bottom: 1em;
+}
+
+.dropDownElectronic:hover .dropdownicon-electronic {
+    rotate: z -180deg;
+    transition: all 0.2s ease;
+
+}
+
+
+.flexcol2 {
+    padding: 0;
+    margin: 2.2em;
+}
+
+/* Mega items style */
+
+.list_items_men {
+
+    margin-bottom: 6px;
+    margin-left: 18px;
+}
+
+.list_items_women {
+
+    margin-bottom: 6px;
+    margin-left: 18px;
+}
+
+.list_items_elec {
+
+    margin-bottom: 6px;
+    margin-left: 18px;
+}
+
+.dropdown_women {
+    padding-left: 5px;
+}
+
+.dropdown_men {
+    padding-left: 5x;
+}
+
+.dropdown_elec {
+    padding-left: 5px;
+}
+
+.mega_icons {
+    max-width: 20px;
+    height: 20px;
+
+    padding-right: 6px;
+    padding-bottom: 7px;
+}
+
+
+/* Mega menu for mobile */
+/* Hamburger menu styles */
+/* /* ... Existing styles ... */
+
+/* Mega menu for mobile */
+/* Hamburger menu styles */
+.openMenu,
+.closeMenu {
+    display: none;
+    cursor: pointer;
+}
+
+/* Media query for screens 768px and below */
+@media screen and (max-width: 1115px) {
+
+    /* Stack nav items in a column */
+    #navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 0;
+        top: 4em;
+        height: 51em;
+        display: block;
+        left: -100%;
+        overflow-x: hidden;
+        position: absolute;
+        background-color: #ffffff;
+        width: 16em;
+        padding-left: 2em;
+        transition: all 0.5s ease;
+
+    }
+
+    #navbar li {
+        padding: 10px 0;
+        width: 100%;
+        /* Make sure the items take up the full width */
+    }
+
+    /* Mega menus open below the nav items */
+    .mega,
+    .mega1,
+    .mega2 {
+        position: static;
+        /* Remove absolute positioning */
+        width: 100%;
+        margin-top: 10px;
+        /* Add spacing between the nav item and the mega menu */
+        padding: 10px;
+        overflow: hidden;
+        display: none;
+        flex-direction: column;
+        box-shadow: none;
+        /* Stack content in a column */
+    }
+
+    /* Display mega menus when the respective nav item is hovered */
+    .navitems:hover .mega,
+    .navitems:hover .mega1,
+    .navitems:hover .mega2 {
+        display: flex;
+        /* Show the mega menu */
+        height: 47em;
+    }
+
+    /* Adjust the mega menu items */
+    .mega .wrapper,
+    .mega1 .wrapper1,
+    .mega2 .wrapper2 {
+        flex-direction: column;
+        width: 100%;
+        height: 20em;
+    }
+
+    .mega .flexcol,
+    .mega1 .flexcol1,
+    .mega2 .flexcol2 {
+        margin: 0;
+        padding: 10px 0;
+    }
+
+    a .navLinks {
+        height: 40em;
+        padding: 0;
+        position: fixed;
+    }
+
+    #navbar li a.affect::after,
+    #navbar li a:hover::after {
+
+        height: 2px;
+        width: 35%;
+        bottom: -8px;
+        left: 2px;
+        transition: all .3s ease;
+
+    }
+    .openMenu,
+    .closeMenu {
+        display: block;
+        cursor: pointer;
+
+    }
+
+    .openMenu{
+        margin: 1em;
+        
+    }
+    .closeMenu{
+        margin-left: 11em;
+        padding: 0;
+    
+        
+    }
+    #navbar.show {
+        left: 0;
+        .closeMenu{
+            rotate: 360deg;
+            transition: all 0.9s ease;
+        
+        }
+        
+
+    }
+    .rightNav{
+        display: none;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'League Spartan', sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    overflow-x: hidden;
+}
+
+.contact-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #FF8C00 40%, #FFE5B4);
+}
+
+.container {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    max-width: 1200px;
+}
+
+.contact-header {
+    padding: 2rem;
+    text-align: center;
+    background-color: #FF8C00;
+    color: white;
+    border-radius: 20px 20px 0 0;
+}
+
+.contact-header h1 {
+    font-size: 3rem;
+    letter-spacing: 2px;
+    animation: slideIn 1s ease forwards;
+    opacity: 0;
+}
+
+.contact-header p {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    animation: fadeIn 1.5s ease forwards;
+    opacity: 0;
+}
+
+/* Contact Wrapper */
+.contact-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 3rem;
+    gap: 2rem;
+}
+
+.contact-info, .contact-form {
+    flex: 1;
+}
+
+.contact-info h2, .contact-form h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.contact-info ul {
+    list-style: none;
+    margin-bottom: 2rem;
+}
+
+.contact-info li {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.contact-info li i {
+    font-size: 1.5rem;
+    margin-right: 10px;
+    color: #FF8C00;
+}
+
+.social-icons a {
+    font-size: 1.5rem;
+    color: #FF8C00;
+    margin-right: 10px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #FF7043;
+}
+
+/* Contact Form */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-field {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.input-field input, .input-field textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    background: transparent;
+    transition: border-color 0.3s;
+}
+
+.input-field input:focus, .input-field textarea:focus {
+    border-color: #FF8C00;
+}
+
+.input-field label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 1rem;
+    color: #666;
+    pointer-events: none;
+    transition: all 0.3s;
+}
+
+.input-field input:focus + label, .input-field textarea:focus + label, 
+.input-field input:not(:placeholder-shown) + label, .input-field textarea:not(:placeholder-shown) + label {
+    top: -20px;
+    left: 0;
+    font-size: 0.85rem;
+    color: #FF8C00;
+}
+
+.submit-btn {
+    background-color: #FF8C00;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #FF7043;
+}
+
+/* Animations */
+@keyframes slideIn {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-wrapper {
+        flex-direction: column;
+        padding: 2rem;
+    }
+
+    .contact-header h1 {
+        font-size: 2.5rem;
+    }
+}

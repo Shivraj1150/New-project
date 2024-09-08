@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & Support</title>
+    <link rel="stylesheet" href="help.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #F4F4F4;
+    color: #333;
+}
+
+.help-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.help-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.help-header h1 {
+    font-size: 3rem;
+    color: #FF8C00;
+    animation: slideDown 0.8s ease-in-out;
+}
+
+.help-header p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-top: 10px;
+    animation: fadeIn 1.5s ease-in;
+}
+
+/* Search Bar */
+.search-bar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4rem;
+}
+
+.search-bar input {
+    padding: 12px 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    width: 60%;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.search-bar input:focus {
+    border-color: #FF8C00;
+}
+
+.search-bar button {
+    background-color: #FF8C00;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    margin-left: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+    background-color: #FF7043;
+}
+
+/* Contact Info Section */
+.contact-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+.contact-item {
+    text-align: center;
+    flex: 1;
+    margin: 0 1rem;
+}
+
+.contact-item i {
+    font-size: 3rem;
+    color: #FF8C00;
+    margin-bottom: 1rem;
+}
+
+.contact-item h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.contact-item p, .live-chat-btn {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.live-chat-btn {
+    background-color: #FF8C00;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.live-chat-btn:hover {
+    background-color: #FF7043;
+}
+
+/* FAQ Section */
+.faq-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #FF8C00;
+    margin-bottom: 3rem;
+}
+
+.faq-item {
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 1rem;
+    cursor: pointer;
+}
+
+.question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.question h3 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.plus-icon {
+    font-size: 1.5rem;
+    color: #FF8C00;
+    transition: transform 0.3s;
+}
+
+.answer {
+    display: none;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* Contact Section */
+.contact-support {
+    text-align: center;
+    background-color: #FF8C00;
+    color: white;
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.contact-support h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.contact-support p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.contact-btn {
+    background-color: white;
+    color: #FF8C00;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border: 2px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.contact-btn:hover {
+    background-color: #FF7043;
+    border: 2px solid #FF7043;
+    color: white;
+}
+
+/* Animations */
+@keyframes slideDown {
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .contact-info {
+        flex-direction: column;
+    }
+    .contact-item {
+        margin-bottom: 2rem;
+    }
+    .search-bar input {
+        width: 80%;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Help Section -->
+    <section class="help-section">
+        <div class="help-header">
+            <h1>Need Assistance?</h1>
+            <p>We are here to help you with your queries and concerns.</p>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" placeholder="Search for help topics..." id="help-search">
+            <button>Search</button>
+        </div>
+
+        <!-- Contact Info Section -->
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fas fa-phone-alt"></i>
+                <h3>Call Us</h3>
+                <p>+1 (800) 123-4567</p>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <h3>Email Support</h3>
+                <p>support@example.com</p>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-comments"></i>
+                <h3>Live Chat</h3>
+                <button class="live-chat-btn">Start Chat</button>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <div class="question">
+                    <h3>How do I track my order?</h3>
+                    <span class="plus-icon">+</span>
+                </div>
+                <div class="answer">
+                    <p>You can track your order by logging into your account and viewing your order history.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="question">
+                    <h3>What is your return policy?</h3>
+                    <span class="plus-icon">+</span>
+                </div>
+                <div class="answer">
+                    <p>We accept returns within 30 days of purchase. Please ensure the item is unused and in original condition.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="question">
+                    <h3>How do I apply a discount code?</h3>
+                    <span class="plus-icon">+</span>
+                </div>
+                <div class="answer">
+                    <p>Apply your discount code at checkout in the promo code field to redeem your discount.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact-support">
+            <h2>Still Need Help?</h2>
+            <p>If you can't find the answer you're looking for, feel free to contact our support team.</p>
+            <button class="contact-btn">Contact Support</button>
+        </div>
+    </section>
+    <script>
+        // FAQ accordion animation
+document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => {
+        const answer = item.querySelector('.answer');
+        const plusIcon = item.querySelector('.plus-icon');
+
+        if (answer.style.display === "block") {
+            answer.style.display = "none";
+            plusIcon.style.transform = "rotate(0deg)";
+        } else {
+            answer.style.display = "block";
+            plusIcon.style.transform = "rotate(45deg)";
+        }
+    });
+});
+
+    </script>
+    <script src="help.js"></script>
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & Support</title>
+    <link rel="stylesheet" href="help.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #F4F4F4;
+    color: #333;
+}
+
+.help-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.help-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.help-header h1 {
+    font-size: 3rem;
+    color: #FF8C00;
+    animation: slideDown 0.8s ease-in-out;
+}
+
+.help-header p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-top: 10px;
+    animation: fadeIn 1.5s ease-in;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4rem;
+}
+
+.search-bar input {
+    padding: 12px 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    width: 60%;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.search-bar input:focus {
+    border-color: #FF8C00;
+}
+
+.search-bar button {
+    background-color: #FF8C00;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    margin-left: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+    background-color: #FF7043;
+}
+
+.faq-section {
+    margin-bottom: 5rem;
+}
+
+.faq-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #FF8C00;
+    margin-bottom: 3rem;
+}
+
+.faq-item {
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 1rem;
+    cursor: pointer;
+}
+
+.question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.question h3 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.plus-icon {
+    font-size: 1.5rem;
+    color: #FF8C00;
+    transition: transform 0.3s;
+}
+
+.answer {
+    display: none;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.contact-support {
+    text-align: center;
+    background-color: #FF8C00;
+    color: white;
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.contact-support h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.contact-support p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.contact-btn {
+    background-color: white;
+    color: #FF8C00;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border: 2px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.contact-btn:hover {
+    background-color: #FF7043;
+    border: 2px solid #FF7043;
+    color: white;
+}
+
+/* Animations */
+@keyframes slideDown {
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .search-bar input {
+        width: 80%;
+    }
+}
+
+</style>
+<body>
+
+    <!-- Help Section -->
+    <section class="help-section">
+        <div class="help-header">
+            <h1>How Can We Help You?</h1>
+            <p>Find answers to your questions and get help with your orders.</p>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" placeholder="Search for help topics..." id="help-search">
+            <button>Search</button>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <div class="question" id="q1">
+                    <h3>How do I track my order?</h3>
+                    <span class="plus-icon">+</span>
+                </div>
+                <div class="answer">
+                    <p>You can track your order in your account dashboard under "Order History." Enter your order number or use the tracking link sent to your email.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="question" id="q2">
+                    <h3>What is your return policy?</h3>
+                    <span class="plus-icon">+</span>
+                </div>
+                <div class="answer">
+                    <p>We accept returns within 30 days of purchase. Items must be unworn, unwashed, and in their original condition with tags attached.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="question" id="q3">
+                    <h3>How do I change or cancel my order?</h3>
+                    <span class="plus-icon">+</span>
+                </div>
+                <div class="answer">
+                    <p>You can change or cancel your order before it ships by contacting our support team via chat or email.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="question" id="q4">
+                    <h3>How do I use a discount code?</h3>
+                    <span class="plus-icon">+</span>
+                </div>
+                <div class="answer">
+                    <p>At checkout, you can enter your discount code in the "Promo Code" field. Once applied, the discount will be reflected in your total amount.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact-support">
+            <h2>Still Need Help?</h2>
+            <p>If you can't find the answer you're looking for, feel free to contact us.</p>
+            <button class="contact-btn">Contact Support</button>
+        </div>
+    </section>
+<script>
+    // FAQ accordion animation
+document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => {
+        const answer = item.querySelector('.answer');
+        const plusIcon = item.querySelector('.plus-icon');
+
+        if (answer.style.display === "block") {
+            answer.style.display = "none";
+            plusIcon.style.transform = "rotate(0deg)";
+        } else {
+            answer.style.display = "block";
+            plusIcon.style.transform = "rotate(45deg)";
+        }
+    });
+});
+
+</script>
+    <script src="help.js"></script>
+</body>
+</html>

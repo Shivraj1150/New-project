@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    body {
+        font-family: 'Helvetica Neue', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #fef3e6;
+        color: #333;
+    }
+
+    .header {
+        text-align: center;
+        padding: 20px;
+        background-color: rgba(255, 105, 0, 0.85);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+        animation: slideDown 0.8s ease-in-out;
+    }
+
+    .header h1 {
+        margin: 0;
+        font-size: 2.5em;
+        color: #fff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 120px;
+        left: 20px;
+        width: 220px;
+        z-index: 1000;
+        background-color: #ff6900;
+        padding: 20px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 15px;
+        animation: slideInLeft 0.8s ease-in-out;
+        transition: all 0.3s ease;
+    }
+
+    .sidebar:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .sidebar::before {
+        content: '';
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        width: 60px;
+        height: 60px;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        animation: pulseGlare 5s infinite;
+    }
+
+    @keyframes pulseGlare {
+
+        0%,
+        100% {
+            transform: scale(1);
+            opacity: 0.6;
+        }
+
+        50% {
+            transform: scale(1.2);
+            opacity: 1;
+        }
+    }
+
+    .sidebar nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar nav ul li {
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .sidebar nav ul li a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+        font-size: 1.2em;
+        display: flex;
+        align-items: center;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .sidebar nav ul li a:hover {
+        color: #ffe0cc;
+        transform: translateX(10px);
+    }
+
+    .sidebar nav ul li a::before {
+        content: '→';
+        color: #ffe0cc;
+        margin-right: 10px;
+        opacity: 0;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        transform: translateX(-10px);
+    }
+
+    .sidebar nav ul li a:hover::before {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    @keyframes slideInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    .content {
+        margin-left: 280px;
+        padding: 60px;
+        animation: fadeIn 1.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    .content-card {
+        background-color: #fff;
+        padding: 30px;
+        margin-bottom: 25px;
+        border-radius: 15px;
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease-in-out;
+    }
+
+    .content-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .content-card h2 {
+        color: #ff6900;
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+
+    .footer {
+        text-align: center;
+        padding: 25px;
+        background: linear-gradient(135deg, #ff7b00, #ff4c00);
+        color: #fff;
+        margin-top: 50px;
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+        box-shadow: 0px -4px 12px rgba(0, 0, 0, 0.2);
+        animation: fadeInUp 1s ease-in-out;
+        position: relative;
+        overflow: hidden;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .footer p {
+        margin: 0;
+        font-size: 1.2em;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        animation: textFadeIn 2s ease-in-out;
+    }
+
+    @keyframes textFadeIn {
+        from {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .footer::before {
+        content: '';
+        position: absolute;
+        top: -100px;
+        left: -100px;
+        width: 200px;
+        height: 200px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        animation: rotateGlare 10s linear infinite;
+    }
+
+    @keyframes rotateGlare {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
+<body>
+
+    <header class="header">
+        <h1>Policies</h1>
+    </header>
+
+    <aside class="sidebar">
+        <nav>
+            <ul>
+                <li><a href="#section1">Refund and Cancellation</a></li>
+                <li><a href="#section2">Payment Terms</a></li>
+                <li><a href="#section3">Privacy Policy</a></li>
+                <li><a href="#section4">Orders & Shipping</a></li>
+                <li><a href="#section5">Refund Policy </a></li>
+                
+
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="content">
+        <section id="section1" class="content-card">
+            <h1>Refund and Cancellation</h1>
+            <h2>Cancellation Policy</h2>
+            <p>Your order can only be cancelled if it is yet to be shipped. To cancel, please write to our customer
+                support team on care@dotandkey.com. </p>
+
+            <p> In such cases, the order will be cancelled and the refund shall be processed by us within 7 business
+                days after the cancellation request has been acknowledged. </p>
+
+            <p> Orders once shipped cannot be cancelled.</p>
+            <h2>Refund Policy</h2>
+            <p>Returns will only be accepted for products that have been damaged in transit or products that have
+                physical defects or in case of incorrect product been shipped. An email with photos of the
+                damaged/incorrect product should be sent within the stipulated time in order for us to accept the
+                request.</p>
+
+            <p> Should you wish to return all or part of your order, you need to inform us within 48 hours of receipt of
+                the products by writing to us on care@dotandkey.com. </p>
+
+            <p> Returns will not be accepted if the product has been used and/or the seal has been broken for the
+                product and/or the serial number has been tampered with. On receipt of the returned product, Dot & Key
+                will proceed to inspect the same and validate the claim. </p>
+
+            <p> Once approved as an eligible return, a refund or replacement will be issued. If the product is found to
+                be ineligible for return, the product will be couriered back to you. </p>
+
+            <p> If you made an online payment, we will refund the amount back in the original source (debit/credit card,
+                bank, wallet, etc) within 7 working days of receiving the request from you. </p>
+
+            <p>For COD orders, we will refund the amount to your bank account within 14 working days of requesting a
+                refund.</p>
+        </section>
+
+        <section id="section2" class="content-card">
+            <h1>Payment Terms</h1>
+            <h2>Payment Options</h2>
+            <p>Dot & Key accepts orders through the following modes of payment:</p>
+            <ol>
+                <li>Domestic credit or debit cards, issued by banks and institutions that are part of the Visa , Rupay,
+                    Amex & MasterCard Network.</li>
+                <li>International credit or debit cards, issued by banks and institutions that are part of the Visa ,
+                    Rupay, Amex & MasterCard Network.</li>
+                <li>UPI</li>
+                <li>Payment Wallet - Paytm </li>
+                <li>NetBanking</li>
+            </ol>
+            <p>From selected banks in India. A full list is available at the time of Check Out and prior to making
+                payments for purchases.</p>
+            <p>Please note that for Visa and MasterCard you will require to submit your 16-digit credit card number,
+                card expiry date and a 3-digit CVV number (on the back of the card), when you make an online transaction
+                using your Credit Card. </p>
+            <p>The Credit Card transaction will appear on your bank statement as a payment to Dot & Key Wellness Private
+                Limited. </p>
+
+            <h2>Pricing Policy</h2>
+            <P>The product prices listed are current and updated. However, these are subject to change without advance
+                notice.
+
+            </P>
+            <P>All prices on this web site are processed in Indian Currency (INR) and the prices are inclusive of all
+                taxes.
+
+            </P>
+            <P>All orders are acknowledged at current pricing. We will bill at the price in effect, at the time of
+                shipping.
+
+            </P>
+            <P>Our products are liable for GST in India.
+
+            </P>
+            <P>For all international shipping orders may attract local duties applicable in that country and the
+                customer will have to pay locally, accordingly.
+
+            </P>
+            <h2>Payment Security</h2>
+            <p>Any information you enter when transacting with Dot & Key is sent in a Secure Socket Layer (SSL) session and is encrypted to protect you against unintentional disclosure to third parties. All transactions at Dot & Key are protected by SSL (Secure Sockets Layer) and Secure Data Encryption using a 1024-bit process. 
+
+            </p>
+            <p>For any queries contact us at care@dotandkey.com 
+
+            </p>
+        </section>
+
+        <section id="section3" class="content-card">
+            <h2>Privacy Policy</h2>
+            <p>The terms "We" / "Us" / "Our"/”Company” individually and collectively refer to Dot & Key Wellness Pvt. Ltd and the terms "You" /"Your" / "Yourself" refer to the users.
+            </p>
+            <p>This Privacy Policy is an electronic record in the form of an electronic contract formed under the Information Technology Act, 2000 and the rules made thereunder and the amended provisions pertaining to electronic documents / records in various statutes as amended by the information Technology Act, 2000. This Privacy Policy does not require any physical, electronic or digital signature.
+            </p>
+            <p>This Privacy Policy is a legally binding document between you and Dot & Key Wellness Pvt. Ltd(both terms defined below). The terms of this Privacy Policy will be effective upon your acceptance of the same (directly or indirectly in electronic form, by clicking on the I accept tab or by use of the website or by other means) and will govern the relationship between you and Dot & Key Wellness Pvt. Ltd for your use of the website “Website” (defined below).
+            </p>
+            <p>This document is published and shall be construed in accordance with the provisions of the Information Technology (reasonable security practices and procedures and sensitive personal data of information) rules, 2011 under Information Technology Act, 2000; that require publishing of the Privacy Policy for collection, use, storage and transfer of sensitive personal data or information.
+            </p>
+            <p>Please read this Privacy Policy carefully. By using the Website, you indicate that you understand, agree and consent to this Privacy Policy. If you do not agree with the terms of this Privacy Policy, please do not use this Website.
+            </p>
+            <p>By providing us your Information or by making use of the facilities provided by the Website, You hereby consent to the collection, storage, processing and transfer of any or all of Your Personal Information and Non-Personal Information by us as specified under this Privacy Policy. You further agree that such collection, use, storage and transfer of Your Information shall not cause any loss or wrongful gain to you or any other person.
+            </p>
+            <p>USER INFORMATION <br>To avail certain services on our Websites, users are required to provide certain information for theregistration process namely: - a) your name, b) email address, c) sex, d) age, e) PIN code, f) credit card or debit card details g) medical records and history h) sexual orientation, i) biometric information, j) password etc., and / or your occupation, interests, and the like. The Information as supplied by the users enables us to improve our sites and provide you the most user-friendly experience.
+            </p>
+            <p>All required information is service dependent and we may use the above said user information to, maintain, protect, and improve its services (including advertising services) and for developing new services.
+            </p>
+            <p>Such information will not be considered as sensitive if it is freely available and accessible in the public domain or is furnished under the Right to Information Act, 2005 or any other law for the time being in force.
+            </p>
+            <p>A record of your product interests may also be maintained and/or acquired about you from our present and/or future affiliates.
+            </p>
+            <p>This Website is directed to be used by adults only who are above the age of 18 years. If you are not an adult, while you may look at our Site, but you should not make a purchase, register, or submit personal information to us. We do not knowingly collect information from minors. Minors should not be using this website with any personal information. In an event of default by the minor, the parent or the guardian will be liable to compensate for whatsoever damages arising out of such wrongful use by the minor.
+            </p>
+            <p>COOKIES <br> To improve the responsiveness of the sites for our users, we may use "cookies", or similar electronic tools to collect information to assign each visitor a unique, random number as a User Identification (User ID) to understand the user's individual interests using the Identified Computer.. The only personal information a cookie can contain is information you supply.
+            </p>
+            <p>The use of cookies is a common practice adopted by most major websites to better serve their clients. Most browsers are designed to accept cookies, but they can be easily modified to block cookies.
+            </p>
+            <p>Our web servers automatically collect limited information about your computer's connection to the Internet, including your IP address, when you visit our site. Your IP address does not identify you personally. We use this information to deliver our web pages to you upon request, to tailor our site to the interests of our users, to measure traffic within our site and let advertisers know the geographic locations from where our visitors come.
+            </p>
+            <p>LINKS TO THE OTHER SITES:Our policy discloses the privacy practices for our own web site only. Our site provides links to other websites also that are beyond our control. We shall in no way be responsible in way for your use of such sites.
+
+
+            </p>
+            <p>ACCESSING AND MODIFYING INFORMATION <br>We shall allow an individual access to their personal information and allow the individual to correct, amend or delete their information, except where the burden or expense of providing access would be disproportionate to the risks to the privacy of the individual in the case in question or where the rights of persons other than the individual would be violated or it violates our rights.
+            </p>
+            <p>Upon request, we will grant individuals reasonable access to personal information that we hold about them.To submit the request to know,correct, amend, delete your information or to opt-out, you can contact our Grievance Officer by emailing us at care@dotandkey.com with “PRIVACY POLICY” in the subject line.
+
+            </p>
+            <p>If we process your personal information based on your consent, you can withdraw your consent at any time by contacting our Grievance Officer by emailing us at care@dotandkey.com with “PRIVACY POLICY” in the subject line. Withdrawing your consent will not affect the lawfulness of any processing we conducted prior to your withdrawal.
+
+            </p>
+            <p>We will review your request as soon as reasonably practicable and respond within the time periods required by applicable law. In any request you submit to us, please make clear the personal data that are the subject of your request.
+            </p>
+            <p>INFORMATION SHARING <br>We share the sensitive personal information to any third party without obtaining the prior consent of the user in the following limited circumstances:
+
+            </p><ul>
+                <li>
+                    When it is requested or required by law or by any court or governmental agency or authority to disclose, for the purpose of verification of identity, or for the prevention, detection, investigation including cyber incidents, or for prosecution and punishment of offences. These disclosures are made in good faith and belief that such disclosure is reasonably necessary for enforcing these Terms; for complying with the applicable laws and regulations.
+                </li>
+                <li>We proposes to share such information within its group companies and officers and employees of such group companies for the purpose of processing personal information on its behalf. We also ensure that these recipients of such information agree to process such information based on our instructions and in compliance with this Privacy Policy and any other appropriate confidentiality and security measures.
+
+                    We will offer an individual the opportunity to choose (opt-out) whether personally identifying information about them will be disclosed to a third party or used for a purpose incompatible with the purpose for which it was originally collected or subsequently authorized by them, unless such choice is not required by law. We will seek affirmative or explicit (opt-in) consent before the personal information is disclosed to a third party or used for a purpose other than its original purpose or the purpose authorized subsequently by the individual. We use the personal information only in ways that are compatible with the purposes for which it was collected or
+                    subsequently authorized by the individual and the client.</li>
+            </ul>
+            <p>RETENTION <br>We will retain your personal information for the period necessary to fulfil the purposes outlined in this Privacy Policy unless a longer retention period is required or permitted by law.
+
+
+            </p>
+            <p>We will only retain your personal information for as long as we have an ongoing legitimate business need to do so. We may retain your personal information for a longer period to address a complaint or if we reasonably believe that litigation in respect to our relationship with you is possible.
+
+            </p>
+            <p>We may anonymize personal information for research or statistical purposes, in which case the resulting data are no longer personal information subject to this Privacy Policy and we may use these data without restriction.
+            </p>
+            <p>INFORMATION SECURITY <br> We take appropriate security measures to protect against unauthorized access to or unauthorized alteration, disclosure or destruction of data. These include internal reviews of our data collection, storage and processing practices and security measures, including appropriate encryption and physical security measures to guard against unauthorized access to systems where we store personal data.
+
+            </p>
+            <p>However, we shall not be liable to any user for any loss, damage (whether direct, indirect, consequential or incidental) or harm caused to the user due to the unauthorized access or misuse of the Personal or Sensitive Information by any third party. We cannot guarantee that information you supply will not be intercepted while being transmitted to us over the Internet. Further, any information you include in a posting to the discussion areas is available to anyone with Internet access.
+
+            </p>
+            <p>UPDATES TO THIS PRIVACY POLICY <br> We may update this Privacy Policy from time to time in response to changing legal, technical, or business developments. Our Privacy Policy is subject to change at any time without notice. Your continued use of the Website following such changes to the Policy constitutes your acceptance of the changed Policy and to be bound by such changes.. When we update this Privacy Policy, we will post the updated version on our website. Please regularly check this Privacy Policy to ensure you are aware of the updated version.
+
+
+
+            </p>
+            <p>Grievance Redressal <br> Any complaints, abuse or concerns with regards to content and or comment or breach of these terms shall be immediately informed to the Customer Care Officer as mentioned below via in writing or through email to :
+
+            </p>
+            <p>Customer Support Team
+            </p>
+            <p>www.dotandkey.com
+            </p>
+            <p>Dot & Key Wellness Pvt. Ltd
+            </p>
+            <p>2/7 Sarat Bose Road
+            </p>
+            <p>Kolkata – 700 020
+            </p>
+            <p>Email: care@dotandkey.com
+            </p>
+            <p>Ph: 8447704734
+
+            </p>
+        </section>
+
+        <section id="section4" class="content-card">
+            <h2>Order and Shipping </h2>
+            <p>Once your order has been placed, we will notify you by email as soon as possible to confirm receipt of your order and email you again to confirm dispatch and therefore acceptance of the order.
+            </p>
+            <p>In case of Cash on Delivery orders, an order confirmation email will be sent to you. Your order request will only be accepted once you have confirmed your order on the email/ mobile.
+            </p>
+            <p>Dispatch of all the product(s) ordered, may or may not happen at the same time.
+            </p>
+            <p>The product(s) will be inspected and packaged prior to handing them over to our trusted delivery partners.
+            </p>
+            <p>Our delivery partners will bring the package to you as early as possible. In case, they are unable to reach the provided address or at a suitable time, they will contact you to resolve the issue.
+            </p>
+            <p>We dispatch most orders within 2 business days (excluding Sundays and public holidays).
+            </p>
+            <p>There are no shipping charges for the orders equal and above the billing value of INR 495. However, if your order is less than INR 495, there will be a shipping charge of INR 75. 
+
+            </p>
+            <p>Dot & Key does not ship outside India at the moment.
+
+            </p>
+        </section>
+        <section id="section5" class="content-card">
+            <h2>Refund Policy</h2>
+            <p>Returns will only be accepted for products that have been damaged in transit or products that have physical defects or in case of incorrect product been shipped. An email with photos of the damaged/incorrect product should be sent within the stipulated time in order for us to accept the request.
+                <p>Should you wish to return all or part of your order, you need to inform us within 48 hours of receipt of the products by writing to us on customercare@dotandkey.com.
+
+                </p>
+                <P>Returns will not be accepted if the product has been used and/or the seal has been broken for the product and/or the serial number has been tampered with. On receipt of the returned product, Dot & Key will proceed to inspect the same and validate the claim.
+                </P>
+                <P>Once approved as an eligible return, a refund or replacement will be issued. If the product is found to be ineligible for return, the product will be couriered back to you.
+
+                </P>
+            </p>
+        
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 StoreSAGE. All rights reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const cards = document.querySelectorAll('.content-card');
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+
+            // Smooth scroll for sidebar navigation
+            document.querySelectorAll('.sidebar a').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80, // Adjust for header height
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+
+    </script>
+</body>
+
+</html>

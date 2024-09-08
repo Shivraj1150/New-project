@@ -1,0 +1,818 @@
+      /* General styling */
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #1b1b1b;
+        color: #f8f8f8;
+        margin: 0;
+        font-family: "League Spartan", sans-serif;
+
+        padding: 0;
+        overflow-x: hidden;
+    }
+    * {
+padding: 0px;
+margin: 0px;
+box-sizing: border-box;
+}
+
+
+/* header */
+
+#header {
+/* padding: 0px; */
+/* margin: auto; */
+width: 100%;
+top: 0;
+left: 0;
+/* height: 52px; */
+/* display: flex; */
+/* border: 2px solid red; */
+
+background-color: rgba(255, 255, 255, 0.2); /* White background with 20% opacity */
+backdrop-filter: blur(10px); /* Apply blur */
+-webkit-backdrop-filter: blur(10px); /* For Safari support */
+border-radius: 10px; /* Optional: rounding the corners */
+
+box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -40px;
+position: fixed;
+z-index: 1000;
+/* right: 2em; */
+
+}
+
+nav {
+display: flex;
+align-items: center;
+justify-content: space-between;
+/* background-color: #E3E6F3; */
+box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -40px;
+/* max-width: 1200px; */
+height: 4em;
+padding: 0 0rem;
+margin: 0 auto;
+
+}
+
+/* Heading */
+
+h1{
+
+font-size: 35px;
+
+font-family: "League Spartan", sans-serif;
+
+}
+.h1_store{
+font-size: 35px;
+
+font-family: "League Spartan", sans-serif;
+color: darkorange;
+
+}
+
+.heading{
+margin-left: 1em;
+display: flex;
+font-size: large;
+}
+
+/* Navigation bar */
+
+#navbar {
+display: flex;
+align-items: center;
+justify-content: center;
+/* padding: 0 20px; */
+z-index: 999;
+position: relative;
+
+
+}
+
+#navbar li {
+list-style: none;
+padding: 0 20px;
+position: relative;
+
+}
+
+#navbar li a {
+text-decoration: none;
+color: rgb(0, 0, 0);
+font-size: 15px;
+font-weight: 600;
+font-family: "League Spartan", sans-serif;
+font-optical-sizing: auto;
+padding-bottom: 25px;
+font-style: normal;
+transition: 0.3s ease;
+}
+
+#navbar li a:hover,
+#navbar li a.affect {
+color: #bb6620
+}
+
+#navbar li a.affect::after,
+#navbar li a:hover::after {
+content: "";
+height: 2px;
+width: 35%;
+background: #bb6620;
+position: absolute;
+bottom: -4px;
+left: 20px;
+transition: all .3s ease;
+
+}
+
+/* cart and login  */
+
+#right {
+display: flex;
+align-items: center;
+justify-content: center;
+margin-right: 1em;
+}
+
+#right li {
+list-style: none;
+
+padding: 0 20px;
+}
+#right .heart{
+padding-left: 0;
+}
+
+#right .login a{
+text-decoration: none;
+font-family: "League Spartan", sans-serif;
+font-size: 19px;
+font-weight: 600;
+font-optical-sizing: auto;
+padding-bottom: 25px;
+font-style: normal;
+background-color: #f5f5f7;
+padding: 12px;
+border-radius: 6px;
+
+
+}
+#right .sign_up a{
+text-decoration: none;
+font-family: "League Spartan", sans-serif;
+font-size: 17px;
+font-weight: 600;
+background-color: darkorange;
+font-optical-sizing: auto;
+padding: 12px;
+padding-top: 14px;
+color: white;
+border-radius: 6px;
+font-style: normal;
+}
+
+#right .sign_up{
+padding: 0;
+}
+
+
+
+/* open close menu */
+
+.openMenu,
+.closeMenu {
+display: none;
+}
+
+.mega {
+position: absolute;
+width: auto;
+height: 13em;
+top: 1em;
+left: -46em;
+background-color: rgba(255, 255, 255, 0.2); /* White background with 20% opacity */
+backdrop-filter: blur(10px); /* Apply blur */
+-webkit-backdrop-filter: blur(10px); /* For Safari support */
+border-radius: 10px; /* Optional: rounding the corners */
+
+font-family: "League Spartan", sans-serif;
+box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -30px;
+z-index: -1;
+display: flex;
+margin: 17px;
+padding-right: 83em;
+padding-left: 20em;
+visibility: hidden;
+opacity: 0;
+white-space: nowrap;
+/* Prevents text wrapping */
+
+}
+
+.wrapper {
+margin: 60px;
+padding: 20px;
+display: flex;
+z-index: 1;
+}
+
+
+
+.dropDown:hover .mega {
+color: rgb(0, 0, 0);
+visibility: visible;
+transition: all 0.5s ease;
+opacity: 1;
+/* z-index: 998; */
+
+
+}
+
+
+
+.wrapper {
+padding: 0;
+margin: 0;
+}
+
+h4 {
+display: flex;
+padding-left: 0.9em;
+margin: 0.3em;
+padding-bottom: 1em;
+align-items: center;
+
+}
+
+.dropDown:hover .fa-caret-down {
+rotate: 180deg;
+transition: all 0.2s ease;
+
+}
+
+/* .list_items{
+margin: 0.3em;
+padding-bottom:  1em;
+} */
+.flexcol {
+padding: 0;
+margin: 2.2em;
+}
+
+
+/* This is for mega1 */
+.mega1 {
+position: absolute;
+width: auto;
+height: 13em;
+top: 1em;
+left: -48em;
+background-color: rgba(255, 255, 255, 0.2); /* White background with 20% opacity */
+backdrop-filter: blur(10px); /* Apply blur */
+-webkit-backdrop-filter: blur(10px); /* For Safari support */
+border-radius: 10px; /* Optional: rounding the corners */
+  font-family: "League Spartan", sans-serif;
+box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -30px;
+z-index: -1;
+display: flex;
+margin: 17px;
+padding-right: 90em;
+padding-left: 20em;
+visibility: hidden;
+opacity: 0;
+white-space: nowrap;
+/* Prevents text wrapping */
+
+}
+
+.wrapper1 {
+margin: 60px;
+padding: 20px;
+display: flex;
+}
+
+
+
+.DropdownWomen:hover .mega1 {
+color: rgb(0, 0, 0);
+visibility: visible;
+transition: all 0.5s ease;
+opacity: 1;
+
+}
+
+
+
+.wrapper1 {
+padding: 0;
+margin: 0;
+}
+
+h4 {
+display: flex;
+padding-left: 0.9em;
+margin: 0.3em;
+
+padding-bottom: 1em;
+}
+
+.DropdownWomen:hover .dropdowniconWomen {
+rotate: 180deg;
+transition: all 0.2s ease;
+
+}
+
+/* .list_items{
+margin: 0.3em;
+padding-bottom:  1em;
+} */
+.flexcol1 {
+padding: 0;
+margin: 2.2em;
+}
+
+
+/* This is for mega2 */
+.mega2 {
+position: absolute;
+width: auto;
+height: 13em;
+top: 1em;
+left: -56em;
+background-color: rgba(255, 255, 255, 0.2); /* White background with 20% opacity */
+backdrop-filter: blur(10px); /* Apply blur */
+-webkit-backdrop-filter: blur(10px); /* For Safari support */
+border-radius: 10px; /* Optional: rounding the corners */
+
+font-family: "League Spartan", sans-serif;
+box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -30px;
+z-index: -1;
+display: flex;
+margin: 17px;
+padding-right: 83em;
+padding-left: 26em;
+white-space: nowrap;
+/* Prevents text wrapping */
+visibility: hidden;
+opacity: 0;
+}
+
+.wrapper2 {
+margin: 60px;
+padding: 20px;
+display: flex;
+}
+
+
+
+.dropDownElectronic:hover .mega2 {
+color: rgb(0, 0, 0);
+visibility: visible;
+transition: all 0.5s ease;
+opacity: 1;
+
+}
+
+
+
+.wrapper2 {
+padding: 0;
+margin: 0;
+}
+
+h4 {
+display: flex;
+padding-left: 0.9em;
+margin: 0.3em;
+padding-bottom: 1em;
+}
+
+.dropDownElectronic:hover .dropdownicon-electronic {
+rotate: z -180deg;
+transition: all 0.2s ease;
+
+}
+
+
+.flexcol2 {
+padding: 0;
+margin: 2.2em;
+}
+
+/* Mega items style */
+
+.list_items_men {
+
+margin-bottom: 6px;
+margin-left: 18px;
+}
+
+.list_items_women {
+
+margin-bottom: 6px;
+margin-left: 18px;
+}
+
+.list_items_elec {
+
+margin-bottom: 6px;
+margin-left: 18px;
+}
+
+.dropdown_women {
+padding-left: 5px;
+}
+
+.dropdown_men {
+padding-left: 5x;
+}
+
+.dropdown_elec {
+padding-left: 5px;
+}
+
+.mega_icons {
+max-width: 20px;
+height: 20px;
+
+padding-right: 6px;
+padding-bottom: 7px;
+}
+
+
+/* Mega menu for mobile */
+/* Hamburger menu styles */
+/* /* ... Existing styles ... */
+
+/* Mega menu for mobile */
+/* Hamburger menu styles */
+.openMenu,
+.closeMenu {
+display: none;
+cursor: pointer;
+}
+
+/* Media query for screens 768px and below */
+@media screen and (max-width: 1115px) {
+
+/* Stack nav items in a column */
+#navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 0;
+    top: 4em;
+    height: 51em;
+    display: block;
+    left: -100%;
+    overflow-x: hidden;
+    position: absolute;
+    background-color: #ffffff;
+    width: 16em;
+    padding-left: 2em;
+    transition: all 0.5s ease;
+
+}
+
+#navbar li {
+    padding: 10px 0;
+    width: 100%;
+    /* Make sure the items take up the full width */
+}
+
+/* Mega menus open below the nav items */
+.mega,
+.mega1,
+.mega2 {
+    position: static;
+    /* Remove absolute positioning */
+    width: 100%;
+    margin-top: 10px;
+    /* Add spacing between the nav item and the mega menu */
+    padding: 10px;
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+    box-shadow: none;
+    /* Stack content in a column */
+}
+
+/* Display mega menus when the respective nav item is hovered */
+.navitems:hover .mega,
+.navitems:hover .mega1,
+.navitems:hover .mega2 {
+    display: flex;
+    /* Show the mega menu */
+    height: 47em;
+}
+
+/* Adjust the mega menu items */
+.mega .wrapper,
+.mega1 .wrapper1,
+.mega2 .wrapper2 {
+    flex-direction: column;
+    width: 100%;
+    height: 20em;
+}
+
+.mega .flexcol,
+.mega1 .flexcol1,
+.mega2 .flexcol2 {
+    margin: 0;
+    padding: 10px 0;
+}
+
+a .navLinks {
+    height: 40em;
+    padding: 0;
+    position: fixed;
+}
+
+#navbar li a.affect::after,
+#navbar li a:hover::after {
+
+    height: 2px;
+    width: 35%;
+    bottom: -8px;
+    left: 2px;
+    transition: all .3s ease;
+
+}
+.openMenu,
+.closeMenu {
+    display: block;
+    cursor: pointer;
+
+}
+
+.openMenu{
+    margin: 1em;
+    
+}
+.closeMenu{
+    margin-left: 11em;
+    padding: 0;
+
+    
+}
+#navbar.show {
+    left: 0;
+    .closeMenu{
+        rotate: 360deg;
+        transition: all 0.9s ease;
+    
+    }
+    
+
+}
+.rightNav{
+    display: none;
+}
+
+
+@media screen and (max-width: 379px){
+
+}
+}
+
+    .store_name{
+        color: #000000;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    h1, h2, p {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Hero Section */
+    .hero-section {
+        height: 100vh;
+        background: linear-gradient(135deg, #ff8a00, #e52e71);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        animation: fadeIn 1s ease-in-out;
+    }
+    
+    .hero-text {
+        text-align: center;
+        z-index: 1;
+        position: relative;
+        left: 6em;
+        color: white;
+    }
+
+    .hero-text h1 {
+        font-size: 4rem;
+        font-weight: bold;
+        letter-spacing: 2px;
+        animation: textSlide 1.5s ease-out forwards;
+    }
+
+    .hero-text p {
+        font-size: 1.5rem;
+        margin-top: 20px;
+        animation: textFade 2s ease-out forwards;
+    }
+            
+
+    /* Parallax circles */
+    .circle {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        animation: moveCircles 7s infinite ease-in-out alternate;
+    }
+
+    .circle.small {
+        width: 150px;
+        height: 150px;
+        top: 20%;
+        left: 10%;
+    }
+
+    .circle.large {
+        width: 350px;
+        height: 350px;
+        bottom: 5%;
+        right: 15%;
+    }
+
+    /* About Section */
+    .about-section {
+        padding: 100px 0;
+        text-align: center;
+        /* background-image: url(Banner/b1.jpg);
+        background-repeat: no-repeat; */
+    }
+
+    .about-section h2 {
+        font-size: 3rem;
+        margin-bottom: 30px;
+        color: #ff8a00;
+        animation: fadeIn 1.5s ease-out;
+    }
+
+    .about-section p {
+        font-size: 1.2rem;
+        color: #ccc;
+        max-width: 900px;
+        margin: 0 auto;
+        line-height: 1.8;
+        animation: fadeIn 1.8s ease-out;
+    }
+
+    /* Product Categories Section */
+    .categories-section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 50px 0;
+        background-color: #1b1b1b;
+    }
+
+    .category-card {
+        width: 300px;
+        background-color: #2a2a2a;
+        border-radius: 15px;
+        margin-bottom: 30px;
+        overflow: hidden;
+        transform: translateY(50px);
+        opacity: 0;
+        animation: cardFadeIn 0.7s ease-out forwards;
+        transition: transform 0.5s ease, background-color 0.5s ease;
+    }
+
+    .category-card:hover {
+        transform: translateY(0);
+        background-color: #ff8a00;
+    }
+
+    .category-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .category-card:hover img {
+        transform: scale(1.05);
+    }
+
+    .category-card h3 {
+        font-size: 1.5rem;
+        margin: 20px;
+        color: white;
+    }
+
+    .category-card p {
+        font-size: 1rem;
+        color: #ddd;
+        margin: 0 20px 20px;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes textSlide {
+        from { transform: translateY(50px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes textFade {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes moveCircles {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(30px, -30px); }
+    }
+
+    @keyframes cardFadeIn {
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    .about-section img {
+        width: 100%; /* Make the image take up the full width of the container */
+        height: auto; /* Maintain the aspect ratio */
+        object-fit: cover; /* Ensure the image covers the container without distortion */
+      }
+      
+      /* Hero Section Image */
+      .hero-image {
+        max-width: 100%; /* Ensure the hero image does not exceed the container width */
+        height: auto; /* Maintain the aspect ratio */
+        object-fit: contain; /* Adjust to contain the image without cropping */
+      }
+      
+      /* Hero Section Styling */
+      .hero-section {
+        display: flex;
+
+        flex-direction: row; /* Stack the content vertically */
+        align-items: center; /* Center-align the content */
+        text-align: center; /* Center the text */
+        padding: 50px 20px; /* Add some padding for spacing */
+        background-color: #f4f4f4; /* Optional: Background color for the section */
+      }
+      /* About Section */
+.about-section {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px; /* Adjust height as needed */
+  }
+  
+  .about-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Makes the image cover the entire area */
+    position: absolute; /* Position the image absolutely */
+    top: 0;
+    left: 0;
+    z-index: 1; /* Behind the text */
+  }
+  
+  .about-section h2, .about-section p {
+    position: relative;
+    z-index: 2; /* On top of the image */
+    color: white; /* Make text white to contrast with the image */
+    text-align: center;
+    padding: 0 20px; /* Optional padding for better text spacing */
+  }
+  
+  .about-section h2 {
+    font-size: 3rem; /* Adjust font size */
+    margin-bottom: 20px;
+  }
+  
+  .about-section p {
+    font-size: 1.2rem;
+    max-width: 1108px; 
+  }
+  
+  /* For smaller screens */
+  @media screen and (max-width: 768px) {
+    .about-section h2 {
+      font-size: 2.5rem;
+    }
+  
+    .about-section p {
+      font-size: 1rem;
+    }
+  }
+  

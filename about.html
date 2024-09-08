@@ -3,14 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - SAGE</title>
+    <title>About Us - Quality Products</title>
+    <!-- <link rel="stylesheet" href="shiv.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="contactus.css">
-
-    <style>
-        
-    </style>
+    <link rel="stylesheet" href="about.css">
 </head>
 <body>
     <section>
@@ -19,7 +16,7 @@
             <!-- Logo area -->
             <nav>
                 <div class="heading">
-                    <h1>Store</h1>
+                    <h1 class="store_name">Store</h1>
                     <H1 class="h1_store">SAGE</h1>
                 </div>
 
@@ -30,7 +27,7 @@
                             <i class="fa-solid fa-xmark" style="color: #000000;"></i>
                         </div>
 
-                        <li class="navitems"><a class="navLinks affect" href="home.html">HOME</a></li>
+                        <li class="navitems"><a class="navLinks affect" href="shiv.html">HOME</a></li>
                         <li class="navitems dropDown"><a class="navLinks" href="men.html">MEN <i
                                     class="fa-solid fa-caret-down dropdown_men dropdown"
                                     style="color: #000000;"></i></a>
@@ -289,7 +286,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="navitems"><a class="navLinks" href="about.html">ABOUT US</a></li>
+                        <!-- <li class="navitems"><a class="navLinks" href="#trend.html">TRENDING</a></li> -->
                         <li class="navitems"><a class="navLinks" href="contactus.html">CONTACT US</a></li>
 
                     </ul>
@@ -298,7 +295,7 @@
                 <div class="rightNav">
                     <ul class="right_nav" id="right">
 
-                        <li class="heart"> <a href="liked_product.html"> <box-icon type='solid' name='heart'></box-icon> </a>
+                        <li class="heart"> <a href="liked_product.html"> Liked </a>
                         </li>
 
                         <li> <a href="added_cart.html"> <i class="fa-solid fa-bag-shopping" style="color: #000000;"></i> </a> </li>
@@ -313,52 +310,57 @@
             </nav>
 
         </header>
-    <div class="contact-section">
-        <div class="container">
-            <div class="contact-header">
-                <h1 class="title">Get In Touch</h1>
-                <p class="subtext">We’d love to hear from you! Whether you have a question, feedback, or just want to say hi, feel free to reach out.</p>
-            </div>
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <!-- <img class="image_hero" src="about/2512.png" alt=""> -->
+        <div class="hero-text">
+            <h1>Quality Meets Style</h1>
+            <p>Your one-stop store for shoes, clothing, watches, sunglasses, and home decor.</p>
+        </div>
+        <div class="circle small"></div>
+        <div class="circle large"></div>
+        <img class="hero-image" src="about\2512.png" alt="E-commerce Illustration">
 
-            <div class="contact-wrapper">
-                <!-- Left Side: Contact Info -->
-                <div class="contact-info">
-                    <h2>Contact Information</h2>
-                    <p>Reach us through any of the following ways:</p>
-                    <ul>
-                        <li><i class="fa-solid fa-envelope"></i> support@shopsage.com</li>
-                        <li><i class="fa-solid fa-phone"></i> +91 8421597609</li>
-                        <li><i class="fa-solid fa-map-marker-alt"></i> 443001, Buldhana, Maharashtra, India </li>
-                    </ul>
-                    <div class="social-icons">
-                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                    </div>
-                </div>
+    </div>
 
-                <!-- Right Side: Contact Form -->
-                <div class="contact-form">
-                    <h2>Send Us a Message</h2>
-                    <form action="submit_form.php" method="POST">
-                        <div class="input-field">
-                            <input type="text" name="name" required>
-                            <label for="name">Your Name</label>
-                        </div>
-                        <div class="input-field">
-                            <input type="email" name="email" required>
-                            <label for="email">Your Email</label>
-                        </div>
-                        <div class="input-field">
-                            <textarea name="message" rows="5" required></textarea>
-                            <label for="message">Your Message</label>
-                        </div>
-                        <button type="submit" class="submit-btn">Send Message</button>
-                    </form>
-                </div>
-            </div>
+    <!-- About Section -->
+    <div class="about-section">
+        <img src="Banner/b1.jpg" alt="About Us Image">
+        <div class="about-text">
+            <h2>About Us</h2>
+            <p>At our store, quality is our top priority. We carefully curate every product, ensuring that every pair of shoes, piece of clothing, stylish watch, accessory, or home decor item meets our high standards. Our mission is to bring you items that combine durability, elegance, and modern style.</p>
         </div>
     </div>
+    
+
+    <!-- Product Categories Section -->
+    <div class="categories-section">
+        <div class="category-card" style="animation-delay: 0.3s;">
+            <img src="https://via.placeholder.com/300x200" alt="Shoes">
+            <h3>Premium Shoes</h3>
+            <p>Experience comfort and quality in every step.</p>
+        </div>
+        <div class="category-card" style="animation-delay: 0.6s;">
+            <img src="https://via.placeholder.com/300x200" alt="Clothing">
+            <h3>Stylish Clothing</h3>
+            <p>Upgrade your wardrobe with our trendy collection.</p>
+        </div>
+        <div class="category-card" style="animation-delay: 0.9s;">
+            <img src="https://via.placeholder.com/300x200" alt="Watches">
+            <h3>Watches & Accessories</h3>
+            <p>Accessorize with timeless elegance.</p>
+        </div>
+        <div class="category-card" style="animation-delay: 1.2s;">
+            <img src="https://via.placeholder.com/300x200" alt="Home Decor">
+            <h3>Home Decor</h3>
+            <p>Make your space a reflection of you.</p>
+        </div>
+        <div class="category-card" style="animation-delay: 1.5s;">
+            <img src="https://via.placeholder.com/300x200" alt="Speakers">
+            <h3>High-Quality Speakers</h3>
+            <p>Sound that speaks to your soul.</p>
+        </div>
+    </div>
+
 </body>
 </html>
