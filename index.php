@@ -82,6 +82,114 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+<script>
+  document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log('Add to Cart button clicked'); // Add this line for debugging
 
+        let productElement = button.closest('.product'); // Find the parent element
+        let sizeSelect = productElement.querySelector('.size-select'); // Get the selected size
+
+        let product = {
+            product_id: button.getAttribute('data-id'),
+            product_name: button.getAttribute('data-name'),
+            product_price: button.getAttribute('data-price'),
+            product_image: button.getAttribute('data-image'),
+            quantity: 1,
+            size: sizeSelect ? sizeSelect.value : '' // Get the selected size value
+        };
+        
+        addToCart(product);
+    });
+});
+
+function addToCart(product) {
+    fetch('cart.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `product_id=${product.product_id}&product_name=${product.product_name}&product_price=${product.product_price}&product_image=${product.product_image}&quantity=${product.quantity}&size=${product.size}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            renderCart();
+        } else {
+            alert(data.message);
+        }
+    });
+}
+
+function renderCart() {
+    fetch('cart.php')
+        .then(response => response.json())
+        .then(cartItems => {
+            const cartSection = document.querySelector('.cart-section');
+            cartSection.innerHTML = '';
+
+            let totalPrice = 0;
+
+            cartItems.forEach((item) => {
+                const cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.innerHTML = `
+                    <img src="${item.product_image}" alt="${item.product_name}" class="cart-item-image">
+                    <div class="cart-item-details">
+                        <h3>${item.product_name}</h3>
+                        
+
+                        <p>Size: ${item.size}</p> <!-- Display selected size -->
+                        <p class="cart-item-price">₹${item.product_price}</p>
+                        <div class="quantity-controls">
+                            <button class="decrease-quantity" data-id="${item.product_id}">-</button>
+                            <input type="number" value="${item.quantity}" min="1" class="quantity-input" data-id="${item.product_id}">
+                            <button class="increase-quantity" data-id="${item.product_id}">+</button>
+                        </div>
+                        <button class="remove-from-cart" data-id="${item.product_id}">Remove</button>
+                    </div>
+                `;
+                cartSection.appendChild(cartItem);
+
+                totalPrice += parseFloat(item.product_price) * item.quantity;
+            });
+
+            document.getElementById('total-price').textContent = `₹${totalPrice.toFixed(2)}`;
+
+            addRemoveFunctionality();
+            addQuantityFunctionality();
+        });
+}
+
+
+function addRemoveFunctionality() {
+  document.querySelectorAll('.remove-from-cart').forEach(button => {
+      button.addEventListener('click', (e) => {
+          let product_id = button.getAttribute('data-id');
+          removeFromCart(product_id);
+      });
+  });
+}
+
+function removeFromCart(product_id) {
+  fetch('cart.php', {
+      method: 'DELETE',
+      headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: `product_id=${product_id}`
+  })
+  .then(response => response.json())
+  .then(data => {
+      if (data.status === 'success') {
+          renderCart();
+      } else {
+          alert(data.message);
+      }
+  });
+}
+
+    </script>
 </body>
 </html>

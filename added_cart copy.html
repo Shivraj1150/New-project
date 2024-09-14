@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cart</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .cart-container {
+            background-color: #ffffff;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            width: 100%;
+            max-width: 900px;
+            padding: 30px;
+            animation: fadeInUp 0.5s ease-in-out;
+        }
+
+        h1 {
+            text-align: center;
+            color: #f97316;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: 2.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            font-size: 1rem;
+        }
+
+        th {
+            background-color: #f9f9f9;
+            text-transform: uppercase;
+            color: #555;
+        }
+
+        td {
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .cart-item-image {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .quantity-controls button {
+            background-color: #f97316;
+            border: none;
+            padding: 8px 12px;
+            color: white;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .quantity-controls button:hover {
+            background-color: #ea580c;
+        }
+
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            padding: 8px;
+            background-color: #edf2f7;
+            color: #2d3748;
+        }
+
+        .cart-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .apply-discount {
+            display: flex;
+            gap: 10px;
+        }
+
+        .apply-discount input {
+            padding: 12px;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: #edf2f7;
+            color: #2d3748;
+        }
+
+        .apply-discount button {
+            background-color: #f97316;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .apply-discount button:hover {
+            background-color: #ea580c;
+        }
+
+        .total-container {
+            font-size: 1.2rem;
+            text-align: right;
+            color: #f97316;
+        }
+
+        .checkout-button {
+            background-color: #f97316;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .checkout-button:hover {
+            background-color: #ea580c;
+            transform: scale(1.05);
+        }
+
+        .checkout-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: skewX(-20deg);
+            transition: left 0.5s ease-in-out;
+        }
+
+        .checkout-button:hover::after {
+            left: 150%;
+        }
+
+        /* Delete icon */
+        .delete-icon {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            color: #f97316;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .delete-icon:hover {
+            color: #ea580c;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cart-container {
+                padding: 20px;
+            }
+
+            th, td {
+                font-size: 0.9rem;
+            }
+
+            .checkout-button {
+                font-size: 1rem;
+                padding: 12px 20px;
+            }
+        }
+            .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .popup-box h2 {
+            color: #f97316;
+            margin-bottom: 20px;
+        }
+
+        .popup-box input {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: #edf2f7;
+            color: #2d3748;
+        }
+
+        .popup-box button {
+            background-color: #f97316;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 5px;
+        }
+
+        .popup-box button:hover {
+            background-color: #ea580c;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cart-container">
+        <h1>My Cart</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Description</th>
+                    <th>Size</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody class="cart-section">
+                <!-- Cart items will be dynamically injected here -->
+            </tbody>
+        </table>
+
+        <div class="cart-summary">
+            <div class="apply-discount">
+                <input type="text" id="discount-code" placeholder="Discount Code">
+                <button onclick="applyDiscount()">Apply</button>
+            </div>
+
+            <div class="total-container">
+                <p>Total Items: <span id="total-items">0</span></p>
+                <p>Total Price: <span id="total-price">₹0.00</span></p>
+            </div>
+            
+            <button class="checkout-button" onclick="showPopup()">Proceed to Checkout</button>
+        </div>
+    </div>
+    
+
+    <!-- Popup Overlay -->
+    <div class="popup-overlay">
+        <div class="popup-box">
+            <h2>Verify Phone Number</h2>
+            <input type="text" id="phone-number" placeholder="Enter Phone Number">
+            <button onclick="sendOtp()">Send OTP</button>
+            <input type="text" id="otp-code" placeholder="Enter OTP">
+            <button onclick="resendOtp()">Resend OTP</button>
+            <button onclick="submitVerification()">Submit</button>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        function showPopup() {
+            document.querySelector('.popup-overlay').style.display = 'flex';
+        }
+
+        function sendOtp() {
+            const phoneNumber = document.getElementById('phone-number').value;
+            if (phoneNumber === "") {
+                alert("Please enter your phone number.");
+            } else {
+                alert(`OTP sent to ${phoneNumber}`);
+                // Here, you would send the OTP to the user's phone via an API.
+            }
+        }
+
+        function resendOtp() {
+            const phoneNumber = document.getElementById('phone-number').value;
+            if (phoneNumber === "") {
+                alert("Please enter your phone number.");
+            } else {
+                alert(`OTP resent to ${phoneNumber}`);
+                // Here, you would resend the OTP to the user's phone via an API.
+            }
+        }
+
+        function submitVerification() {
+            const otpCode = document.getElementById('otp-code').value;
+            if (otpCode === "") {
+                alert("Please enter the OTP.");
+            } else {
+                alert("Phone number verified successfully!");
+                // If verification is successful, proceed to the next page:
+                document.querySelector('.popup-overlay').style.display = 'none';
+                // Redirect to payment page
+                window.location.href = 'payment.html'; // Replace 'payment.html' with the actual payment page URL.
+            }
+        }
+        // JavaScript remains the same, but change the 'Remove' button to use the delete icon
+        function renderCart() {
+            fetch('cart.php')
+                .then(response => response.json())
+                .then(cartItems => {
+                    const cartSection = document.querySelector('.cart-section');
+                    cartSection.innerHTML = '';
+
+                    let totalPrice = 0;
+                    let totalItems = 0;
+
+                    cartItems.forEach(item => {
+                        const cartRow = document.createElement('tr');
+                        cartRow.classList.add('cart-item');
+                        cartRow.innerHTML = 
+                            `<td><img src="${item.product_image}" alt="${item.product_name}" class="cart-item-image"></td>
+                            <td>${item.product_name}</td>
+                            <td>${item.size}</td>
+                            <td>
+                                <div class="quantity-controls">
+                                    <button class="decrease-quantity" data-id="${item.product_id}" data-size="${item.size}">-</button>
+                                    <input type="number" value="${item.quantity}" min="1" class="quantity-input" data-id="${item.product_id}" data-size="${item.size}">
+                                    <button class="increase-quantity" data-id="${item.product_id}" data-size="${item.size}">+</button>
+                                </div>
+                            </td>
+                            <td>₹${item.product_price}</td>
+                            <td><button class="delete-icon" data-id="${item.product_id}" data-size="${item.size}">&times;</button></td>`;
+                        cartSection.appendChild(cartRow);
+
+                        totalPrice += parseFloat(item.product_price) * item.quantity;
+                        totalItems += item.quantity;
+                    });
+
+                    document.getElementById('total-price').textContent = `₹${totalPrice.toFixed(2)}`;
+                    document.getElementById('total-items').textContent = totalItems;
+
+                    addRemoveFunctionality();
+                    addQuantityFunctionality();
+                });
+        }
+
+        function addRemoveFunctionality() {
+            document.querySelectorAll('.delete-icon').forEach(button => {
+                button.addEventListener('click', () => {
+                    const productId = button.getAttribute('data-id');
+                    const size = button.getAttribute('data-size');
+                    removeFromCart(productId, size);
+                });
+            });
+        }
+
+        function removeFromCart(product_id, size) {
+            fetch('cart.php', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `product_id=${product_id}&size=${size}`
+            })
+            .then(() => {
+                renderCart();
+            });
+        }
+
+        function addQuantityFunctionality() {
+            document.querySelectorAll('.increase-quantity').forEach(button => {
+                button.addEventListener('click', () => {
+                    const productId = button.getAttribute('data-id');
+                    const size = button.getAttribute('data-size');
+                    const input = document.querySelector(`.quantity-input[data-id="${productId}"][data-size="${size}"]`);
+                    let quantity = parseInt(input.value);
+                    quantity += 1;
+                    updateQuantity(productId, size, quantity);
+                });
+            });
+
+            document.querySelectorAll('.decrease-quantity').forEach(button => {
+                button.addEventListener('click', () => {
+                    const productId = button.getAttribute('data-id');
+                    const size = button.getAttribute('data-size');
+                    const input = document.querySelector(`.quantity-input[data-id="${productId}"][data-size="${size}"]`);
+                    let quantity = parseInt(input.value);
+                    if (quantity > 1) {
+                        quantity -= 1;
+                        updateQuantity(productId, size, quantity);
+                    }
+                });
+            });
+
+            document.querySelectorAll('.quantity-input').forEach(input => {
+                input.addEventListener('change', () => {
+                    const productId = input.getAttribute('data-id');
+                    const size = input.getAttribute('data-size');
+                    let quantity = parseInt(input.value);
+                    if (quantity < 1) {
+                        quantity = 1;
+                        input.value = 1;
+                    }
+                    updateQuantity(productId, size, quantity);
+                });
+            });
+        }
+
+        function updateQuantity(product_id, size, quantity) {
+            fetch('cart.php', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `product_id=${product_id}&size=${size}&quantity=${quantity}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    renderCart();
+                } else {
+                    alert(data.message);
+                }
+            });
+        }
+
+        function applyDiscount() {
+            const discountCode = document.getElementById('discount-code').value;
+            fetch('discount.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `discount_code=${discountCode}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('Discount applied successfully!');
+                    renderCart();
+                } else {
+                    alert(data.message);
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCart();
+        });
+
+    </script>
+</body>
+</html>
