@@ -42,7 +42,7 @@
                     echo '
                     <div class="Feature_flexcol product" data-id="'.$row['id'].'">
                         <div class="product"> 
-                            <img src="uploads/'.$row['image'].'" alt="'.$row['name'].'" class="product_image">
+                     <a href="product detals\product_detail.html?id='.$row['id'].'"><img src="uploads/'.$row['image'].'" alt="'.$row['name'].'" class="product_image"></a>
                         </div>
                         <div class="description">
                             <span class="brand_name">'.$row['name'].'</span>

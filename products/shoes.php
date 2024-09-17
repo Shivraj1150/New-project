@@ -30,7 +30,7 @@ if ($conn->connect_error) {
             <div class="product_wrapper">
                 <?php
                 // Fetch products from the "shoes" category
-                $result = $conn->query("SELECT * FROM products WHERE category='shoes'");
+                $result = $conn->query("SELECT * FROM products WHERE category='watched'");
 
                 while ($row = $result->fetch_assoc()) {
                     echo '
