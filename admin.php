@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $description = $_POST['description'];
             $category = $_POST['category'];
 
-            $stmt = $conn->prepare("INSERT INTO products (name, price, description, image, category) VALUES (?, ?, ?, ?, ?)");
+            $stmt = $conn->prepare("INSERT INTO product_details (name, price, description, image_url_1, category) VALUES (?, ?, ?, ?, ?)");
             $stmt->bind_param("sdsss", $name, $price, $description, $image, $category);
 
             if ($stmt->execute()) {
@@ -193,12 +193,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <h2>Existing Products</h2>
     <?php
     // Fetch products from the database
-    $result = $conn->query("SELECT * FROM products");
+    $result = $conn->query("SELECT * FROM product_details");
 
     while ($row = $result->fetch_assoc()) {
         echo '
         <div class="product-card">
-            <img src="uploads/' . htmlspecialchars($row['image'], ENT_QUOTES, 'UTF-8') . '" alt="' . htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8') . '">
+            <img src="uploads/' . htmlspecialchars($row['image_url_1'], ENT_QUOTES, 'UTF-8') . '" alt="' . htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8') . '">
             <div>
                 <h3>' . htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8') . '</h3>
                 <p>' . htmlspecialchars($row['description'], ENT_QUOTES, 'UTF-8') . '</p>

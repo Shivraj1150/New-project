@@ -1,0 +1,1249 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+
+/* header */
+
+#header {
+    /* padding: 0px; */
+    /* margin: auto; */
+    width: 100%;
+    top: 0;
+    left: 0;
+    /* height: 52px; */
+    /* display: flex; */
+    /* border: 2px solid red; */
+
+    background-color: rgba(255, 255, 255, 0.2); /* White background with 20% opacity */
+    backdrop-filter: blur(10px); /* Apply blur */
+    -webkit-backdrop-filter: blur(10px); /* For Safari support */
+    border-radius: 10px; /* Optional: rounding the corners */
+    
+        box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -40px;
+    position: fixed;
+    z-index: 1000;
+    /* right: 2em; */
+
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* background-color: #E3E6F3; */
+    box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -40px;
+    /* max-width: 1200px; */
+    height: 4em;
+    padding: 0 0rem;
+    margin: 0 auto;
+
+}
+
+/* Heading */
+/* 
+h1{
+    
+    font-size: 35px;
+
+    font-family: "League Spartan", sans-serif;
+
+}
+.h1_store{
+    font-size: 35px;
+
+    font-family: "League Spartan", sans-serif;
+    color: darkorange;
+
+} */
+/* 
+.heading{
+    margin-left: 1em;
+    display: flex;
+    font-size: large;
+} */
+
+/* Navigation bar */
+.website_logo{
+    display: block;
+    position: relative;
+    left: 2em;
+    top: 9px;
+    height: 5em;
+
+}
+
+#navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding: 0 20px; */
+    z-index: 999;
+    position: relative;
+
+
+}
+
+#navbar li {
+    list-style: none;
+    padding: 0 20px;
+    position: relative;
+
+}
+
+#navbar li a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    font-weight: 600;
+    font-family: "League Spartan", sans-serif;
+    font-optical-sizing: auto;
+    padding-bottom: 25px;
+    font-style: normal;
+    transition: 0.3s ease;
+}
+
+#navbar li a:hover,
+#navbar li a.affect {
+    color: #bb6620
+}
+
+#navbar li a.affect::after,
+#navbar li a:hover::after {
+    content: "";
+    height: 2px;
+    width: 35%;
+    background: #bb6620;
+    position: absolute;
+    bottom: -4px;
+    left: 20px;
+    transition: all .3s ease;
+
+}
+
+/* cart and login  */
+
+#right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1em;
+}
+
+#right li {
+    list-style: none;
+    
+    padding: 0 20px;
+}
+#right .heart{
+    padding-left: 0;
+}
+
+#right .login a{
+    text-decoration: none;
+    font-family: "League Spartan", sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    font-optical-sizing: auto;
+    padding-bottom: 25px;
+    font-style: normal;
+    background-color: #f5f5f7;
+    padding: 12px;
+    border-radius: 6px;
+
+
+}
+#right .sign_up a{
+    text-decoration: none;
+    font-family: "League Spartan", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    background-color: darkorange;
+    font-optical-sizing: auto;
+    padding: 12px;
+    padding-top: 14px;
+    color: white;
+    border-radius: 6px;
+    font-style: normal;
+}
+
+#right .sign_up{
+    padding: 0;
+}
+
+
+
+/* open close menu */
+
+.openMenu,
+.closeMenu {
+    display: none;
+}
+
+.mega {
+    position: absolute;
+    width: auto;
+    height: 13em;
+    top: 1em;
+    left: -46em;
+    background-color: white;
+    font-family: "League Spartan", sans-serif;
+    box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -30px;
+    z-index: -1;
+    display: flex;
+    margin: 17px;
+    padding-right: 83em;
+    padding-left: 20em;
+    visibility: hidden;
+    opacity: 0;
+    white-space: nowrap;
+    /* Prevents text wrapping */
+
+}
+
+.wrapper {
+    margin: 60px;
+    padding: 20px;
+    display: flex;
+    z-index: 1;
+}
+
+
+
+.dropDown:hover .mega {
+    color: rgb(0, 0, 0);
+    visibility: visible;
+    transition: all 0.5s ease;
+    opacity: 1;
+    /* z-index: 998; */
+
+
+}
+
+
+
+.wrapper {
+    padding: 0;
+    margin: 0;
+}
+
+h4 {
+    display: flex;
+    padding-left: 0.9em;
+    margin: 0.3em;
+    padding-bottom: 1em;
+    align-items: center;
+
+}
+
+.dropDown:hover .fa-caret-down {
+    rotate: 180deg;
+    transition: all 0.2s ease;
+
+}
+
+/* .list_items{
+    margin: 0.3em;
+    padding-bottom:  1em;
+} */
+.flexcol {
+    padding: 0;
+    margin: 2.2em;
+}
+
+
+/* This is for mega1 */
+.mega1 {
+    position: absolute;
+    width: auto;
+    height: 13em;
+    top: 1em;
+    left: -48em;
+    background-color: white;
+    font-family: "League Spartan", sans-serif;
+    box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -30px;
+    z-index: -1;
+    display: flex;
+    margin: 17px;
+    padding-right: 90em;
+    padding-left: 20em;
+    visibility: hidden;
+    opacity: 0;
+    white-space: nowrap;
+    /* Prevents text wrapping */
+    
+}
+
+.wrapper1 {
+    margin: 60px;
+    padding: 20px;
+    display: flex;
+}
+
+
+
+.DropdownWomen:hover .mega1 {
+    color: rgb(0, 0, 0);
+    visibility: visible;
+    transition: all 0.5s ease;
+    opacity: 1;
+
+}
+
+
+
+.wrapper1 {
+    padding: 0;
+    margin: 0;
+}
+
+h4 {
+    display: flex;
+    padding-left: 0.9em;
+    margin: 0.3em;
+
+    padding-bottom: 1em;
+}
+
+.DropdownWomen:hover .dropdowniconWomen {
+    rotate: 180deg;
+    transition: all 0.2s ease;
+
+}
+
+/* .list_items{
+    margin: 0.3em;
+    padding-bottom:  1em;
+} */
+.flexcol1 {
+    padding: 0;
+    margin: 2.2em;
+}
+
+
+/* This is for mega2 */
+.mega2 {
+    position: absolute;
+    width: auto;
+    height: 13em;
+    top: 1em;
+    left: -56em;
+    background-color: white;
+    font-family: "League Spartan", sans-serif;
+    box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -30px;
+    z-index: -1;
+    display: flex;
+    margin: 17px;
+    padding-right: 83em;
+    padding-left: 26em;
+    white-space: nowrap;
+    /* Prevents text wrapping */
+    visibility: hidden;
+    opacity: 0;
+}
+
+.wrapper2 {
+    margin: 60px;
+    padding: 20px;
+    display: flex;
+}
+
+
+
+.dropDownElectronic:hover .mega2 {
+    color: rgb(0, 0, 0);
+    visibility: visible;
+    transition: all 0.5s ease;
+    opacity: 1;
+
+}
+
+
+
+.wrapper2 {
+    padding: 0;
+    margin: 0;
+}
+
+h4 {
+    display: flex;
+    padding-left: 0.9em;
+    margin: 0.3em;
+    padding-bottom: 1em;
+}
+
+.dropDownElectronic:hover .dropdownicon-electronic {
+    rotate: z -180deg;
+    transition: all 0.2s ease;
+
+}
+
+
+.flexcol2 {
+    padding: 0;
+    margin: 2.2em;
+}
+
+/* Mega items style */
+
+.list_items_men {
+
+    margin-bottom: 6px;
+    margin-left: 18px;
+}
+
+.list_items_women {
+
+    margin-bottom: 6px;
+    margin-left: 18px;
+}
+
+.list_items_elec {
+
+    margin-bottom: 6px;
+    margin-left: 18px;
+}
+
+.dropdown_women {
+    padding-left: 5px;
+}
+
+.dropdown_men {
+    padding-left: 5x;
+}
+
+.dropdown_elec {
+    padding-left: 5px;
+}
+
+.mega_icons {
+    max-width: 20px;
+    height: 20px;
+
+    padding-right: 6px;
+    padding-bottom: 7px;
+}
+
+
+/* Mega menu for mobile */
+/* Hamburger menu styles */
+/* /* ... Existing styles ... */
+
+/* Mega menu for mobile */
+/* Hamburger menu styles */
+.openMenu,
+.closeMenu {
+    display: none;
+    cursor: pointer;
+}
+
+/* Media query for screens 768px and below */
+@media screen and (max-width: 1115px) {
+
+    /* Stack nav items in a column */
+    #navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 0;
+        top: 4em;
+        height: 51em;
+        display: block;
+        left: -100%;
+        overflow-x: hidden;
+        position: absolute;
+        background-color: #ffffff;
+        width: 16em;
+        padding-left: 2em;
+        transition: all 0.5s ease;
+
+    }
+
+    #navbar li {
+        padding: 10px 0;
+        width: 100%;
+        /* Make sure the items take up the full width */
+    }
+
+    /* Mega menus open below the nav items */
+    .mega,
+    .mega1,
+    .mega2 {
+        position: static;
+        /* Remove absolute positioning */
+        width: 100%;
+        margin-top: 10px;
+        /* Add spacing between the nav item and the mega menu */
+        padding: 10px;
+        overflow: hidden;
+        display: none;
+        flex-direction: column;
+        box-shadow: none;
+        /* Stack content in a column */
+    }
+
+    /* Display mega menus when the respective nav item is hovered */
+    .navitems:hover .mega,
+    .navitems:hover .mega1,
+    .navitems:hover .mega2 {
+        display: flex;
+        /* Show the mega menu */
+        height: 47em;
+    }
+
+    /* Adjust the mega menu items */
+    .mega .wrapper,
+    .mega1 .wrapper1,
+    .mega2 .wrapper2 {
+        flex-direction: column;
+        width: 100%;
+        height: 20em;
+    }
+
+    .mega .flexcol,
+    .mega1 .flexcol1,
+    .mega2 .flexcol2 {
+        margin: 0;
+        padding: 10px 0;
+    }
+
+    a .navLinks {
+        height: 40em;
+        padding: 0;
+        position: fixed;
+    }
+
+    #navbar li a.affect::after,
+    #navbar li a:hover::after {
+
+        height: 2px;
+        width: 35%;
+        bottom: -8px;
+        left: 2px;
+        transition: all .3s ease;
+
+    }
+    .openMenu,
+    .closeMenu {
+        display: block;
+        cursor: pointer;
+
+    }
+
+    .openMenu{
+        margin: 1em;
+        
+    }
+    .closeMenu{
+        margin-left: 11em;
+        padding: 0;
+    
+        
+    }
+    #navbar.show {
+        left: 0;
+        .closeMenu{
+            rotate: 360deg;
+            transition: all 0.9s ease;
+        
+        }
+        
+
+    }
+    .rightNav{
+        display: none;
+    }
+    
+
+    @media screen and (max-width: 379px){
+
+    }
+}
+
+/* Slider css */
+
+
+.swiper {
+    width: 100%;
+    height: 100%;
+    top: 4em;
+    height: 22em;
+    position: relative;
+    
+  }
+  
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+  
+  .autoplay-progress {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    z-index: 10;
+    padding-right: 4em;
+    font-family: "League Spartan", sans-serif;
+
+    padding-top: 15px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: black;
+
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .autoplay-progress svg {
+    --progress: 0;
+    position: absolute;
+    left: -2em;
+    top: 7px;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    stroke-width: 4px;
+    stroke: darkorange;
+    fill: none;
+    color: black;
+    stroke-dashoffset: calc(125.6 * (1 - var(--progress)));
+    stroke-dasharray: 125.6;
+    transform: rotate(-90deg);
+  }
+  
+  .slide-content {
+    width: 750px;
+    margin: 0 auto;
+    padding: 80px;
+    /* background: #111; */
+  }
+  
+  .slide-content h2 {
+    color: #fff;
+  }
+  
+  .slide-content p {
+    color: #fff;
+  }
+  
+  .swiper-pagination-bullet {
+    background-color: #eb9090;
+    opacity: 1;
+    height: 12px;
+    width: 12px;
+  }
+  
+  .swiper-pagination-bullet-active {
+    background: #ff0;
+  }
+  
+  .swiper-button-next{
+    color: blac;
+  }
+
+  .swiper-button-next:after, .swiper-button-prev:after {
+    font-family: swiper-icons;
+    font-size: large;
+    
+    text-transform: none !important;
+    letter-spacing: 0;
+    font-variant: initial;
+    line-height: 1;
+    color: darkorange;
+    visibility: hidden;
+}
+div .swiper-button-next.nextbutton::after{
+    font-size:large
+    
+}
+
+.swiper-button-next:after, .swiper-button-prev:after{
+    font-size: large;
+}
+
+ .swiper-pagination-bullet.swiper-pagination-bullet-active{
+background: rgb(4, 209, 255);
+
+}
+
+.nextbutton {
+    padding: 28px;
+    background: url(https://images-static.nykaa.com/uploads/45d5a7b6-86eb-4850-9568-4d6ed91731fe.svg);
+    background-repeat: no-repeat;
+   
+}
+.backbutton{
+    background: url(https://images-static.nykaa.com/uploads/3df01759-af0c-4d81-b2f7-f61577ac3807.svg) no-repeat;
+    padding: 28px;
+}
+
+
+/* Feature section code */
+
+.features_icons{
+    display: flex;
+    
+}
+.Feature_icons{
+    display: flex;
+    max-width: 16em;
+    height: 12em;
+
+}
+.Feature_icons2{
+    display: flex;
+    margin-top: 11px;
+    max-width: 16em;
+    height: 12em;
+    flex-wrap: wrap;
+}
+
+
+.con_fea{
+    top: 8em;
+   
+    position: relative;
+
+}
+
+.features_title{
+    display: flex;
+    align-items: center;
+    font-family: "League Spartan", sans-serif;
+    justify-content: center;
+    font-size: -webkit-xxx-large;}
+
+.feature_wrapper{
+    display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   justify-content: center;
+   height: 100%;
+   width: 100%;
+    
+
+}
+
+.flexcol_feature{
+    padding: 0;
+    margin-left: 20px;
+    margin-right: 20px;
+    border: 1px solid #e7ebe7;
+    box-shadow: 20px 20px 34px rgba(0, 0, 0, 0.07);
+    
+}
+.feature_text{
+    top: 253px;
+    background-color: darkorange;
+    padding: 5px;
+    border-radius: 4px;
+    color: white;
+    left: 105px;
+    text-align: center;
+    font-weight: 500;
+    font-family: "League Spartan", sans-serif;
+}
+.feature_text2{
+    top: 254px;
+    background-color: darkorange;
+    padding: 5px;
+    border-radius: 4px;
+    color: white;
+    text-align: center;
+    margin-left: 43px;
+    font-weight: 500;
+    font-family: "League Spartan", sans-serif;
+}
+.feature_text3{
+    top: 253px;
+    background-color:darkorange;
+    padding: 5px;
+    color: white;
+    border-radius: 4px;
+       margin-left: 65px;
+       text-align: center;
+    font-weight: 500;
+    font-family: "League Spartan", sans-serif;
+}
+.feature_text4{
+    top: 253px;
+    background-color: darkorange;
+    padding: 5px;
+    border-radius: 4px;
+    color: white;
+    margin-left: 19px;
+    text-align: center;
+    font-weight: 500;
+    font-family: "League Spartan", sans-serif;
+}
+.feature_text5{
+    top: 253px;
+    background-color: darkorange;
+    padding: 5px;
+    border-radius: 4px;
+    color: white;
+    padding-right: 12px;
+    text-align: center;
+    /* position: absolute; */
+    font-weight: 500;
+    font-family: "League Spartan", sans-serif;
+}
+.feature_text6{
+    top: 253px;
+    background-color: darkorange;
+    padding: 5px;
+    color: white;
+    border-radius: 4px;
+    padding-right: 12px;
+    text-align: center;
+    /* position: absolute; */
+    font-weight: 500;
+    
+    font-family: "League Spartan", sans-serif;
+}
+
+.con_fea :where(.features_box) img {
+    transition: transform 0.3s;
+}
+
+.con_fea :where(.features_box):hover img {
+    transform: scale(1.1);
+}
+
+
+
+
+/* featured product section */
+
+.Feature_prod_area{
+    position: relative;
+    top: 10em;
+}
+
+.Feature_prod_heading {
+    display: flex;
+    justify-content: center;
+    font-family: "League Spartan", sans-serif;
+    font-size: -webkit-xxx-large;
+}
+
+.Feature_prod_area{
+    text-align: center;
+    font-family: "League Spartan", sans-serif;
+}
+
+.Featured_product_con{
+    display: flex;
+    position: absolute;
+}
+.product_image{
+    max-width: 16em;
+    height: 14em;
+    width: 17em;
+    height: 22em;
+    justify-content: center;
+    border-radius: 10px;
+    
+    
+}
+
+
+.Feature_flexcol{
+    margin: 20px;
+    padding: 20px;
+    font-family: "League Spartan", sans-serif;
+    border: 1px solid #e7ebe7;
+    box-shadow: 20px 20px 34px rgba(0, 0, 0, 0.07);
+    border-radius: 10px;
+}
+  
+  
+   
+
+.description{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-top: 12px;
+}
+.brand_name{
+    position: relative;
+    top: 2px;
+}
+.product_name1{
+    margin-top: 11px;
+    margin-bottom: 11px;
+}
+.product_pricing{
+    font-size: large;
+   
+    margin: 11px 0 0 0;
+    padding: 0;
+ 
+    display: flex;
+}
+.fea_pro_add_to_cart{
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    left: 9em;
+    font-size: x-large;
+    position: absolute;
+   
+}
+.stars{
+    display: flex;
+    position: relative;
+}
+.wrapper_fea_prod{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2em;
+}
+.Featured_product_con :where(.Feature_flexcol, .product) img {
+    transition: transform 0.3s;
+}
+
+.Featured_product_con :where(.Feature_flexcol, .product):hover img {
+    transform: scale(1.1);
+}
+.Feature_prod_section, .Feature_prod_area, .Featured_product_con, .wrapper_fea_prod, .Feature_flexcol{
+    position: relative;
+}
+
+/* banner area coding */
+
+.banner_section, .banner_area, .banner_container, .banner_wrapper, .banner_flexbox {
+    position: relative;
+    top: 3em;
+}
+
+.winter_sales{
+    display: flex;
+    height: 20em;
+    justify-content: center;
+    border-radius: 10px;
+    margin: 20px;
+    border: 1px solid #e7ebe7;
+    box-shadow: 20px 20px 34px rgba(0, 0, 0, 0.1);
+    
+}
+
+.perfumes_banner{
+    display: flex;
+    height: 20em;
+    margin: 20px;
+    border-radius: 10px;
+    border: 1px solid #e7ebe7;
+    box-shadow: 20px 20px 34px rgba(0, 0, 0, 0.1);
+    
+}
+.Bangs_banner{
+    display: flex;
+    height: 20em;
+    justify-content: center;
+    border-radius: 10px;
+    margin: 20px;
+    border: 1px solid #e7ebe7;
+    box-shadow: 20px 20px 34px rgba(0, 0, 0, 0.1);
+}
+.sneaker_banner{
+    display: flex;
+    height: 20em;
+    margin: 20px;
+    border: 1px solid #e7ebe7;
+    box-shadow: 20px 20px 34px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+.watches_banner{
+    display: flex;
+    height: 20em;
+    border: 1px solid #e7ebe7;
+    box-shadow: 20px 20px 34px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 20px;
+}
+.airpods_banner{
+    display: flex;
+    height: 20em;
+    border-radius: 10px;
+    margin: 20px;
+     border: 1px solid #e7ebe7;
+     box-shadow: 20px 20px 34px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.banner_wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+
+    justify-content: center;
+}
+
+.banner_container :where(.banner_flexbox, .banner_image, .banner_discription) img, a {
+    transition: transform 0.3s;
+}
+
+.banner_container :where(.banner_flexbox, .banner_image, .banner_discription):hover img, a{
+    transform: scale(1.1);
+}
+
+/* Email newletter area code */
+
+.Email_banner_section, .Email_banner_area, .Email_banner_container, .Email_banner_wrapper, .Email_banner_image {
+    position: relative;
+    top: 3em;
+}
+
+.Email_banner_image{
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    
+   
+    
+
+    
+}
+.Email_banner{
+    height: 34em;
+    z-index: 99;
+    position: relative;
+    top: 8em;
+    
+    box-shadow: 20px 20px 34px rgba(0, 0, 0, 0.1);
+}
+/* .Email_banner_wrapper{
+    background-color: #eb9090;
+} */
+
+/* Footer area codes */
+
+
+.footer_section{
+    position: relative;
+    top: 19em;
+    /* background-color: black; */
+    height: 30em;
+    display: block;
+    /* background-color: black; */
+    width: 100%;
+    height: 456px;
+}
+
+   
+
+.Footer_logo{
+    color: #e7ebe7;
+    font-family: "League Spartan", sans-serif;
+
+}
+.payment_logos{
+    height: 1.5em;
+}
+.footer_flexbox{
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: black;
+}
+.about_us, .My_account, .Install_app,.Install_app {
+    color: white;
+    font-family: "League Spartan", sans-serif;
+
+}
+
+.about_us_ul li a{
+    text-decoration: none;
+    color: white;
+    font-family: "League Spartan", sans-serif;
+    font-optical-sizing: auto;
+    padding: 0 0 20px 0;
+}
+
+.My_account li a{
+    text-decoration: none;
+    color: white;
+    font-family: "League Spartan", sans-serif;
+    font-optical-sizing: auto;
+}
+.about_us_ul, .my_account_ul{
+    list-style-type: none
+    
+}
+.footer_heading{
+    margin: 1em 0 0em 1em;
+    font-size: xxx-large;
+    
+}
+.Sage_footer{
+    color: darkorange;
+}
+
+.contact_details, .follow_us{
+    margin: 1em 0 1em 2em;
+}
+
+.Address, .Phone, .working_hours, .fa-facebook{
+    margin: 0 0 10px 70px;
+}
+
+.fa-brands{
+    padding: 0 4px 0;
+}
+
+.footer_aboutus{
+    margin: 3em 0 1em 0; 
+}
+.list_about_us_footer{
+    padding: 0 0 16px 0;
+}
+
+.My_account_footer{
+    margin: 3em 0 1em 0; 
+}
+
+.payment_info_footer{
+    margin: 3em 3em 1em 0; 
+}
+
+.Install_app p {
+    padding-bottom: 16px;
+}
+
+.footer_rights {
+    text-align: center;
+    padding: 25px;
+    background: linear-gradient(135deg, #ff7b00, #ff4c00);
+    color: #fff;
+    margin-top: 50px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    box-shadow: 0px -4px 12px rgba(0, 0, 0, 0.2);
+    animation: fadeInUp 1s ease-in-out;
+    position: relative;
+    top: 15em;
+    /* overflow: hidden; */
+}
+.footer_rights p {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    animation: textFadeIn 2s ease-in-out;}
+
+    .social_icons{
+        padding-bottom: 2em;
+    }
+
+/* Reset and Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "League Spartan", sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* background-image: url('Banner/background.jpg');
+    background: cover;
+     */
+}
+
+
+
+
+@media (max-width: 768px) {
+   
+.footer_section {
+    background-color: #000;
+    color: #fff;
+    padding: 2em 1em;
+    text-align: center;
+}
+
+.footer_flexbox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.footer_flexbox div {
+    flex: 1 1 30%;
+    margin-bottom: 1em;
+}
+}
+
+@media (max-width: 768px) {
+    .footer_flexbox {
+        flex-direction: column;
+        text-align: left;
+    }
+
+    .footer_flexbox div {
+        flex: 1 1 100%;
+        margin-bottom: 1em;
+    }
+}
+
+@media (max-width: 380) {
+    .footer_flexbox div {
+        margin-bottom: 0.5em;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .winter_sales{
+        height: 11em;
+    }
+    .Bangs_banner{
+        height: 13em;
+
+    }
+    .Email_banner{
+        height: 29em;
+    }
+    .footer_flexbox{
+        left: -1em;
+        width: 24em;
+        position: relative;
+    }
+    .contact_details, .follow_us, .fa-brands, .footer_heading  {
+       margin-left: 1em;
+    }
+
+    .Address, .Phone, .working_hours{
+        margin-left: 38px;
+    }
+    .fa-facebook{
+        margin-left: 32px;
+
+    }
+}
