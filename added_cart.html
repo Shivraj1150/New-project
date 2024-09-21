@@ -279,7 +279,10 @@
                     <th>Size</th>
                     <th>Quantity</th>
                     <th>Price</th>
+                    <th>Color</th>
                     <th>Remove</th>
+                    
+
                 </tr>
             </thead>
             <tbody class="cart-section">
@@ -376,13 +379,19 @@
                             <td>
                                 <div class="quantity-controls">
                                     <button class="decrease-quantity" data-id="${item.product_id}" data-size="${item.size}">-</button>
-                                    <input type="number" value="${item.quantity}" min="1" class="quantity-input" data-id="${item.product_id}" data-size="${item.size}">
+<input type="number" value="${item.quantity}" min="1" class="quantity-input" data-id="${item.product_id}" data-size="${item.size}" data-color="${item.color}">
                                     <button class="increase-quantity" data-id="${item.product_id}" data-size="${item.size}">+</button>
                                 </div>
                             </td>
                             <td>₹${item.product_price}</td>
-                            <td><button class="delete-icon" data-id="${item.product_id}" data-size="${item.size}">&times;</button></td>`;
-                        cartSection.appendChild(cartRow);
+                            
+ <td>${item.color}</td>
+<td>
+    <button class="delete-icon" data-id="${item.product_id}" data-size="${item.size}" data-color="${item.color}">&times;</button>
+</td>
+                           `;
+                        
+                            cartSection.appendChild(cartRow);
 
                         totalPrice += parseFloat(item.product_price) * item.quantity;
                         totalItems += item.quantity;
@@ -407,12 +416,14 @@
         }
 
         function removeFromCart(product_id, size) {
+            const color = document.querySelector(`.delete-icon[data-id="${product_id}"][data-size="${size}"]`).getAttribute('data-color');
+
             fetch('cart.php', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                body: `product_id=${product_id}&size=${size}`
+                body: `product_id=${product_id}&size=${size}&color=${color}`
             })
             .then(() => {
                 renderCart();
@@ -420,61 +431,67 @@
         }
 
         function addQuantityFunctionality() {
-            document.querySelectorAll('.increase-quantity').forEach(button => {
-                button.addEventListener('click', () => {
-                    const productId = button.getAttribute('data-id');
-                    const size = button.getAttribute('data-size');
-                    const input = document.querySelector(`.quantity-input[data-id="${productId}"][data-size="${size}"]`);
-                    let quantity = parseInt(input.value);
-                    quantity += 1;
-                    updateQuantity(productId, size, quantity);
-                });
-            });
+    document.querySelectorAll('.increase-quantity').forEach(button => {
+        button.addEventListener('click', () => {
+            const productId = button.getAttribute('data-id');
+            const size = button.getAttribute('data-size');
+            const color = button.closest('tr').querySelector('.quantity-input').getAttribute('data-color'); // Get the color
 
-            document.querySelectorAll('.decrease-quantity').forEach(button => {
-                button.addEventListener('click', () => {
-                    const productId = button.getAttribute('data-id');
-                    const size = button.getAttribute('data-size');
-                    const input = document.querySelector(`.quantity-input[data-id="${productId}"][data-size="${size}"]`);
-                    let quantity = parseInt(input.value);
-                    if (quantity > 1) {
-                        quantity -= 1;
-                        updateQuantity(productId, size, quantity);
-                    }
-                });
-            });
+            const input = document.querySelector(`.quantity-input[data-id="${productId}"][data-size="${size}"][data-color="${color}"]`);
+            let quantity = parseInt(input.value);
+            quantity += 1;
+            updateQuantity(productId, size, quantity, color); // Pass color
+        });
+    });
 
-            document.querySelectorAll('.quantity-input').forEach(input => {
-                input.addEventListener('change', () => {
-                    const productId = input.getAttribute('data-id');
-                    const size = input.getAttribute('data-size');
-                    let quantity = parseInt(input.value);
-                    if (quantity < 1) {
-                        quantity = 1;
-                        input.value = 1;
-                    }
-                    updateQuantity(productId, size, quantity);
-                });
-            });
+    document.querySelectorAll('.decrease-quantity').forEach(button => {
+        button.addEventListener('click', () => {
+            const productId = button.getAttribute('data-id');
+            const size = button.getAttribute('data-size');
+            const color = button.closest('tr').querySelector('.quantity-input').getAttribute('data-color'); // Get the color
+
+            const input = document.querySelector(`.quantity-input[data-id="${productId}"][data-size="${size}"][data-color="${color}"]`);
+            let quantity = parseInt(input.value);
+            if (quantity > 1) {
+                quantity -= 1;
+                updateQuantity(productId, size, quantity, color); // Pass color
+            }
+        });
+    });
+
+    document.querySelectorAll('.quantity-input').forEach(input => {
+        input.addEventListener('change', () => {
+            const productId = input.getAttribute('data-id');
+            const size = input.getAttribute('data-size');
+            const color = input.getAttribute('data-color'); // Get color
+
+            let quantity = parseInt(input.value);
+            if (quantity < 1) {
+                quantity = 1;
+                input.value = 1;
+            }
+            updateQuantity(productId, size, quantity, color); // Pass color
+        });
+    });
+}
+
+function updateQuantity(product_id, size, quantity, color) {
+    fetch('cart.php', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `product_id=${product_id}&size=${size}&quantity=${quantity}&color=${color}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            renderCart();
+        } else {
+            alert(data.message);
         }
-
-        function updateQuantity(product_id, size, quantity) {
-            fetch('cart.php', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `product_id=${product_id}&size=${size}&quantity=${quantity}`
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    renderCart();
-                } else {
-                    alert(data.message);
-                }
-            });
-        }
+    });
+}
 
         function applyDiscount() {
             const discountCode = document.getElementById('discount-code').value;

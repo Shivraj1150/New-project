@@ -11,7 +11,7 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="shiv.css">
     <style>
-        .brand_name{
+        .brand_name {
             position: relative;
             top: 2px;
             display: flex;
@@ -39,14 +39,40 @@
                 $result = $conn->query("SELECT * FROM product_details");
 
                 while ($row = $result->fetch_assoc()) {
+                    // Decode sizes JSON data
+                    $sizes = json_decode($row['sizes'], true);
+                    $size_options = '';
+
+                    if (is_array($sizes)) {
+                        foreach ($sizes as $size) {
+                            $size_options .= '<option value="' . htmlspecialchars($size, ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars($size, ENT_QUOTES, 'UTF-8') . '</option>';
+                        }
+                    } else {
+                        $size_options = '<option value="">No sizes available</option>';
+                    }
+
+                    // Decode colors JSON data
+                    $colors = json_decode($row['colors'], true);
+                    $color_options = '';
+
+                    if (is_array($colors)) {
+                        foreach ($colors as $color) {
+                            $color_options .= '<option value="' . htmlspecialchars($color, ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars($color, ENT_QUOTES, 'UTF-8') . '</option>';
+                        }
+                    } else {
+                        $color_options = '<option value="">No colors available</option>';
+                    }
+
                     echo '
-                    <div class="Feature_flexcol product" data-id="'.$row['id'].'">
-                        <div class="product"> 
-                     <a href="product detals\product_detail.html?id='.$row['id'].'"><img src="uploads/'.$row['image_url_1'].'" alt="'.$row['name'].'" class="product_image"></a>
+                    <div class="Feature_flexcol product" data-id="' . $row['id'] . '">
+                        <div class="product">
+                            <a href="product detals/product_detail.html?id=' . $row['id'] . '">
+                                <img src="uploads/' . htmlspecialchars($row['image_url_1'], ENT_QUOTES, 'UTF-8') . '" alt="' . htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8') . '" class="product_image">
+                            </a>
                         </div>
                         <div class="description">
-                            <span class="brand_name">'.$row['name'].'</span>
-                            <p class="product_name1">'.$row['description'].'</p>
+                            <span class="brand_name">' . htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8') . '</span>
+                            <p class="product_name1">' . htmlspecialchars($row['description'], ENT_QUOTES, 'UTF-8') . '</p>
                             <div class="stars">
                                 <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
                                 <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
@@ -55,19 +81,20 @@
                                 <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
                                 <label for="size-select">Size:</label>
                                 <select id="size-select" class="size-select">
-                                    <option value="S">S</option>
-                                    <option value="M">M</option>
-                                    <option value="L">L</option>
-                                    <option value="XL">XL</option>
+                                    ' . $size_options . '
+                                </select>
+                                <label for="color-select">Color:</label>
+                                <select id="color-select" class="color-select">
+                                    ' . $color_options . '
                                 </select>
                             </div>
                             <div class="fea_pro_add_to_cart">
-                                <a href="#" class="add-to-cart" data-id="'.$row['id'].'" data-name="'.$row['name'].'" data-price="'.$row['price'].'" data-image="uploads/'.$row['image_url_1'].'">
+                                <a href="#" class="add-to-cart" data-id="' . $row['id'] . '" data-name="' . htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8') . '" data-price="' . htmlspecialchars($row['price'], ENT_QUOTES, 'UTF-8') . '" data-image="uploads/' . htmlspecialchars($row['image_url_1'], ENT_QUOTES, 'UTF-8') . '">
                                     <i class="fa-solid fa-cart-plus" style="color: #000000;"></i>
                                 </a>
                             </div>
                             <div>
-                                <h4 class="product_pricing">'.$row['price'].'rs</h4>
+                                <h4 class="product_pricing">' . htmlspecialchars($row['price'], ENT_QUOTES, 'UTF-8') . 'rs</h4>
                             </div>
                         </div>
                     </div>';
@@ -90,6 +117,7 @@
 
         let productElement = button.closest('.product'); // Find the parent element
         let sizeSelect = productElement.querySelector('.size-select'); // Get the selected size
+        let colorSelect = productElement.querySelector('.color-select'); // Get the selected color
 
         let product = {
             product_id: button.getAttribute('data-id'),
@@ -97,7 +125,8 @@
             product_price: button.getAttribute('data-price'),
             product_image: button.getAttribute('data-image'),
             quantity: 1,
-            size: sizeSelect ? sizeSelect.value : '' // Get the selected size value
+            size: sizeSelect ? sizeSelect.value : '', // Get the selected size value
+            color: colorSelect ? colorSelect.value : '' // Get the selected color value
         };
         
         addToCart(product);
@@ -110,7 +139,7 @@ function addToCart(product) {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: `product_id=${product.product_id}&product_name=${product.product_name}&product_price=${product.product_price}&product_image=${product.product_image}&quantity=${product.quantity}&size=${product.size}`
+        body: `product_id=${product.product_id}&product_name=${product.product_name}&product_price=${product.product_price}&product_image=${product.product_image}&quantity=${product.quantity}&size=${product.size}&color=${product.color}`
     })
     .then(response => response.json())
     .then(data => {
@@ -138,9 +167,8 @@ function renderCart() {
                     <img src="${item.product_image}" alt="${item.product_name}" class="cart-item-image">
                     <div class="cart-item-details">
                         <h3>${item.product_name}</h3>
-                        
-
                         <p>Size: ${item.size}</p> <!-- Display selected size -->
+                        <p>Color: ${item.color}</p> <!-- Display selected color -->
                         <p class="cart-item-price">₹${item.product_price}</p>
                         <div class="quantity-controls">
                             <button class="decrease-quantity" data-id="${item.product_id}">-</button>
@@ -161,7 +189,6 @@ function renderCart() {
             addQuantityFunctionality();
         });
 }
-
 
 function addRemoveFunctionality() {
   document.querySelectorAll('.remove-from-cart').forEach(button => {
@@ -189,7 +216,6 @@ function removeFromCart(product_id) {
       }
   });
 }
-
-    </script>
+</script>
 </body>
 </html>

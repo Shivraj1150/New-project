@@ -17,21 +17,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $product_image = $_POST['product_image'];
     $quantity = $_POST['quantity'];
     $size = $_POST['size']; // Get the size
+    $color = $_POST['color']; // Get the color
 
-    // Check if the product with the same size is already in the user's cart
-    $query = "SELECT * FROM cart WHERE user_id = ? AND product_id = ? AND size = ?";
+    // Check if the product with the same size and color is already in the user's cart
+    $query = "SELECT * FROM cart WHERE user_id = ? AND product_id = ? AND size = ? AND color = ?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("iss", $user_id, $product_id, $size);
+    $stmt->bind_param("isss", $user_id, $product_id, $size, $color);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        echo json_encode(['status' => 'error', 'message' => 'Product with selected size is already in cart']);
+        echo json_encode(['status' => 'error', 'message' => 'Product with selected size and color is already in cart']);
     } else {
-        // Insert new product with size into cart
-        $query = "INSERT INTO cart (user_id, product_id, product_name, product_price, product_image, quantity, size) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        // Insert new product with size and color into cart
+        $query = "INSERT INTO cart (user_id, product_id, product_name, product_price, product_image, quantity, size, color) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("issdsis", $user_id, $product_id, $product_name, $product_price, $product_image, $quantity, $size);
+        $stmt->bind_param("issdsiss", $user_id, $product_id, $product_name, $product_price, $product_image, $quantity, $size, $color);
 
         if ($stmt->execute()) {
             echo json_encode(['status' => 'success', 'message' => 'Product added to cart']);
@@ -40,7 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
-
 
 // Retrieve cart items for the logged-in user
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -64,11 +64,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     $product_id = $_PUT['product_id'];
     $quantity = $_PUT['quantity'];
     $size = $_PUT['size'];  // Retrieve size from request
+    $color = $_PUT['color']; // Retrieve color from request
 
     // Update the quantity in the cart
-    $query = "UPDATE cart SET quantity = ? WHERE user_id = ? AND product_id = ? AND size = ?";
+    $query = "UPDATE cart SET quantity = ? WHERE user_id = ? AND product_id = ? AND size = ? AND color = ?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("iiss", $quantity, $user_id, $product_id, $size);
+    $stmt->bind_param("iisss", $quantity, $user_id, $product_id, $size, $color);
 
     if ($stmt->execute()) {
         echo json_encode(['status' => 'success']);
@@ -82,10 +83,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
     parse_str(file_get_contents("php://input"), $_DELETE);
     $product_id = $_DELETE['product_id'];
     $size = $_DELETE['size'];  // Retrieve size from request
+    $color = $_DELETE['color']; // Retrieve color from request
 
-    $query = "DELETE FROM cart WHERE user_id = ? AND product_id = ? AND size = ?";
+    $query = "DELETE FROM cart WHERE user_id = ? AND product_id = ? AND size = ? AND color = ?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("iss", $user_id, $product_id, $size);
+    $stmt->bind_param("isss", $user_id, $product_id, $size, $color);
 
     if ($stmt->execute()) {
         echo json_encode(['status' => 'success', 'message' => 'Product removed from cart']);
