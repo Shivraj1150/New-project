@@ -57,7 +57,7 @@ if (isset($_POST['signUp'])) {
                 $mail->addAddress($email, $firstName);
 
                 // Content
-                $verificationLink = "http://localhost/New-project/verify.php?email=" . urlencode($email) . "&token=" . urlencode($verificationToken);
+                $verificationLink = "https://shopsager.in/verify.php?email=" . urlencode($email) . "&token=" . urlencode($verificationToken);
                 $mail->isHTML(true);
                 $mail->Subject = 'Email Verification for ShopSAGE';
                 $mail->Body = '
