@@ -4,7 +4,14 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-session_start();
+session_start([
+    'cookie_lifetime' => 86400, // Adjust as needed
+    'cookie_secure' => true,    // Ensure cookies are sent over HTTPS
+    'cookie_httponly' => true,  // Prevents JavaScript access to cookies
+    'use_strict_mode' => true,
+    'use_cookies' => true,
+    'use_only_cookies' => true
+]);
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -18,48 +25,78 @@ include 'partials/_dbconnect.php';
 
 // Initialize the message variable
 $message = "";
+// Secure headers to prevent clickjacking and XSS
+header("Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' https://cdn.jsdelivr.net; object-src 'none'; frame-ancestors 'none';");
+header("X-Frame-Options: DENY");
+header("X-Content-Type-Options: nosniff");
+header("X-XSS-Protection: 1; mode=block");
+header("Referrer-Policy: no-referrer");
+header("Strict-Transport-Security: max-age=31536000; includeSubDomains; preload");
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Referrer-Policy: no-referrer-when-downgrade");
+header("Pragma: no-cache");
+header("Expires: 0");
+
+
+// CSRF Token Generation
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
 
 // Sign-Up form processing
-if (isset($_POST['signUp'])) {
-    $firstName = $_POST["FirstName"];
-    $email = $_POST["email"];
-    $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-    $verificationToken = bin2hex(random_bytes(16)); // Generate a random token
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signUp'])) {
+    // Validate CSRF token
+    if (!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+        die("CSRF validation failed.");
+    }
 
-    // Check if email already exists
-    $stmt = $conn->prepare("SELECT id FROM merapyareusers WHERE email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $stmt->store_result();
-    
-    if ($stmt->num_rows > 0) {
-        $message = "Email Address Already Exists!";
+    // Input sanitization and validation
+    $firstName = filter_input(INPUT_POST, 'FirstName', FILTER_SANITIZE_STRING);
+    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+    $password = $_POST["password"];
+
+    if (!$email) {
+        $message = "Invalid email address.";
+    } elseif (strlen($password) < 8) {
+        $message = "Password must be at least 8 characters.";
     } else {
-        // Insert user into database with email_verified set to FALSE
-        $stmt = $conn->prepare("INSERT INTO merapyareusers (FirstName, email, password, email_verification_token) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $firstName, $email, $password, $verificationToken);
+        $password = password_hash($password, PASSWORD_DEFAULT); // Secure password hashing
+        $verificationToken = bin2hex(random_bytes(16)); // Generate a random token
 
-        if ($stmt->execute()) {
-            // Send verification email
-            $mail = new PHPMailer(true);
-            try {
-                // Server settings
-                $mail->isSMTP();
-                $mail->Host = 'smtp.gmail.com';
-                $mail->SMTPAuth = true;
-                $mail->Username = 'no.reply.storesage@gmail.com';
-                $mail->Password = 'mbqd zcqj mnei ybis'; // Replace with your actual SMTP password
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                $mail->Port = 587;
+        // Check if email already exists
+        $stmt = $conn->prepare("SELECT id FROM merapyareusers WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->store_result();
+        
+        if ($stmt->num_rows > 0) {
+            $message = "Email Address Already Exists!";
+        } else {
+            // Insert user into database with email_verified set to FALSE
+            $stmt = $conn->prepare("INSERT INTO merapyareusers (FirstName, email, password, email_verification_token) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param("ssss", $firstName, $email, $password, $verificationToken);
 
-                // Recipients
-                $mail->setFrom('no.reply.storesage@gmail.com', 'ShopSAGE');
-                $mail->addAddress($email, $firstName);
+            if ($stmt->execute()) {
+                // Send verification email
+                $mail = new PHPMailer(true);
+                try {
+                    // Server settings
+                    $mail->isSMTP();
+                    $mail->Host = 'smtp.hostinger.com';
+                    $mail->SMTPAuth = true;
+                    $mail->Username = 'no.reply@shopsager.in';
+                    $mail->Password = '!Dhanraj:aRjWQn1'; // Replace with your actual SMTP password
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                    $mail->Port = 587;
 
-                // Content
-                $verificationLink = "https://shopsager.in/verify.php?email=" . urlencode($email) . "&token=" . urlencode($verificationToken);
-                $mail->isHTML(true);
-                $mail->Subject = 'Email Verification for ShopSAGE';
+                    // Recipients
+                    $mail->setFrom('no.reply@shopsager.in', 'ShopSAGE');
+                    $mail->addAddress($email, $firstName);
+
+                    // Content
+                    $verificationLink = "https://shopsager.in/verify.php?email=" . urlencode($email) . "&token=" . urlencode($verificationToken);
+                    $mail->isHTML(true);
+                    $mail->Subject = 'Email Verification for ShopSAGE';
                 $mail->Body = '
                 <!DOCTYPE html>
                 <html lang="en">
@@ -158,31 +195,44 @@ if (isset($_POST['signUp'])) {
         }
     }
 }
+}
+
 
 // Sign-In form processing
-if (isset($_POST['signIn'])) {
-    $email = $_POST['email'];
+// Sign-In form processing
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signIn'])) {
+    // Validate CSRF token
+    if (!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+        die("CSRF validation failed.");
+    }
+
+    // Input sanitization and validation
+    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
     $password = $_POST['password'];
 
-    // Validate user credentials
-    $stmt = $conn->prepare("SELECT id, password, email_verified FROM merapyareusers WHERE email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $stmt->bind_result($userId, $hashedPassword, $emailVerified);
-    $stmt->fetch();
-
-    if (password_verify($password, $hashedPassword)) {
-        if ($emailVerified) {
-            // Email is verified
-            $_SESSION['user_id'] = $userId;
-            $_SESSION['authenticated'] = true;
-            header("Location: dasboard.php");
-            exit();
-        } else {
-            $message = "Please verify your email before logging in.";
-        }
+    if (!$email) {
+        $message = "Invalid email address.";
     } else {
-        $message = "Invalid email or password.";
+        // Validate user credentials
+        $stmt = $conn->prepare("SELECT id, password, email_verified FROM merapyareusers WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->bind_result($userId, $hashedPassword, $emailVerified);
+        $stmt->fetch();
+
+        if (password_verify($password, $hashedPassword)) {
+            if ($emailVerified) {
+                // Email is verified
+                $_SESSION['user_id'] = $userId;
+                $_SESSION['authenticated'] = true;
+                header("Location: dashboard.php");
+                exit();
+            } else {
+                $message = "Please verify your email before logging in.";
+            }
+        } else {
+            $message = "Invalid email or password.";
+        }
     }
 }
 
@@ -213,9 +263,11 @@ if (isset($_GET['logged_out'])) {
                     <h2 class="title">Log In</h2>
                     <?php if (!empty($message)): ?>
                         <div class="alert alert-info">
-                            <?php echo $message; ?>
+                        <?php echo htmlspecialchars($message); ?>
                         </div>
                     <?php endif; ?>
+                    <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
+
                     <div class="input-field">
                         <i class="fas fa-user"></i>
                         <input type="email" name="email" id="email" placeholder="Email" required />
@@ -248,9 +300,11 @@ if (isset($_GET['logged_out'])) {
                     <h2 class="title">Create Account</h2>
                     <?php if (!empty($message)): ?>
                         <div class="alert alert-info">
-                            <?php echo $message; ?>
+                        <?php echo htmlspecialchars($message); ?>
                         </div>
                     <?php endif; ?>
+                    <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
+
                     <div class="input-field">
                         <i class="fas fa-user"></i>
                         <input type="text" name="FirstName" id="FirstName" placeholder="Name" required />
