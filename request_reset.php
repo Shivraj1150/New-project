@@ -1,20 +1,64 @@
 <?php
+header("Strict-Transport-Security: max-age=63072000; includeSubDomains; preload"); // HSTS
+header("Content-Security-Policy: default-src 'self'; style-src 'self' 'https://cdnjs.cloudflare.com' 'unsafe-inline'; font-src 'self' 'https://cdnjs.cloudflare.com'; script-src 'self';");
+header("X-Content-Type-Options: nosniff"); // Prevent MIME type sniffing
+header("X-XSS-Protection: 1; mode=block"); // XSS protection
+header("X-Frame-Options: DENY"); // Prevent clickjacking
+header("Referrer-Policy: no-referrer"); // Control referrer information
+
+// Display errors for development (remove in production)
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 session_start();
 include 'partials/_dbconnect.php';
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
+// Include PHPMailer classes
 require 'PHPMailer-master/src/PHPMailer.php';
 require 'PHPMailer-master/src/Exception.php';
 require 'PHPMailer-master/src/SMTP.php';
 
-if (isset($_POST['email'])) {
-    $email = $_POST['email'];
-    
+// Rate limiting settings
+$maxAttempts = 5; // Maximum attempts allowed
+$timeFrame = 300; // Time frame in seconds (5 minutes)
+
+// Check if the user has exceeded the limit
+if (isset($_SESSION['attempts']) && $_SESSION['attempts'] >= $maxAttempts) {
+    $remainingTime = $_SESSION['lockout_time'] - time();
+    if ($remainingTime > 0) {
+        die('Too many requests. Please try again in ' . $remainingTime . ' seconds.');
+    } else {
+        unset($_SESSION['attempts']);
+        unset($_SESSION['lockout_time']);
+    }
+}
+
+// Generate CSRF token
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
+// Handle POST request
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Validate CSRF token
+    if (!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+        die('CSRF token validation failed.');
+    }
+
+    // Sanitize email input
+    $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
+
+    // Validate email format
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo '<div class="alert alert-warning" role="alert">
+                <strong>Warning!</strong> Invalid email address.
+              </div>';
+        exit;
+    }
 
     // Check if the email exists in the users table
     $stmt = $conn->prepare("SELECT id FROM merapyareusers WHERE email = ?");
@@ -33,18 +77,17 @@ if (isset($_POST['email'])) {
 
         // Send the password reset email
         $mail = new PHPMailer(true);
-
         try {
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';  // Set your SMTP server
+            $mail->Host = 'smtp.hostinger.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'no.reply.storesage@gmail.com';  // SMTP username
-            $mail->Password = 'mbqd zcqj mnei ybis';  // SMTP password
+            $mail->Username = 'no.reply@shopsager.in';
+            $mail->Password = '0Qg$xJhBF[7b'; // Replace with your actual SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
             // Recipients
-            $mail->setFrom('no.reply.storesage@gmail.com', 'ShopSAGE');
+            $mail->setFrom('no.reply@shopsager.in', 'ShopSAGE');
             $mail->addAddress($email);
 
             // Content
@@ -163,27 +206,47 @@ if (isset($_POST['email'])) {
 ';
 
 
-            $mail->send();
-            echo '<div class="alert alert-success" role="alert">
-                    <strong>Success!</strong> A password reset link has been sent to your email. Please check your inbox.
-                  </div>';
-        } catch (Exception $e) {
-            echo '<div class="alert alert-danger" role="alert">
-                    <strong>Error!</strong> Message could not be sent. Mailer Error: ' . $mail->ErrorInfo . '
-                  </div>';
-        }
-    } else {
-        echo '<div class="alert alert-warning" role="alert">
-                <strong>Warning!</strong> No account found with that email.
-              </div>';
-    }
+$mail->send();
+echo '<div class="alert alert-success" role="alert">
+        <strong>Success!</strong> A password reset link has been sent to your email. Please check your inbox.
+      </div>';
+
+// Rate limiting: track attempts
+$_SESSION['attempts'] = isset($_SESSION['attempts']) ? $_SESSION['attempts'] + 1 : 1;
+} catch (Exception $e) {
+echo '<div class="alert alert-danger" role="alert">
+        <strong>Error!</strong> Message could not be sent. Mailer Error: ' . htmlspecialchars($mail->ErrorInfo) . '
+      </div>';
+}
+} else {
+echo '<div class="alert alert-warning" role="alert">
+    <strong>Warning!</strong> No account found with that email.
+  </div>';
+
+// Increment attempts
+$_SESSION['attempts'] = isset($_SESSION['attempts']) ? $_SESSION['attempts'] + 1 : 1;
+}
+
+// Lockout logic
+if (isset($_SESSION['attempts']) && $_SESSION['attempts'] >= $maxAttempts) {
+$_SESSION['lockout_time'] = time() + $timeFrame; // Set lockout time
+die('Too many requests. Please try again in ' . $timeFrame . ' seconds.');
+}
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="robots" content="noindex, nofollow"> <!-- Prevent indexing for sensitive pages -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';"> <!-- CSP -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff"> <!-- Prevent MIME type sniffing -->
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block"> <!-- XSS protection -->
+    <meta name="referrer" content="no-referrer"> <!-- Control referrer information -->
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -284,6 +347,8 @@ if (isset($_POST['email'])) {
 <div class="container">
         <h2>Forgot Your Password?</h2>
         <form action="request_reset.php" method="POST">
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+
             <label for="email">Enter your email address:</label>
             <input type="email" name="email" id="email" required>
             <button type="submit">Request Password Reset</button>

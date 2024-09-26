@@ -1,6 +1,20 @@
 <?php
+// Security Headers
+header("Strict-Transport-Security: max-age=63072000; includeSubDomains; preload"); // HSTS
+header("Content-Security-Policy: default-src 'self'; style-src 'self' 'https://cdnjs.cloudflare.com' 'unsafe-inline'; font-src 'self' 'https://cdnjs.cloudflare.com'; script-src 'self';");
+header("X-Content-Type-Options: nosniff"); // Prevent MIME type sniffing
+header("X-XSS-Protection: 1; mode=block"); // XSS protection
+header("X-Frame-Options: DENY"); // Prevent clickjacking
+header("Referrer-Policy: no-referrer"); // Control referrer information
+
 if (isset($_GET['token'])) {
+    // Sanitize and validate token
     $token = htmlspecialchars($_GET['token'], ENT_QUOTES, 'UTF-8');
+
+    // Check if the token is a valid hex string (128-bit token should be 64 characters)
+    if (!preg_match('/^[a-f0-9]{64}$/', $token)) {
+        die('Invalid token format.');
+    }
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -11,6 +25,7 @@ if (isset($_GET['token'])) {
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
         <style>
+            /* Styling */
             * {
                 margin: 0;
                 padding: 0;
@@ -125,8 +140,9 @@ if (isset($_GET['token'])) {
 
             function validatePassword() {
                 const password = document.getElementById('password').value;
-                if (password.length < 8) {
-                    alert('Password must be at least 8 characters long.');
+                const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
+                if (!passwordRegex.test(password)) {
+                    alert('Password must be at least 8 characters long, contain one uppercase letter, one lowercase letter, one number, and one special character.');
                     return false;
                 }
                 return true;
@@ -136,6 +152,7 @@ if (isset($_GET['token'])) {
     </html>
     <?php
 } else {
-    echo '<h3>No token provided.</h3>';
+    // Security response for no token provided
+    echo '<h3>No token provided. Access denied.</h3>';
 }
 ?>

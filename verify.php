@@ -1,28 +1,47 @@
 <?php
+header("X-Frame-Options: DENY");
+header("X-Content-Type-Options: nosniff");
+header("X-XSS-Protection: 1; mode=block");
+header("Referrer-Policy: no-referrer");
+header("Strict-Transport-Security: max-age=31536000; includeSubDomains; preload");
 include 'partials/_dbconnect.php'; // Database connection
 
 $message = ''; // Variable to store message
 $is_success = false;
 
 if (isset($_GET['email']) && isset($_GET['token'])) {
-    $email = $_GET['email'];
-    $token = $_GET['token'];
+    $email = filter_var($_GET['email'], FILTER_SANITIZE_EMAIL);
+    $token = isset($_GET['token']) ? htmlspecialchars($_GET['token'], ENT_QUOTES, 'UTF-8') : '';
 
     // Verify the token and email
-    $stmt = $conn->prepare("SELECT id FROM merapyareusers WHERE email = ? AND email_verification_token = ?");
+    $stmt = $conn->prepare("SELECT id, email_verified, email_verification_token, token_created_at FROM merapyareusers WHERE email = ? AND email_verification_token = ?");
     $stmt->bind_param("ss", $email, $token);
     $stmt->execute();
     $stmt->store_result();
     
     if ($stmt->num_rows > 0) {
-        // Update user to set email_verified to TRUE and clear the token
-        $stmt = $conn->prepare("UPDATE merapyareusers SET email_verified = TRUE, email_verification_token = NULL WHERE email = ?");
-        $stmt->bind_param("s", $email);
-        if ($stmt->execute()) {
-            $message = "Your Email Has Been Verified Successfully. You Can Now Log In.";
-            $is_success = true;
+        $stmt->bind_result($userId, $emailVerified, $verificationToken, $tokenCreatedAt);
+        $stmt->fetch();
+
+        // Check if already verified
+        if ($emailVerified) {
+            $message = "Email is already verified.";
         } else {
-            $message = "Error updating record: " . $conn->error;
+            // Check token expiration (e.g., 24 hours)
+            $expirationTime = 24 * 60 * 60; // 24 hours in seconds
+            if (time() - strtotime($tokenCreatedAt) < $expirationTime) {
+                // Update user to set email_verified to TRUE and clear the token
+                $stmt = $conn->prepare("UPDATE merapyareusers SET email_verified = TRUE, email_verification_token = NULL WHERE email = ?");
+                $stmt->bind_param("s", $email);
+                if ($stmt->execute()) {
+                    $message = "Your Email Has Been Verified Successfully. You Can Now Log In.";
+                    $is_success = true;
+                } else {
+                    $message = "Error updating record: " . $conn->error;
+                }
+            } else {
+                $message = "Verification link has expired.";
+            }
         }
     } else {
         $message = "Invalid Verification Link or Email Is Already Verified.";
@@ -31,7 +50,6 @@ if (isset($_GET['email']) && isset($_GET['token'])) {
     $message = "Invalid request.";
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -2,36 +2,69 @@
 session_start();
 include 'partials/_dbconnect.php';
 
+// Security Headers
+header("Strict-Transport-Security: max-age=63072000; includeSubDomains; preload"); // HSTS
+header("Content-Security-Policy: default-src 'self'; style-src 'self' 'https://cdnjs.cloudflare.com' 'unsafe-inline'; font-src 'self' 'https://cdnjs.cloudflare.com'; script-src 'self';");
+header("X-Content-Type-Options: nosniff"); // Prevent MIME type sniffing
+header("X-XSS-Protection: 1; mode=block"); // XSS protection
+header("X-Frame-Options: DENY"); // Prevent clickjacking
+header("Referrer-Policy: no-referrer"); // Control referrer information
+
 $resetSuccess = false;
 $errorMessage = '';
 
 if (isset($_GET['token'])) {
-    $token = $_GET['token'];
+    // Sanitize and validate token
+    $token = htmlspecialchars($_GET['token'], ENT_QUOTES, 'UTF-8');
 
-    // Check if the token exists in the password_resets table
-    $stmt = $conn->prepare("SELECT email FROM password_resets WHERE token = ?");
+    // Validate token format (assuming a 64-character hex token)
+    if (!preg_match('/^[a-f0-9]{64}$/', $token)) {
+        die('Invalid token format.');
+    }
+
+    // Check if token exists and retrieve email
+    $stmt = $conn->prepare("SELECT email, created_at FROM password_resets WHERE token = ?");
     $stmt->bind_param("s", $token);
     $stmt->execute();
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($email);
+        $stmt->bind_result($email, $created_at);
         $stmt->fetch();
 
-        if (isset($_POST['password'])) {
-            $new_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        // Token expiration check (e.g., 1-hour expiry)
+        $expiry_time = strtotime($created_at) + 3600; // Token valid for 1 hour
+        if (time() > $expiry_time) {
+            $errorMessage = 'Token has expired. Please request a new password reset.';
+        } else if (isset($_POST['password'], $_POST['csrf_token'])) {
+            // CSRF token validation
+            if (!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+                die('CSRF token validation failed.');
+            }
 
-            // Update the user's password in the users table
-            $stmt = $conn->prepare("UPDATE merapyareusers SET password = ? WHERE email = ?");
-            $stmt->bind_param("ss", $new_password, $email);
-            $stmt->execute();
+            // Password strength validation (at least 8 characters, upper/lowercase, digit, special character)
+            $password = $_POST['password'];
+            $passwordRegex = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&#]).{8,}$/';
+            if (!preg_match($passwordRegex, $password)) {
+                $errorMessage = 'Password must contain at least 8 characters, including an uppercase letter, a lowercase letter, a number, and a special character.';
+            } else {
+                // Hash the password
+                $new_password = password_hash($password, PASSWORD_DEFAULT);
 
-            // Remove the token from the password_resets table
-            $stmt = $conn->prepare("DELETE FROM password_resets WHERE token = ?");
-            $stmt->bind_param("s", $token);
-            $stmt->execute();
+                // Update the user's password
+                $stmt = $conn->prepare("UPDATE merapyareusers SET password = ? WHERE email = ?");
+                $stmt->bind_param("ss", $new_password, $email);
+                if ($stmt->execute()) {
+                    // Remove token from the database after successful reset
+                    $stmt = $conn->prepare("DELETE FROM password_resets WHERE token = ?");
+                    $stmt->bind_param("s", $token);
+                    $stmt->execute();
 
-            $resetSuccess = true;
+                    $resetSuccess = true;
+                } else {
+                    $errorMessage = 'Failed to update password. Please try again.';
+                }
+            }
         }
     } else {
         $errorMessage = 'Invalid or expired token.';
@@ -39,6 +72,9 @@ if (isset($_GET['token'])) {
 } else {
     $errorMessage = 'No token provided.';
 }
+
+// Generate CSRF token for form
+$_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +87,7 @@ if (isset($_GET['token'])) {
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #fff5e6;
+            background: #fff5e6 !important;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -121,7 +157,13 @@ if (isset($_GET['token'])) {
             <p>Your password has been updated.</p>
         <?php else: ?>
             <h2>Password Reset Failed</h2>
-            <p class="error-message"><?php echo $errorMessage; ?></p>
+            <p class="error-message"><?php echo htmlspecialchars($errorMessage, ENT_QUOTES, 'UTF-8'); ?></p>
+            <!-- Form for password reset -->
+            <form method="POST">
+                <input type="password" name="password" placeholder="New Password" required>
+                <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
+                <button type="submit" class="btn">Reset Password</button>
+            </form>
         <?php endif; ?>
         <a href="_login.php" class="btn"><i class="fas fa-sign-in-alt"></i> Back to Login</a>
     </div>

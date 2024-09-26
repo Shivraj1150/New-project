@@ -17,9 +17,7 @@
     /* display: flex; */
     /* border: 2px solid red; */
 
-    background-color: rgba(255, 255, 255, 0.2); /* White background with 20% opacity */
-    backdrop-filter: blur(10px); /* Apply blur */
-    -webkit-backdrop-filter: blur(10px); /* For Safari support */
+  background-color: white;
     border-radius: 10px; /* Optional: rounding the corners */
     
         box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -40px;
@@ -72,7 +70,7 @@ h1{
     left: 2em;
     top: 9px;
     height: 5em;
-
+    z-index: 999999;
 }
 
 #navbar {
@@ -173,6 +171,10 @@ h1{
     padding: 0;
 }
 
+.mobile_menu{
+    display: none;
+}
+
 
 
 /* open close menu */
@@ -180,14 +182,15 @@ h1{
 .openMenu,
 .closeMenu {
     display: none;
+    
 }
 
 .mega {
     position: absolute;
     width: auto;
-    height: 13em;
+    height: 14em;
     top: 1em;
-    left: -46em;
+    left: -47em;
     background-color: white;
     font-family: "League Spartan", sans-serif;
     box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -30px;
@@ -210,6 +213,25 @@ h1{
     z-index: 1;
 }
 
+.mobile_view_icons{
+    display: flex;
+    flex-direction: row;
+    display: none;
+}
+
+
+.mobile_view_icons_logins{
+   
+    align-content: center;
+}
+.mobile_navbar_icons{
+    padding-left: 20px;
+}
+/* 
+.mobile_navbar_open_menu{
+    padding-right: 5px;
+    p
+} */
 
 
 .dropDown:hover .mega {
@@ -258,9 +280,9 @@ h4 {
 .mega1 {
     position: absolute;
     width: auto;
-    height: 13em;
+    height: 14em;
     top: 1em;
-    left: -48em;
+    left: -68em;
     background-color: white;
     font-family: "League Spartan", sans-serif;
     box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -30px;
@@ -280,6 +302,8 @@ h4 {
     margin: 60px;
     padding: 20px;
     display: flex;
+    position: relative;
+    left: 21em;
 }
 
 
@@ -327,9 +351,9 @@ h4 {
 .mega2 {
     position: absolute;
     width: auto;
-    height: 13em;
+    height: 14em;
     top: 1em;
-    left: -56em;
+    left: -59em;
     background-color: white;
     font-family: "League Spartan", sans-serif;
     box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -30px;
@@ -499,6 +523,7 @@ h4 {
         flex-direction: column;
         width: 100%;
         height: 20em;
+        left: 0em;
     }
 
     .mega .flexcol,
@@ -530,11 +555,21 @@ h4 {
         cursor: pointer;
 
     }
-
+    .mobile_menu{
+        display: block;
+    }
+    .MOBILE_MENU_ICONS{
+        display: block;
+    }
     .openMenu{
         margin: 1em;
         
     }
+    .mobile_view_icons{
+        display: block;
+        display: flex;
+    }
+   
     .closeMenu{
         margin-left: 11em;
         padding: 0;
@@ -766,7 +801,7 @@ background: rgb(4, 209, 255);
     border-radius: 4px;
     color: white;
     text-align: center;
-    margin-left: 43px;
+    margin-left: 0;
     font-weight: 500;
     font-family: "League Spartan", sans-serif;
 }
@@ -776,7 +811,7 @@ background: rgb(4, 209, 255);
     padding: 5px;
     color: white;
     border-radius: 4px;
-       margin-left: 65px;
+       margin-left: 0;
        text-align: center;
     font-weight: 500;
     font-family: "League Spartan", sans-serif;
@@ -787,7 +822,7 @@ background: rgb(4, 209, 255);
     padding: 5px;
     border-radius: 4px;
     color: white;
-    margin-left: 19px;
+    margin-left: 0;
     text-align: center;
     font-weight: 500;
     font-family: "League Spartan", sans-serif;
@@ -1043,7 +1078,7 @@ background: rgb(4, 209, 255);
 .footer_section{
     position: relative;
     top: 19em;
-    /* background-color: black; */
+    background-color: black;
     height: 30em;
     display: block;
     /* background-color: black; */
@@ -1176,13 +1211,43 @@ body {
      */
 }
 
-
+@media screen and (max-width: 960px) {
+    
+    
+    .footer_rights {
+        text-align: center;
+        padding: 25px;
+        background: linear-gradient(135deg, #ff7b00, #ff4c00);
+        color: #fff;
+        margin-top: 50px;
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+        box-shadow: 0px -4px 12px rgba(0, 0, 0, 0.2);
+        animation: fadeInUp 1s ease-in-out;
+        position: relative;
+        top: 27em;
+        overflow: hidden;
+    }    
+    .payment_info_footer{
+        margin: 1em 3em 1em 2em; 
+    }
+    
+    .Install_app p {
+        padding-bottom: 16px;
+        padding: 0 0 16px 49px;
+    
+    }
+    .pay_logo_dev{
+        padding-left: 3em;
+        padding-bottom: 2em;
+    }
+}
 
 
 @media (max-width: 768px) {
    
 .footer_section {
-    background-color: #000;
+    height: 76em;
     color: #fff;
     padding: 2em 1em;
     text-align: center;
@@ -1199,6 +1264,65 @@ body {
     flex: 1 1 30%;
     margin-bottom: 1em;
 }
+.footer_rights {
+    text-align: center;
+    padding: 25px;
+    background: linear-gradient(135deg, #ff7b00, #ff4c00);
+    color: #fff;
+    margin-top: 50px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    box-shadow: 0px -4px 12px rgba(0, 0, 0, 0.2);
+    animation: fadeInUp 1s ease-in-out;
+    position: relative;
+    top: 14em;
+    overflow: hidden;
+}
+.footer_heading{
+    margin: 1em 0 0em 1em;
+    font-size: xxx-large;
+    
+}
+.Sage_footer{
+    color: darkorange;
+}
+
+.contact_details, .follow_us{
+    margin: 1em 0 1em 2em;
+}
+
+.Address, .Phone, .working_hours, .fa-facebook{
+    margin: 0 0 10px 70px;
+}
+
+.fa-brands{
+    padding: 0 4px 0;
+}
+
+.footer_aboutus{
+    margin: 1em 0 1em 2em; 
+}
+.list_about_us_footer{
+    padding: 0 0 16px 70px;
+}
+
+.My_account_footer{
+    margin: 1em 0 1em 2em; 
+}
+
+.payment_info_footer{
+    margin: 1em 3em 1em 2em; 
+}
+
+.Install_app p {
+    padding-bottom: 16px;
+    padding: 0 0 16px 49px;
+
+}
+.pay_logo_dev{
+    padding-left: 3em;
+}
+
 }
 
 @media (max-width: 768px) {
@@ -1217,6 +1341,21 @@ body {
     .footer_flexbox div {
         margin-bottom: 0.5em;
     }
+    .footer_rights {
+        text-align: center;
+        padding: 25px;
+        background: linear-gradient(135deg, #ff7b00, #ff4c00);
+        color: #fff;
+        margin-top: 50px;
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+        box-shadow: 0px -4px 12px rgba(0, 0, 0, 0.2);
+        animation: fadeInUp 1s ease-in-out;
+        position: relative;
+        top: 15em;
+        overflow: hidden;
+    }
+    
 }
 
 @media screen and (max-width: 450px) {
@@ -1246,4 +1385,20 @@ body {
         margin-left: 32px;
 
     }
+    .footer_rights {
+        text-align: center;
+        padding: 25px;
+        background: linear-gradient(135deg, #ff7b00, #ff4c00);
+        color: #fff;
+        margin-top: 50px;
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+        box-shadow: 0px -4px 12px rgba(0, 0, 0, 0.2);
+        animation: fadeInUp 1s ease-in-out;
+        position: relative;
+        top: 15em;
+        overflow: hidden;
+    }    
 }
+
+
