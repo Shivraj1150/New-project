@@ -466,14 +466,52 @@
 .size_space{
     padding-right: 6px;
 }
+.product {
+    position: relative; /* Add this line to ensure notifications are positioned inside the product container */
+}
+
+.notification {
+    position: absolute;
+    top: -50px; /* Start above the product */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 0px;
+    background-color: #ff8c00;
+    color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    z-index: 1000;
+    font-size: 1.1em;
+    transition: opacity 0.5s ease, top 0.5s ease; /* Smooth transition */
+    max-width: 300px; /* Set a max-width for readability */
+    width: auto; /* Allow the width to adjust based on content */
+    word-wrap: break-word; /* Break long words if necessary */
+    text-align: center; /* Center the text */
+}
+
+/* Fade in & slide down */
+.notification.show {
+    top: -4px; /* Slide down into view */
+    opacity: 1; /* Fade in */
+}
+
+
+/* Optional: Add gradient to make it look super trendy */
+.notification {
+    background: linear-gradient(45deg, #ff7f50, #ff4500); /* A modern gradient */
+    font-weight: bold;
+}
+
+
     </style>
 </head>
 
 <body>
 <section class="Feature_prod_section">
     <div class="Feature_prod_area">
-        <h1 class="Feature_prod_heading">Featured Products</h1>
-        <p class="Feature_prod_para">All Brand New Collection of Best Selling Products</p>
+        <h1 class="Feature_prod_heading">HANDBAGS</h1>
+        <p class="Feature_prod_para">All Brand New Collection of Best Selling Handbags</p>
         <div class="container Featured_product_con">
             <div class="wrapper_fea_prod">
                 <?php
@@ -486,7 +524,7 @@
                 }
 
                 // Fetch products from the database
-                $result = $conn->query(query: "SELECT * FROM product_details WHERE category='Hand Bags'");
+                $result = $conn->query(query: "SELECT * FROM product_details WHERE category='HandBags'");
 
                 while ($row = $result->fetch_assoc()) {
                     // Decode sizes JSON data
@@ -526,6 +564,13 @@
                     if (!empty($row['image_url_4'])) {
                         $slider_images .= '<img src="' . htmlspecialchars($row['image_url_4'], ENT_QUOTES, 'UTF-8') . '" alt="' . htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8') . '" class="product_image">';
                     }
+                    // Append Video to Slider Images
+if (!empty($row['video_url'])) {
+    $slider_images .= '<video controls class="product_video" style="max-width: 100%; height: auto;">
+                           <source src="' . htmlspecialchars($row['video_url'], ENT_QUOTES, 'UTF-8') . '" type="video/mp4">
+                           Your browser does not support the video tag.
+                        </video>';
+}
                     echo '
                     <div class="Feature_flexcol product" data-id="' . $row['id'] . '">
                         <div class="product">
@@ -567,9 +612,11 @@
                                     <i class="fa-solid fa-cart-plus" style="color: #000000;"></i>
                                 </a>
                             </div>
+                                  <div id="notification" class="notification" style="display: none;"></div>
+
                             <div>
                                 <h4 class="product_pricing">' . htmlspecialchars($row['price'], ENT_QUOTES, 'UTF-8') . 'rs</h4>
-                                <a href="product detals/product_detail.html?id=' . $row['id'] . '" class="view-more">View More</a>
+                                <a href="product_detail.html?id=' . $row['id'] . '" class="view-more">View More</a>
                             </div>
                         </div>
                     </div>';
@@ -587,7 +634,7 @@
 <script>
     document.querySelectorAll('.slider-container').forEach((container) => {
     const sliderWrapper = container.querySelector('.slider-wrapper');
-    const sliderImages = sliderWrapper.querySelectorAll('img');
+    const sliderItems = sliderWrapper.children; // Get all children (both images and video)
     let currentIndex = 0;
 
     const prevButton = container.querySelector('.slider-prev');
@@ -595,22 +642,36 @@
 
     // Update the slider position
     function updateSliderPosition() {
-        const offset = -currentIndex * 100; // Each image takes 100% width
+        const offset = -currentIndex * 100; // Each item takes 100% width
         sliderWrapper.style.transform = `translateX(${offset}%)`;
     }
 
     // Next Slide
     nextButton.addEventListener('click', () => {
-        currentIndex = (currentIndex + 1) % sliderImages.length; // Loop back to the first image
+        currentIndex = (currentIndex + 1) % sliderItems.length; // Loop back to the first item
         updateSliderPosition();
     });
 
     // Previous Slide
     prevButton.addEventListener('click', () => {
-        currentIndex = (currentIndex - 1 + sliderImages.length) % sliderImages.length; // Loop back to the last image
+        currentIndex = (currentIndex - 1 + sliderItems.length) % sliderItems.length; // Loop back to the last item
         updateSliderPosition();
     });
+
+    function pauseVideos() {
+        // Pause videos in the slider
+        Array.from(sliderItems).forEach((item) => {
+            if (item.tagName === 'VIDEO') {
+                item.pause();
+            }
+        });
+    }
+
+    // Add event listeners for pausing videos when switching slides
+    nextButton.addEventListener('click', pauseVideos);
+    prevButton.addEventListener('click', pauseVideos);
 });
+
 
   document.querySelectorAll('.add-to-cart').forEach(button => {
     button.addEventListener('click', (e) => {
@@ -631,11 +692,11 @@
             color: colorSelect ? colorSelect.value : '' // Get the selected color value
         };
         
-        addToCart(product);
+        addToCart(product, productElement);  // Pass productElement to addToCart
     });
 });
 
-function addToCart(product) {
+function addToCart(product, productElement) {
     fetch('cart.php', {
         method: 'POST',
         headers: {
@@ -647,11 +708,47 @@ function addToCart(product) {
     .then(data => {
         if (data.status === 'success') {
             renderCart();
+            showNotification(productElement, `${product.product_name} has been added to your cart!`);
+
         } else {
             alert(data.message);
         }
     });
 }
+function showNotification(productElement, message) {
+    // Remove existing notification if any
+    let existingNotification = productElement.querySelector('.notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+
+    // Create a new notification element
+    const notification = document.createElement('div');
+    notification.classList.add('notification');
+    notification.textContent = message;
+
+    // Set position style for product container
+    productElement.style.position = 'relative';
+
+    // Append the notification to the product container
+    productElement.appendChild(notification);
+
+    // Add the 'show' class for fade-in and slide-down effect
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 100); // Small delay to trigger animation
+
+    // Automatically hide after 3 seconds
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            notification.style.display = 'none'; // Ensure it's hidden
+            productElement.removeChild(notification); // Remove from DOM
+        }, 500); // Match the transition duration to smoothly hide
+    }, 3000); // Notification visible for 3 seconds
+}
+
+
 
 function renderCart() {
     fetch('cart.php')

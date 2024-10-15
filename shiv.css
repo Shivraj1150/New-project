@@ -98,7 +98,7 @@ h1{
     font-weight: 600;
     font-family: "League Spartan", sans-serif;
     font-optical-sizing: auto;
-    padding-bottom: 25px;
+   
     font-style: normal;
     transition: 0.3s ease;
 }
@@ -185,20 +185,21 @@ h1{
     
 }
 
+
 .mega {
     position: absolute;
-    width: auto;
-    height: 14em;
-    top: 1em;
-    left: -47em;
+    width: 100%;
+    height: 15em;
+    top: 0em;
+    left: -16em;
     background-color: white;
     font-family: "League Spartan", sans-serif;
     box-shadow: rgb(0 0 0 / 70%) 0 30px 20px -30px;
     z-index: -1;
     display: flex;
     margin: 17px;
-    padding-right: 83em;
-    padding-left: 20em;
+    padding-right: 73em;
+    /* padding-left: 20em; */
     visibility: hidden;
     opacity: 0;
     white-space: nowrap;
@@ -281,7 +282,7 @@ h4 {
     position: absolute;
     width: auto;
     height: 14em;
-    top: 1em;
+    top: 0em;
     left: -68em;
     background-color: white;
     font-family: "League Spartan", sans-serif;
@@ -352,7 +353,7 @@ h4 {
     position: absolute;
     width: auto;
     height: 14em;
-    top: 1em;
+    top: 0em;
     left: -59em;
     background-color: white;
     font-family: "League Spartan", sans-serif;
@@ -363,7 +364,7 @@ h4 {
     padding-right: 83em;
     padding-left: 26em;
     white-space: nowrap;
-    /* Prevents text wrapping */
+   
     visibility: hidden;
     opacity: 0;
 }
@@ -394,8 +395,9 @@ h4 {
 h4 {
     display: flex;
     padding-left: 0.9em;
-    margin: 0.3em;
-    padding-bottom: 1em;
+    margin: 0m;
+    padding-bottom: 0em;
+    z-index: 999;
 }
 
 .dropDownElectronic:hover .dropdownicon-electronic {
@@ -481,12 +483,27 @@ h4 {
         width: 16em;
         padding-left: 2em;
         transition: all 0.5s ease;
-
+        height: auto; /* Let the height grow based on content */
+        overflow-y: auto; /* Enable vertical scrolling if content exceeds height */
+        max-height: 100vh; /* Constrain to the viewport height */
+        padding-left: 1.5em;
+        transition: all 0.5s ease;
+        position: fixed; /* Ensure the menu stays in place */
+        top: 0;         /* Start at the top of the page */
+            /* Align to the left */
+        width: 100%;    /* Full width of the screen */
+        height: 100vh;  /* Full height of the viewport */
+        background-color: white; /* Background color */
+        overflow-y: auto; /* Enable scrolling if content exceeds screen height */
+        z-index: 9999;   /* Ensure the menu is on top */
+        padding-left: 1.5em;
+        padding-top: 4em; /* Add some padding to the top */
+        transition: left 0.6s ease, opacity 0.6s ease;
     }
 
     #navbar li {
         padding: 10px 0;
-        width: 100%;
+        width: 62%;
         /* Make sure the items take up the full width */
     }
 
@@ -513,7 +530,7 @@ h4 {
     .navitems:hover .mega2 {
         display: flex;
         /* Show the mega menu */
-        height: 47em;
+        height: 21em;
     }
 
     /* Adjust the mega menu items */
@@ -549,11 +566,23 @@ h4 {
         transition: all .3s ease;
 
     }
+    #navbar li a {
+        padding-bottom: 0;
+    }
+    h4 {
+        display: flex;
+        padding-left: 0.9em;
+        margin: 0em;
+        padding-bottom: 0em;
+    }
     .openMenu,
     .closeMenu {
         display: block;
         cursor: pointer;
 
+    }
+    .flexcol_feature{
+        display: none;
     }
     .mobile_menu{
         display: block;
@@ -578,14 +607,16 @@ h4 {
     }
     #navbar.show {
         left: 0;
+        opacity: 1;  /* Fade in the menu */
+        transition: left 0.6s ease, opacity 0.6s ease;
         .closeMenu{
             rotate: 360deg;
             transition: all 0.9s ease;
         
         }
         
-
     }
+    
     .rightNav{
         display: none;
     }
@@ -731,7 +762,7 @@ background: rgb(4, 209, 255);
 
 /* Feature section code */
 
-.features_icons{
+/* .features_icons{
     display: flex;
     
 }
@@ -748,7 +779,10 @@ background: rgb(4, 209, 255);
     height: 12em;
     flex-wrap: wrap;
 }
-
+.Feature_icons{
+    width: 100%;
+    height: 100%;
+} */
 
 .con_fea{
     top: 8em;
@@ -775,7 +809,7 @@ background: rgb(4, 209, 255);
 
 }
 
-.flexcol_feature{
+.flexcol_feature_web{
     padding: 0;
     margin-left: 20px;
     margin-right: 20px;
@@ -1401,4 +1435,247 @@ body {
     }    
 }
 
+.mega h4 a, .mega1 h4 a, .mega2 h4 a {
+    font-family: 'League Spartan', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: #222;
+    text-transform: uppercase;
+    letter-spacing: 0.15rem;
+    transition: color 0.4s ease, transform 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
 
+/* Hover effect */
+.mega h4 a:hover, .mega1 h4 a:hover, .mega2 h4 a:hover {
+    color: darkorange;
+    transform: translateY(-5px);
+}
+.mega_icons, .mega1_icons, .mega2_icons {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.mega_icons:hover, .mega1_icons:hover, .mega2_icons:hover {
+    transform: scale(1.2);
+}
+.flexcol {
+    
+    display: inline-block;
+   
+    margin: 18px;
+    width: 198px;
+    height: 198px;
+    
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    overflow: hidden;
+}
+.flexcol_feature_section{
+       
+    display: inline-block;
+   
+    margin: 18px;
+    width: 200px;
+    height: 219px;
+    
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    overflow: hidden;
+}
+.flexcol1 {
+    
+    display: inline-block;
+   
+    margin: 18px;
+    width: 198px;
+    height: 198px;
+    
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    overflow: hidden;
+}
+.flexcol2 {
+    
+    display: inline-block;
+   
+    margin: 18px;
+    width: 198px;
+    height: 198px;
+    
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    overflow: hidden;
+}
+.flexcol:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.flexcol1:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.flexcol2:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+.flexcol_feature_section:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.flexcol img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.4s ease;
+}
+.flexcol1 img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.4s ease;
+}
+.flexcol2 img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.4s ease;
+}
+.flexcol_feature_section img {
+    width: 100%;
+    height: 170px;
+    border-radius: 8px;
+    transition: transform 0.4s ease;
+}
+
+.flexcol:hover img {
+    transform: scale(1.1);
+}
+.flexcol1:hover img {
+    transform: scale(1.1);
+}
+.flexcol2:hover img {
+    transform: scale(1.1);
+}
+.flexcol_feature_section:hover img {
+    transform: scale(1.1);
+}
+
+.flexcol {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.5s forwards;
+}
+.flexcol1 {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.5s forwards;
+}
+.flexcol2 {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.5s forwards;
+}
+.flexcol_feature_section {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.5s forwards;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mega, .mega1, .mega2 {
+    background: linear-gradient(135deg, #f8f9fa, #ffffff);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+.mega h4 a::after, .mega1 h4 a::after, .mega2 h4 a::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 3px;
+    background: darkorange;
+    transition: width 0.3s ease;
+}
+
+.mega h4 a:hover::after, .mega1 h4 a:hover::after, .mega2 h4 a:hover::after {
+    width: 100%;
+}
+
+
+/* Ensure the flex container maintains its layout */
+.feature_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* Image container */
+.flexcol_feature {
+    width: 87%;
+    height: 172px;
+    left: 12px;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden; /* Prevent the image from overflowing the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+/* Image styles */
+.flexcol_feature img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out; /* Smooth scaling effect */
+}
+
+/* Hover effect on image */
+.flexcol_feature:hover img {
+    transform: scale(1.1); /* Zoom-in effect */
+}
+
+/* Optional: Adding a slight lift to the container on hover */
+/* .flexcol_feature:hover {
+    transform: translateY(-10px);
+} */
+
+
+@media (max-width: 706px) {
+
+.flexcol_feature_section {
+   
+    width: 142px;
+    height: 165px;
+}
+.flexcol_feature_section img {
+    width: 100%;
+    height: 124px;
+}
+.feature_text, .feature_text2, .feature_text3, .feature_text4, .feature_text5, .feature_text6 {
+    padding: 0px;
+    font-weight: 500
+
+}
+.Feature_prod_heading{ 
+     font-size: xx-large;;}
+}

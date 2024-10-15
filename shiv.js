@@ -1,20 +1,21 @@
 
 // Responsive mega code
-
 document.addEventListener('DOMContentLoaded', function() {
     const openMenu = document.querySelector('.openMenu');
     const closeMenu = document.querySelector('.closeMenu');
     const navbar = document.querySelector('#navbar');
 
+    // Open the menu
     openMenu.addEventListener('click', function() {
-        navbar.classList.add('show');
+        navbar.classList.add('show');  // Add the 'show' class to display the menu
+        document.body.style.overflow = 'hidden';  // Disable background scrolling when menu is open
     });
 
+    // Close the menu
     closeMenu.addEventListener('click', function() {
-        navbar.classList.remove('show');
+        navbar.classList.remove('show');  // Remove the 'show' class to hide the menu
+        document.body.style.overflow = 'auto';  // Re-enable background scrolling when menu is closed
     });
-    
-
 });
 
 

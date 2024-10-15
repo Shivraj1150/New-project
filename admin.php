@@ -20,6 +20,72 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Directory where you want to store the uploaded images
+$target_dir = "uploads/";
+
+// Function to upload an image
+function upload_image($image_field, $target_dir) {
+    if (isset($_FILES[$image_field]) && $_FILES[$image_field]['error'] == 0) {
+        $target_file = $target_dir . basename($_FILES[$image_field]['name']);
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+        // Check if file is an actual image
+        $check = getimagesize($_FILES[$image_field]["tmp_name"]);
+        if ($check === false) {
+            die("File is not an image.");
+        }
+
+        // Allow only certain file formats
+        $allowed_types = array("jpg", "jpeg", "png", "gif");
+        if (!in_array($imageFileType, $allowed_types)) {
+            die("Only JPG, JPEG, PNG, and GIF files are allowed.");
+        }
+
+        // Move the uploaded file to the target directory
+        if (!move_uploaded_file($_FILES[$image_field]["tmp_name"], $target_file)) {
+            die("Sorry, there was an error uploading your file.");
+        }
+
+        return $target_file; // Return the file path to store in the database
+    }
+
+    return null; // No file uploaded
+}
+
+// Function to upload a video// Function to upload a video with added debugging
+function upload_video($video_field, $target_dir) {
+    // Check if the video file was uploaded
+    if (isset($_FILES[$video_field]) && $_FILES[$video_field]['error'] == 0) {
+        // Debugging: Output the file upload status
+        echo "<pre>";
+        print_r($_FILES[$video_field]);
+        echo "</pre>";
+
+        $target_file = $target_dir . basename($_FILES[$video_field]['name']);
+        $videoFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+        // Check if the video is in an allowed format
+        $allowed_types = array("mp4", "avi", "mov", "wmv");
+        if (!in_array($videoFileType, $allowed_types)) {
+            die("Only MP4, AVI, MOV, and WMV files are allowed.");
+        }
+
+        // Attempt to move the uploaded file to the target directory
+        if (move_uploaded_file($_FILES[$video_field]["tmp_name"], $target_file)) {
+            echo "The video file " . htmlspecialchars(basename($_FILES[$video_field]["name"])) . " has been uploaded.";
+            return $target_file; // Return the file path to store in the database
+        } else {
+            die("Sorry, there was an error uploading your video.");
+        }
+    } else {
+        // Debugging: Output error message if the file wasn't uploaded
+        echo "Error uploading video: " . $_FILES[$video_field]['error'];
+    }
+
+    return null; // No video uploaded
+}
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // CSRF token validation
     if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
@@ -31,19 +97,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "The form has already been submitted.";
         exit;
     }
+    if (isset($_FILES['video'])) {
+        echo "<pre>";
+        print_r($_FILES['video']); // This will output file details to the browser
+        echo "</pre>";
+    }
 
-    // Get image URLs from the form
-    $image_1 = $_POST['image_url_1'] ?? null;
-    $image_2 = $_POST['image_url_2'] ?? null;
-    $image_3 = $_POST['image_url_3'] ?? null;
-    $image_4 = $_POST['image_url_4'] ?? null;
+    // Upload images and get their file paths
+    $image_1 = upload_image('image_1', $target_dir);
+    $image_2 = upload_image('image_2', $target_dir);
+    $image_3 = upload_image('image_3', $target_dir);
+    $image_4 = upload_image('image_4', $target_dir);
 
-    // Handle sizes input
+    // Handle sizes and colors input
     $sizes = isset($_POST['sizes']) ? $_POST['sizes'] : '';
     $sizes = array_map('trim', explode(',', $sizes));
     $sizes = json_encode($sizes);
+    $video_file = upload_video('video', $target_dir); // This line was missing!
 
-    // Handle colors input
     $colors = isset($_POST['colors']) ? $_POST['colors'] : '';
     $colors = array_map('trim', explode(',', $colors));
     $colors = json_encode($colors);
@@ -55,13 +126,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_POST['name'],
         $_POST['price'],
         $_POST['description'],
-        $image_1,
+        $image_1, // Insert the file paths instead of URLs
         $image_2,
         $image_3,
         $image_4,
-         // Placeholder for video URL, if not used
-        $video,
-   
+        $video_file,
         $_POST['category'],
         $sizes,
         $colors
@@ -181,7 +250,7 @@ unset($_SESSION['form_submitted']);
     </form>
 
     <h1>Add a New Product</h1>
-    <form action="admin.php" method="POST">
+    <form action="admin.php" method="POST" enctype="multipart/form-data">
         <label for="name">Product Name:</label>
         <input type="text" name="name" required>
 
@@ -197,25 +266,27 @@ unset($_SESSION['form_submitted']);
         <label for="colors">Available Colors (comma-separated):</label>
         <input type="text" name="colors" placeholder="e.g., Blue, Black, Red">
 
-        <label for="image_url_1">Primary Product Image URL:</label>
-        <input type="text" name="image_url_1" required>
+        <!-- File inputs for images -->
+        <label for="image_1">Primary Product Image:</label>
+        <input type="file" name="image_1" required>
 
-        <label for="image_url_2">Secondary Product Image URL (Optional):</label>
-        <input type="text" name="image_url_2">
+        <label for="image_2">Secondary Product Image (Optional):</label>
+        <input type="file" name="image_2">
 
-        <label for="image_url_3">Third Product Image URL (Optional):</label>
-        <input type="text" name="image_url_3">
+        <label for="image_3">Third Product Image (Optional):</label>
+        <input type="file" name="image_3">
 
-        <label for="image_url_4">Fourth Product Image URL (Optional):</label>
-        <input type="text" name="image_url_4">
+        <label for="image_4">Fourth Product Image (Optional):</label>
+        <input type="file" name="image_4">
 
         <label for="video">Product Video URL (Optional):</label>
-        <input type="text" name="video" placeholder="URL for the video">
+        <input type="file" name="video" accept="video/*">
+
 
         <label for="category">Select Category:</label>
         <select name="category" required>
             <option value="shoes">Shoes</option>
-            <option value="watches">Men Watches</option>
+            <option value="menwatches">Men Watches</option>
             <option value="tshirt">Men T-Shirt</option>
             <option value="shirt">Men Shirt</option>
             <option value="joggers">Men Joggers</option>
@@ -226,13 +297,13 @@ unset($_SESSION['form_submitted']);
             <option value="power_bank">Power Bank</option>
             <option value="home_decor">Home Decor</option>
             <option value="speakers">Speakers</option>
-            <option value="speakers">sunglasses</option>
-            <option value="speakers">perfumes</option>
-            <option value="speakers">Women Hoddies</option>
-            <option value="speakers">Women joggers</option>
-            <option value="speakers">Women shirts</option>
-            <option value="speakers">Women tshirts</option>
-            <option value="speakers">Women watches</option>
+            <option value="sunglasses">sunglasses</option>
+            <option value="perfumes">perfumes</option>
+            <option value="hoddies">Women Hoddies</option>
+            <option value="joggers">Women joggers</option>
+            <option value="shirts">Women shirts</option>
+            <option value="shirts">Women tshirts</option>
+            <option value="womenwatches">Women watches</option>
         </select>
 
         <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">

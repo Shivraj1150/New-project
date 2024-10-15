@@ -485,8 +485,14 @@
                     die("Connection failed: " . $conn->connect_error);
                 }
 
-                // Fetch products from the database
-                $result = $conn->query("SELECT * FROM product_details WHERE category='Men T-Shirt'");
+             // Fetch products from multiple categories
+$categories = ["tshirt", "handbags"]; // Define the categories
+$category_list = "'" . implode("','", $categories) . "'"; // Prepare category list for SQL query
+
+$result = $conn->query("SELECT * FROM product_details WHERE category IN ($category_list)");
+
+              
+
 
                 while ($row = $result->fetch_assoc()) {
                     // Decode sizes JSON data

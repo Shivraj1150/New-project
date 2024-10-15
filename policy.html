@@ -6,10 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms and Conditions</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+
 </head>
 <style>
     body {
-        font-family: 'Helvetica Neue', sans-serif;
+        font-family: "League Spartan", sans-serif;
+
         margin: 0;
         padding: 0;
         background-color: #fef3e6;
@@ -249,6 +252,173 @@
             transform: rotate(360deg);
         }
     }
+    /* General mobile styles */
+@media (max-width: 768px) {
+    /* Adjust sidebar to collapse to the top */
+    .sidebar {
+        position: relative;
+        width: 100%;
+        margin: 0;
+        padding: 10px 20px;
+        top: 0;
+        left: 0;
+        box-shadow: none;
+    }
+    
+    .sidebar nav ul li {
+        margin-bottom: 10px;
+    }
+
+    .sidebar nav ul li a {
+        font-size: 1em;
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    /* Content section to take full width */
+    .content {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .content-card {
+        padding: 20px;
+        margin-bottom: 15px;
+    }
+
+    /* Header adjustments */
+    .header {
+        padding: 10px;
+    }
+
+    .header h1 {
+        font-size: 1.8em;
+    }
+
+    /* Footer adjustments */
+    .footer {
+        padding: 15px;
+        font-size: 1em;
+    }
+
+    /* Adjust text size */
+    body {
+        font-size: 0.9em;
+    }
+
+    /* Hide glare effect on smaller devices to improve performance */
+    .sidebar::before, .footer::before {
+        display: none;
+    }
+}
+/* Hide the button on larger screens */
+.sidebar-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .sidebar-toggle {
+        display: block;
+        background-color: #ff6900;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 1.2em;
+        width: 100%;
+        text-align: center;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .sidebar.open {
+        display: block;
+    }
+}
+/* Header */
+.header {
+    text-align: center;
+    padding: 2px;
+    background: linear-gradient(135deg, #ff7b00, #ff4c00);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    animation: slideDown 0.8s ease-in-out;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.header:hover {
+    background: linear-gradient(135deg, #ff4c00, #ff7b00);
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2em;
+    color: #fff;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+    animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+/* Glowing animation for header text */
+@keyframes textGlow {
+    from {
+        text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4), 0 0 10px #ff6900;
+    }
+    to {
+        text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4), 0 0 20px #ff6900;
+    }
+}
+
+/* Sidebar Toggle Button */
+.sidebar-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .sidebar-toggle {
+        display: block;
+        background-color: #ff6900;
+        color: white;
+        border: none;
+        padding: 3px;
+        margin-top: 2em;
+        font-size: 1em;
+        width: 20%;
+        cursor: pointer;
+        text-align: center;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        animation: bounceIn 0.8s ease;
+        transition: background-color 0.3s ease;
+    }
+
+    .sidebar-toggle:hover {
+        background-color: #ff4c00;
+    }
+
+    /* Bounce animation for the toggle button */
+    @keyframes bounceIn {
+        from {
+            transform: translateY(-30px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    /* Toggle button glowing effect */
+    .sidebar-toggle:focus {
+        outline: none;
+        box-shadow: 0px 0px 10px 5px rgba(255, 105, 0, 0.7);
+    }
+}
+
 </style>
 
 <body>
@@ -256,10 +426,13 @@
     <header class="header">
         <h1>Policies</h1>
     </header>
+    <button class="sidebar-toggle">☰ Menu</button>
 
     <aside class="sidebar">
         <nav>
+
             <ul>
+
                 <li><a href="#section1">Refund and Cancellation</a></li>
                 <li><a href="#section2">Payment Terms</a></li>
                 <li><a href="#section3">Privacy Policy</a></li>
@@ -487,7 +660,7 @@
     </main>
 
     <footer class="footer">
-        <p>&copy; 2024 StoreSAGE. All rights reserved.</p>
+        <p>&copy; 2024 ShopSAGE. All rights reserved.</p>
     </footer>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -521,6 +694,12 @@
                 });
             });
         });
+        document.querySelector('.sidebar-toggle').addEventListener('click', function() {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.toggle('open');
+    this.classList.toggle('active');  // Optional: To visually indicate when sidebar is open
+});
+
 
     </script>
 </body>
