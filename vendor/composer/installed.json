@@ -1,0 +1,23 @@
+{
+    "packages": [
+        {
+            "name": "phonepe/phonepe-pg-php-sdk",
+            "version": "1.0.0",
+            "version_normalized": "1.0.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://phonepe.mycloudrepo.io/public/repositories/phonepe-pg-php-sdk/phonepe-pg-php-sdk.zip"
+            },
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "classmap": [
+                    "/"
+                ]
+            },
+            "install-path": "../phonepe/phonepe-pg-php-sdk"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}

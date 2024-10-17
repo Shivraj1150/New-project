@@ -440,6 +440,37 @@
 
 
     <script>
+
+
+function proceedToCheckout() {
+            const totalPrice = document.getElementById('total-price').textContent.replace('₹', '');
+            const totalItems = document.getElementById('total-items').textContent;
+
+            if (parseFloat(totalPrice) > 0) {
+                fetch('phonepe_initiate_payment.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `total_price=${totalPrice}&total_items=${totalItems}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        window.location.href = data.payment_url; // Redirect to PhonePe payment page
+                    } else {
+                        alert('Failed to initiate payment.');
+                    }
+                })
+                .catch(err => {
+                    console.error('Error:', err);
+                });
+            } else {
+                alert('Your cart is empty.');
+            }
+        }
+
+        
         function showPopup() {
             document.querySelector('.popup-overlay').style.display = 'flex';
         }

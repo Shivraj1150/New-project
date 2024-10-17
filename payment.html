@@ -157,37 +157,77 @@ input:not(:placeholder-shown) + label, textarea:not(:placeholder-shown) + label,
                 <input type="text" id="phone" placeholder="e.g., +91 98765 43210" required>
             </div>
             <div class="form-group">
-                <label for="address">Shipping Address</label>
-                <textarea id="address" placeholder="Street, City, State, Pincode" required></textarea>
+                <label for="shipping-address">Shipping Address</label>
+                <textarea id="shipping-address" placeholder="Street, City, State, Pincode" required></textarea>
             </div>
             <div class="form-group1">
                 <label for="country">Country</label>
-                <textarea id="address" placeholder="Country" required></textarea>
+                <textarea id="country" placeholder="Country" required></textarea>
             </div>
             <div class="form-group1">
                 <label for="state">State/Province</label>
-                <textarea id="address" placeholder="State" required></textarea>
+                <textarea id="state" placeholder="State" required></textarea>
             </div>
             <div class="form-actions">
                 <button type="button" class="secondary-button">Back</button>
-                <button type="submit" class="primary-button">Continue to Payment</button>
+                <button type="button" class="primary-button" id="continue-to-payment">Continue to Payment</button>
+
             </div>
         </form>
     </div>
+
     <script>
-        document.getElementById('shipping-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const progress = document.querySelector('.progress');
-    
-    // Simulate form submission progress
-    progress.style.width = '66%';
-    
-    setTimeout(() => {
-        // Simulate moving to the payment page
-        progress.style.width = '100%';
-        alert('Proceeding to Payment!');
-    }, 500);
+       document.getElementById('continue-to-payment').addEventListener('click', function(event) {
+    event.preventDefault();  // Prevent default form submission behavior
+
+    // Collect form data
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const address = document.getElementById('shipping-address').value;
+    const country = document.getElementById('country').value;
+    const state = document.getElementById('state').value;
+
+    // Basic validation
+    if (!name || !email || !phone || !address || !country || !state) {
+        alert('Please fill out all the fields');
+        return;
+    }
+
+    // Send the shipping details to the server
+    fetch('save_shipping_details.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `name=${name}&email=${email}&phone=${phone}&address=${address}&country=${country}&state=${state}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            // Shipping details saved, now initiate the payment process
+            initiatePayment();
+        } else {
+            alert('Failed to save shipping details.');
+        }
+    })
+    .catch(err => {
+        console.error('Error:', err);
+    });
 });
+
+function initiatePayment() {
+    // Simulate loading progress
+    const progress = document.querySelector('.progress');
+    progress.style.width = '66%';
+
+    setTimeout(() => {
+        progress.style.width = '100%';
+        
+        // Redirect to phonepe_initiate_payment.php
+        window.location.href = 'phonepe_initiate_payment.php';  // Replace this with the actual PHP payment page URL
+    }, 500);  // Simulate a short delay for the progress bar
+}
 
     </script>
 </body>
