@@ -1,0 +1,1 @@
+{"merchantId":"ATMOSTUAT","merchantTransactionId":"PHPSDK241021020346payPageTest","amount":100000,"merchantUserId":45,"redirectUrl":"http:\/\/localhost\/New-project\/callback.php","redirectMode":"REDIRECT","callbackUrl":"http:\/\/localhost\/New-project\/callback.php","mobileNumber":null,"paymentInstrument":{"type":"PAY_PAGE"},"deviceContext":null}

@@ -1,3 +1,14 @@
+<?php
+session_start(); // Start the session
+
+// Assuming user_id is set during login
+if (!isset($_SESSION['user_id'])) {
+    // Redirect to login page or show an error if user is not logged in
+    header("Location: _login.php");
+    exit();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -271,125 +282,179 @@
     }
 }
 
-     /* Popup Overlay */
-.popup-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
+.notification {
+            position: fixed;
+         
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            padding: 10px;
+            z-index: 1000000;
+            transition: opacity 0.5s ease;
+            opacity: 0;
+            display: none; /* Ensure it starts as hidden */
+        }
+
+        .notification.show {
+            display: block; /* Show when triggered */
+            opacity: 1; /* Fade in effect */
+        }
+        .container {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 20px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    backdrop-filter: blur(8px); /* Adds blur to background for focus */
 }
 
-/* Popup Box Styling */
-.popup-box {
-    background: linear-gradient(135deg, #f97316, #facc15); /* Gradient background */
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Deep shadow for depth */
-    width: 100%;
-    max-width: 400px;
+h1 {
+    font-size: 2em;
     text-align: center;
-    animation: slideIn 0.4s ease-in-out; /* Slide-in effect */
-    color: white;
-    font-family: 'League Spartan', sans-serif;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.progress-bar {
+    position: relative;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.progress {
+    height: 100%;
+    width: 33%;
+    background: linear-gradient(to right, #ff9800, #ffcc80);
+    border-radius: 4px;
+    transition: width 0.4s ease;
+}
+
+.form-group {
+    margin-bottom: 20px;
     position: relative;
 }
 
-/* Popup Header */
-.popup-box h2 {
-    color: white;
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    font-weight: bold;
+label {
+    font-size: 0.9em;
+    color: #666;
+    display: block;
+    margin-bottom: 5px;
+    transition: all 0.3s ease;
 }
 
-/* Input Fields */
-.popup-box input {
-    width: 85%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: none;
-    border-radius: 10px;
-    font-size: 1rem;
-    background-color: #fff3e0; /* Soft background for input */
-    color: #333;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 6px;
     outline: none;
-    transition: box-shadow 0.3s ease-in-out;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.popup-box input:focus {
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+input:focus, textarea:focus, select:focus {
+    border-color: #ff9800;
+    box-shadow: 0 4px 10px rgba(255, 152, 0, 0.4);
 }
 
-/* Buttons */
-.popup-box button {
-    background-color: #fff;
-    color: #f97316;
+textarea {
+    resize: none;
+    min-height: 80px;
+}
+
+.form-group1 textarea{
+    resize: none;
+    min-height: 20px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.primary-button {
+    background: linear-gradient(to right, #ff9800, #ffcc80);
     border: none;
+    color: #fff;
     padding: 10px 20px;
-    font-size: 1.1rem;
-    border-radius: 8px;
+    border-radius: 6px;
+    font-size: 1em;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin: 5px;
-    font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.popup-box button:hover {
-    background-color: #f97316;
-    color: #fff;
-    transform: scale(1.05);
+.primary-button:hover {
+    box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4);
 }
 
-/* Close button */
-.popup-box .close-btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
+.secondary-button {
     background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: white;
+    border: 1px solid #ccc;
+    color: #666;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 1em;
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
-.popup-box .close-btn:hover {
-    color: #facc15;
+.secondary-button:hover {
+    background: #f3f3f3;
 }
 
-/* Popup Animation */
-@keyframes slideIn {
-    0% {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+input:focus + label, textarea:focus + label, select:focus + label {
+    color: #ff9800;
+    transform: translateY(-20px);
+    font-size: 0.8em;
 }
 
-/* Blur background */
-.popup-overlay {
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); /* For Safari support */
+input:not(:placeholder-shown) + label, textarea:not(:placeholder-shown) + label, select:not(:placeholder-shown) + label {
+    color: #ff9800;
+    transform: translateY(-20px);
+    font-size: 0.8em;
 }
+
+.modal-overlay {
+            display: none; /* Initially hidden */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            justify-content: center; /* Center the modal */
+            align-items: center; /* Center the modal */
+            z-index: 1000; /* Sit on top of other elements */
+            transition: opacity 0.3s ease; /* Smooth fade in/out */
+    opacity: 1; /* Start with full opacity */
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            display: block; /* Make it visible within the modal */
+        }
+
 
     </style>
 </head>
 <body>
-
+    <div id="notification" class="notification" style="display: none;"></div>
     <div class="cart-container">
         <h1>Shopping Cart</h1>
+        
         <table>
             <thead>
                 <tr>
@@ -419,106 +484,160 @@
                 <p>Total Price: <span id="total-price">₹0.00</span></p>
             </div>
             
-            <button class="checkout-button" onclick="showPopup()">Proceed to Checkout</button>
-        </div>
-    </div>
-   
+            <button class="checkout-button"  >Proceed to Checkout</button>
+            
 
-    <!-- Popup Overlay -->
-    <div class="popup-overlay">
-        <div class="popup-box">
-            <h2>Verify Phone Number</h2>
-            <input type="text" id="phone-number" placeholder="Enter Phone Number">
-            <button onclick="sendOtp()">Send OTP</button>
-            <input type="text" id="otp-code" placeholder="Enter OTP">
-            <button onclick="resendOtp()">Resend OTP</button>
-            <button onclick="submitVerification()">Submit</button>
         </div>
     </div>
+    <div class="modal-overlay" id="modal-overlay">
+
+    <div class="container">
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+        <h1>Shipping Details</h1>
+        <form id="shipping-form" action="process_order.php" method="POST">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
+                <input type="text" id="name" name="shipping_name" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="shipping_email" placeholder="Enter your email address" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="text" id="phone" name="shipping_phone" placeholder="e.g., +91 98765 43210" required>
+            </div>
+            <div class="form-group">
+                <label for="shipping-address">Shipping Address</label>
+                <textarea id="shipping-address" name="shipping_address" placeholder="Street, City, State, Pincode" required></textarea>
+            </div>
+            <div class="form-group1">
+                <label for="country">Country</label>
+                <textarea id="country" name="shipping_country" placeholder="Country" required></textarea>
+            </div>
+            <div class="form-group1">
+                <label for="state">State/Province</label>
+                <textarea id="state" name="shipping_state" placeholder="State and Pincode" required></textarea>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="secondary-button" onclick="closeModal()">Back</button>
+              <!-- Cart/Product Details (Dynamically populated from cart) -->
+    <input type="hidden" name="product_description" value="${item.product_name}">
+    <input type="hidden" name="product_size" value="${item.size}">
+    <input type="hidden" name="product_color" value="${item.color}">
+    <input type="hidden" name="product_quantity" value="${item.quantity}">
+    <input type="hidden" name="product_image" value="${item.product_image}">
+    <input type="hidden" name="total_price" id="hidden-total-price" value="">
+           <button type="submit" class="primary-button" id="continue-to-payment">Continue to Payment</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+ 
 
 
 
 
     <script>
+     
+function showNotification(message) {
+    const notification = document.getElementById('notification');
+    notification.textContent = message;
+    notification.classList.add('show');
+    notification.style.display = 'block'; // Ensure it is displayed
+
+    // Automatically hide the notification after 3 seconds
+    setTimeout(() => {
+        notification.classList.remove('show');
+        notification.style.display = 'none';
+    }, 3000000);
+}
+function closeModal() {
+    const modalOverlay = document.getElementById("modal-overlay");
+    modalOverlay.style.opacity = "0"; // Start fade-out
+    setTimeout(() => {
+        modalOverlay.style.display = "none"; // Hide after fade-out
+    }, 300); // Match the duration with the CSS transition time
+}
+
+
 
 
 function proceedToCheckout() {
             const totalPrice = document.getElementById('total-price').textContent.replace('₹', '');
             const totalItems = document.getElementById('total-items').textContent;
 
-            if (parseFloat(totalPrice) > 0) {
-                fetch('phonepe_initiate_payment.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: `total_price=${totalPrice}&total_items=${totalItems}`
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 'success') {
-                        window.location.href = data.payment_url; // Redirect to PhonePe payment page
-                    } else {
-                        alert('Failed to initiate payment.');
-                    }
-                })
-                .catch(err => {
-                    console.error('Error:', err);
-                });
+            if (parseInt(totalItems) > 0 && parseFloat(totalPrice) > 0) {
+                document.getElementById('modal-overlay').style.display = 'flex'; // Show the modal overlay
+                document.querySelector('.cart-container').style.opacity = '0.3'; // Dim the cart background
             } else {
-                alert('Your cart is empty.');
+                showNotification('Your cart is empty or you are not logged In. Please add items or login to your account before proceeding to checkout.');
             }
         }
 
-        
-        function showPopup() {
-            document.querySelector('.popup-overlay').style.display = 'flex';
+        function closeModal() {
+            document.getElementById('modal-overlay').style.display = 'none'; // Hide the modal overlay
+            document.querySelector('.cart-container').style.opacity = '1'; // Restore the cart background opacity
         }
 
-        function sendOtp() {
-            const phoneNumber = document.getElementById('phone-number').value;
-            if (phoneNumber === "") {
-                alert("Please enter your phone number.");
-            } else {
-                alert(`OTP sent to ${phoneNumber}`);
-                // Here, you would send the OTP to the user's phone via an API.
-            }
-        }
+        // On form submission, trigger payment initiation progress
+        const form = document.getElementById('shipping-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent default form submission
+              // Update form action to point to phonepe_initiate_payment.php
+    // form.action = 'phonepe_initiate_payment.php';
 
-        function resendOtp() {
-            const phoneNumber = document.getElementById('phone-number').value;
-            if (phoneNumber === "") {
-                alert("Please enter your phone number.");
-            } else {
-                alert(`OTP resent to ${phoneNumber}`);
-                // Here, you would resend the OTP to the user's phone via an API.
-            }
-        }
+            const totalPrice = document.getElementById('hidden-total-price').value;
+    console.log("Submitting total price: ", totalPrice); // Check if total price is correct
 
-        function submitVerification() {
-            const otpCode = document.getElementById('otp-code').value;
-            if (otpCode === "") {
-                alert("Please enter the OTP.");
-            } else {
-                alert("Phone number verified successfully!");
-                // If verification is successful, proceed to the next page:
-                document.querySelector('.popup-overlay').style.display = 'none';
-                // Redirect to payment page
-                window.location.href = 'payment.html'; // Replace 'payment.html' with the actual payment page URL.
-            }
-        }
+            const progress = document.querySelector('.progress');
+            progress.style.width = '66%';
+
+            setTimeout(() => {
+                progress.style.width = '100%';
+
+                // Submit the form to phonepe_initiate_payment.php
+                form.submit();  // Submit the form after the progress animation
+
+            }, 500);  // Simulate a short delay for the progress bar
+        });
+
+// Add event listener to the checkout button
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('.checkout-button').addEventListener('click', proceedToCheckout);
+    renderCart(); // Call renderCart to display cart items on page load
+});
+
+
+     
         // JavaScript remains the same, but change the 'Remove' button to use the delete icon
         function renderCart() {
             fetch('cart.php')
                 .then(response => response.json())
                 .then(cartItems => {
+                    console.log(cartItems); // Check if cart items are being returned properly
+            if (!cartItems || cartItems.length === 0) {
+                console.log('Cart is empty');
+                return;  // Return early if the cart is empty
+            }
+
+
                     const cartSection = document.querySelector('.cart-section');
                     cartSection.innerHTML = '';
 
                     let totalPrice = 0;
                     let totalItems = 0;
 
-                    cartItems.forEach(item => {
+        // Clear any existing product hidden fields
+        const shippingForm = document.getElementById('shipping-form');
+            shippingForm.querySelectorAll('.product-input-group').forEach(el => el.remove());
+
+
+                        cartItems.forEach((item, index) => {
                         const cartRow = document.createElement('tr');
                         cartRow.classList.add('cart-item');
                         cartRow.innerHTML = 
@@ -542,13 +661,34 @@ function proceedToCheckout() {
                            `;
                         
                             cartSection.appendChild(cartRow);
+            
+             
+
 
                         totalPrice += parseFloat(item.product_price) * item.quantity;
+
                         totalItems += item.quantity;
-                    });
+                         // Add hidden input fields for each product to the form
+                const productInputGroup = document.createElement('div');
+                productInputGroup.classList.add('product-input-group');
+                productInputGroup.innerHTML = `
+                    <input type="hidden" name="products[${index}][description]" value="${item.product_name}">
+                    <input type="hidden" name="products[${index}][size]" value="${item.size}">
+                    <input type="hidden" name="products[${index}][color]" value="${item.color}">
+                    <input type="hidden" name="products[${index}][quantity]" value="${item.quantity}">
+                    <input type="hidden" name="products[${index}][image]" value="${item.product_image}">
+                    <input type="hidden" name="products[${index}][price]" value="${item.product_price}">
+                `;
+                shippingForm.appendChild(productInputGroup);
+            });
+
+                        
+                   
 
                     document.getElementById('total-price').textContent = `₹${totalPrice.toFixed(2)}`;
                     document.getElementById('total-items').textContent = totalItems;
+                 // Update the hidden total price field for form submission
+            document.getElementById('hidden-total-price').value = totalPrice.toFixed(2);
 
                     addRemoveFunctionality();
                     addQuantityFunctionality();
